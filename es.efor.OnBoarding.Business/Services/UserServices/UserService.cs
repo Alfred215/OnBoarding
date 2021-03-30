@@ -6,43 +6,151 @@ using es.efor.OnBoarding.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace es.efor.OnBoarding.Business.Services.UserServices
 {
     public class UserService : IUserService
     {
-        #region Propiedades privadas
+        #region Contructor y propiedades privadas
         private readonly OnboardingContext _dbContext;
-        private readonly IMapper _Mapper;
-        #endregion
+        private readonly IMapper _mapper;
+
 
         public UserService(
-            OnboardingContext PuertaAmericaContext,
-            IMapper Mapper
+            OnboardingContext dbContext,
+            IMapper mapper
             )
         {
-            this._dbContext = PuertaAmericaContext;
-            this._Mapper = Mapper;
+            this._dbContext = dbContext;
+            this._mapper = mapper;
         }
+        #endregion
 
         public async Task<UserDTO> Get(int Id)
         {
             Usuarios User = await this._dbContext.Usuarios.AsNoTracking().FirstOrDefaultAsync(x => x.Id == Id);
-            return this._Mapper.Map<UserDTO>(User);
+            return this._mapper.Map<UserDTO>(User);
         }
+
         public async Task<UserDTO> Get(string User)
         {
             Usuarios UserDb = await this._dbContext.Usuarios.AsNoTracking().FirstOrDefaultAsync(x => x.Usuario.Equals(User));
-            return this._Mapper.Map<UserDTO>(UserDb);
+            return this._mapper.Map<UserDTO>(UserDb);
+        }
+
+
+        public async Task<List<UserGridDTO>> GetDatatableUsers(UserFilterDTO userFilterDTO,
+            int pageIndex, int pageSize, string sortName, bool sortDescending)
+        {
+            CollectionList<Usuarios> result = new CollectionList();
+            IQueryable<Usuarios> query = _dbContext.Usuarios.Include(u => u.Role);
+
+            if (userFilterDTO.Id > 0)
+                query = query.Where(u => u.Id == userFilterDTO.Id);
+            if (!string.IsNullOrWhiteSpace(userFilterDTO.Username))
+                query = query.Where(u => u.Usuario == userFilterDTO.Username);
+            if (!string.IsNullOrWhiteSpace(userFilterDTO.Name))
+                query = query.Where(u => u.Nombre == userFilterDTO.Name);
+            if (!string.IsNullOrWhiteSpace(userFilterDTO.Surnames))
+                query = query.Where(u => u.Apellidos == userFilterDTO.Surnames);
+            if (!string.IsNullOrWhiteSpace(userFilterDTO.Email))
+                query = query.Where(u => u.Email == userFilterDTO.Email);
+            if (userFilterDTO.RoleId > 0)
+                query = query.Where(u => u.RoleId == userFilterDTO.RoleId);
+            if (!string.IsNullOrWhiteSpace(userFilterDTO.RoleName))
+                query = query.Where(u => u.Role.Nombre == userFilterDTO.RoleName);
+            if (userFilterDTO.Active.HasValue)
+                query = query.Where(u => u.Activo == userFilterDTO.Active);
+
+            if (sortName != null)
+            {
+                switch (sortName)
+                {
+                    case nameof(UserGridDTO.Name):
+                        query = sortDescending ? query.OrderByDescending(u => u.Nombre) : query.OrderBy(u => u.Nombre);
+                        break;
+                    case nameof(UserGridDTO.Surnames):
+                        query = sortDescending ? query.OrderByDescending(u => u.Apellidos) : query.OrderBy(u => u.Apellidos);
+                        break;
+                    case nameof(UserGridDTO.Username):
+                        query = sortDescending ? query.OrderByDescending(u => u.Usuario) : query.OrderBy(u => u.Usuario);
+                        break;
+                    case nameof(UserGridDTO.Email):
+                        query = sortDescending ? query.OrderByDescending(u => u.Email) : query.OrderBy(u => u.Email);
+                        break;
+                    case nameof(UserGridDTO.Active):
+                        query = sortDescending ? query.OrderByDescending(u => u.Activo) : query.OrderBy(u => u.Activo);
+                        break;
+                    case nameof(UserGridDTO.RoleName):
+                        query = sortDescending ? query.OrderByDescending(u => u.Role.Nombre) : query.OrderBy(u => u.Role.Nombre);
+                        break;
+                    default:
+                        query = sortDescending ? query.OrderByDescending(u => u.Id) : query.OrderBy(u => u.Id);
+                        break;
+                }
+            }
+
+            List<Usuarios> usersList = await query.EforPaginate(pageIndex, pageSize).AsNoTracking().ToListAsync();
+
+            result.Items = usersList;
+            result.Total = await _dbContext.Usuarios.CountAsync();
+
+            return result;
+        }
+
+        public async Task<bool> Set(UserDTO user)
+        {
+            Usuarios userEntity;
+            if (user.Id > 0)
+            {
+                userEntity = await _dbContext.Usuarios.FirstOrDefaultAsync(u => u.Id == user.Id);
+                if (userEntity != null)
+                {
+                    _mapper.Map<UserDTO, Usuarios>(user, userEntity);
+                    await _dbContext.SaveChangesAsync();
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            else
+            {
+                userEntity = _mapper.Map<UserDTO, Usuarios>(user);
+                await _dbContext.Usuarios.AddAsync(userEntity);
+            }
+
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> Delete(int id)
+        {
+            Usuarios userEntity = await _dbContext.Usuarios.FirstOrDefaultAsync(u => u.Id == id);
+            
+            if(userEntity != null)
+            {
+                _dbContext.Usuarios.Remove(userEntity);
+            }
+            else
+            {
+                return false;
+            }
+
+            await _dbContext.SaveChangesAsync();
+            return true;
         }
 
         #region Auth
         public async Task<bool> Register(RegisterModelDTO User)
         {
-            Usuarios UserDb = this._Mapper.Map<Usuarios>(User);
+            Usuarios UserDb = this._mapper.Map<Usuarios>(User);
 
             if (!string.IsNullOrEmpty(User.Password))
             {
@@ -53,6 +161,11 @@ namespace es.efor.OnBoarding.Business.Services.UserServices
             await this._dbContext.SaveChangesAsync();
             return true;
         }
+        /// <summary>
+        /// Obtiene un usuario a partir de la información enviada durante el login
+        /// </summary>
+        /// <param name="Login"></param>
+        /// <returns></returns>
         public async Task<UserDTO> Get(LoginModelDTO Login)
         {
             //encriptar contraseña
@@ -62,7 +175,7 @@ namespace es.efor.OnBoarding.Business.Services.UserServices
                 .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Usuario.Equals(Login.Username) && x.Clave.Equals(Login.Password));
 
-            return this._Mapper.Map<UserDTO>(User);
+            return this._mapper.Map<UserDTO>(User);
         }
         #endregion
 

@@ -15,12 +15,39 @@ namespace es.efor.OnBoarding.Business.Services.UserServices
         /// <param name="Id"></param>
         /// <returns></returns>
         Task<UserDTO> Get(int Id);
+
         /// <summary>
         /// Obtiene un usuario a partir de su nombre de usuario
         /// </summary>
         /// <param name="User"></param>
         /// <returns></returns>
         Task<UserDTO> Get(string User);
+
+        /// <summary>
+        /// Obtiene un listado de usuarios para la datatable
+        /// </summary>
+        /// <param name="userFilterDTO"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="sortName"></param>
+        /// <param name="sortDescending"></param>
+        /// <returns></returns>
+        Task<List<UserGridDTO>> GetDatatableUsers(UserFilterDTO userFilterDTO,
+            int pageIndex, int pageSize, string sortName, bool sortDescending)
+
+        /// <summary>
+        /// Edición / Creación del usuario
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        Task<bool> Set(UserDTO user);
+
+        /// <summary>
+        /// Borrado físico de un usuario
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<bool> Delete(int id);
 
         #region Auth
         /// <summary>
