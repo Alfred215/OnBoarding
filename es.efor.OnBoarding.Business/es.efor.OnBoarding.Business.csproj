@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\es.efor.OnBoarding.Data\es.efor.OnBoarding.Data.csproj" />
+    <ProjectReference Include="..\es.efor.OnBoarding.Infraestructure\es.efor.OnBoarding.Infraestructure.csproj" />
+    <ProjectReference Include="..\es.efor.Utilities.General\es.efor.Utilities.General.csproj" />
   </ItemGroup>
 
 </Project>
