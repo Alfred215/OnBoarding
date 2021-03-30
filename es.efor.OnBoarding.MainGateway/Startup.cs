@@ -1,3 +1,5 @@
+using AutoMapper;
+using es.efor.OnBoarding.Business;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -48,8 +50,6 @@ namespace es.efor.OnBoarding.MainGateway
                 {
                     ValidateIssuer = true,
                     ValidateAudience = false,
-                    //ValidateAudience = true,
-                    //ValidAudience = Configuration["JWT:ValidAudience"], TODO: ValidAudiences: swagger - front - app?
                     ValidIssuer = Configuration["JWT:ValidIssuer"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
                 };
@@ -83,14 +83,16 @@ namespace es.efor.OnBoarding.MainGateway
                             new string[] {}
                     }
                 });
-
-                //// Set the comments path for the Swagger JSON and UI.
-                //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                //c.IncludeXmlComments(xmlPath);
             });
 
+            //Automapper
+            MapperConfiguration mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MapperProfileRegistrations());
+            });
 
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

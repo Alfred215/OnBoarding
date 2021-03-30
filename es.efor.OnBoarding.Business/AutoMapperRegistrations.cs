@@ -6,9 +6,9 @@ using System.Text;
 
 namespace es.efor.OnBoarding.Business
 {
-    public sealed class AutoMapperRegistrations : Profile
+    public sealed class MapperProfileRegistrations : Profile
     {
-        public AutoMapperRegistrations()
+        public MapperProfileRegistrations()
         {
 
             #region Usuarios
