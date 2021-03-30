@@ -1,5 +1,6 @@
 ﻿using es.efor.OnBoarding.Business.DTO.AuthDTOs;
 using es.efor.OnBoarding.Business.DTO.UsersDTOs;
+using es.efor.Utilities.General;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -32,8 +33,8 @@ namespace es.efor.OnBoarding.Business.Services.UserServices
         /// <param name="sortName"></param>
         /// <param name="sortDescending"></param>
         /// <returns></returns>
-        Task<List<UserGridDTO>> GetDatatableUsers(UserFilterDTO userFilterDTO,
-            int pageIndex, int pageSize, string sortName, bool sortDescending)
+        Task<CollectionList<UserGridDTO>> Datatable(UserFilterDTO userFilterDTO,
+            int pageIndex, int pageSize, string sortName, bool sortDescending);
 
         /// <summary>
         /// Edición / Creación del usuario

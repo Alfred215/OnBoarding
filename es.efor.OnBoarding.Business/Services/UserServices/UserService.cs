@@ -3,6 +3,7 @@ using es.efor.OnBoarding.Business.DTO.AuthDTOs;
 using es.efor.OnBoarding.Business.DTO.UsersDTOs;
 using es.efor.OnBoarding.Data.Context;
 using es.efor.OnBoarding.Data.Entities;
+using es.efor.Utilities.General;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -44,10 +45,10 @@ namespace es.efor.OnBoarding.Business.Services.UserServices
         }
 
 
-        public async Task<List<UserGridDTO>> GetDatatableUsers(UserFilterDTO userFilterDTO,
+        public async Task<CollectionList<UserGridDTO>> Datatable(UserFilterDTO userFilterDTO,
             int pageIndex, int pageSize, string sortName, bool sortDescending)
         {
-            CollectionList<Usuarios> result = new CollectionList();
+            CollectionList<UserGridDTO> result = new CollectionList<UserGridDTO>();
             IQueryable<Usuarios> query = _dbContext.Usuarios.Include(u => u.Role);
 
             if (userFilterDTO.Id > 0)
@@ -61,7 +62,7 @@ namespace es.efor.OnBoarding.Business.Services.UserServices
             if (!string.IsNullOrWhiteSpace(userFilterDTO.Email))
                 query = query.Where(u => u.Email == userFilterDTO.Email);
             if (userFilterDTO.RoleId > 0)
-                query = query.Where(u => u.RoleId == userFilterDTO.RoleId);
+                query = query.Where(u => u.RoleId == (int)userFilterDTO.RoleId);
             if (!string.IsNullOrWhiteSpace(userFilterDTO.RoleName))
                 query = query.Where(u => u.Role.Nombre == userFilterDTO.RoleName);
             if (userFilterDTO.Active.HasValue)
@@ -97,7 +98,7 @@ namespace es.efor.OnBoarding.Business.Services.UserServices
 
             List<Usuarios> usersList = await query.EforPaginate(pageIndex, pageSize).AsNoTracking().ToListAsync();
 
-            result.Items = usersList;
+            result.Items = _mapper.Map<List<UserGridDTO>>(usersList);
             result.Total = await _dbContext.Usuarios.CountAsync();
 
             return result;
@@ -113,21 +114,18 @@ namespace es.efor.OnBoarding.Business.Services.UserServices
                 {
                     _mapper.Map<UserDTO, Usuarios>(user, userEntity);
                     await _dbContext.SaveChangesAsync();
+                    return true;
                 }
-                else
-                {
-                    return false;
-                }
-
             }
             else
             {
                 userEntity = _mapper.Map<UserDTO, Usuarios>(user);
                 await _dbContext.Usuarios.AddAsync(userEntity);
+                await _dbContext.SaveChangesAsync();
+                return true;
             }
 
-            await _dbContext.SaveChangesAsync();
-            return true;
+            return false;
         }
 
         public async Task<bool> Delete(int id)
@@ -137,14 +135,11 @@ namespace es.efor.OnBoarding.Business.Services.UserServices
             if(userEntity != null)
             {
                 _dbContext.Usuarios.Remove(userEntity);
-            }
-            else
-            {
-                return false;
+                await _dbContext.SaveChangesAsync();
+                return true;
             }
 
-            await _dbContext.SaveChangesAsync();
-            return true;
+            return false;
         }
 
         #region Auth

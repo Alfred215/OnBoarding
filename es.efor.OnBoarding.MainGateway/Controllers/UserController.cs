@@ -38,13 +38,11 @@ namespace es.efor.OnBoarding.MainGateway.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetDatatableUsersAsync(
-            //[FromBody] DatatableDTO<UserFilterDTO> Filters)
-            )
+            [FromBody] DatatableDTO<UserFilterDTO> Filters)            
         {
 
-            //CollectionList<UserGridDTO> users = await _UserService.Datatable(Filters.filters, Filters.pageIndex, Filters.pageSize, Filters.sortName, Filters.sortDescending);
-            //return Ok(users);
-            return Ok();
+            CollectionList<UserGridDTO> users = await _UserService.Datatable(Filters.filters, Filters.pageIndex, Filters.pageSize, Filters.sortName, Filters.sortDescending);
+            return Ok(users);
         }
 
         /// <summary>
@@ -105,7 +103,7 @@ namespace es.efor.OnBoarding.MainGateway.Controllers
                 return BadRequest(ModelState);
             }
 
-            bool resp = true;// await _UserService.Set(user);
+            bool resp = await _UserService.Set(user);
             return Ok(resp);
         }
 
@@ -135,7 +133,7 @@ namespace es.efor.OnBoarding.MainGateway.Controllers
                 if (user.Active != Active)
                 {
                     user.Active = Active;
-                    bool resp = true;// await _UserService.Set(user);
+                    bool resp = await _UserService.Set(user);
                     return Ok(resp);
                 }
                 return BadRequest();
@@ -162,7 +160,7 @@ namespace es.efor.OnBoarding.MainGateway.Controllers
 
             if (user != null)
             {
-                bool success = true;// await _UserService.Delete(Id);
+                bool success = await _UserService.Delete(Id);
                 return Ok(success);
             }
 
