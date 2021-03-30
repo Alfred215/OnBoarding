@@ -1,4 +1,5 @@
-﻿using System;
+﻿using es.efor.OnBoarding.Infraestructure.Enums.Roles;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -44,6 +45,6 @@ namespace es.efor.OnBoarding.Business.DTO.UsersDTOs
         /// <summary>
         /// Rol del usuario
         /// </summary>
-        public int RoleId { get; set; }
+        public RolesEnum RoleId { get; set; }
     }
 }

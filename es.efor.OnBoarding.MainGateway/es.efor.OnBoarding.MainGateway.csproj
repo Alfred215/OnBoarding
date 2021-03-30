@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\es.efor.OnBoarding.Business\es.efor.OnBoarding.Business.csproj" />
+    <ProjectReference Include="..\es.efor.Utilities.General\es.efor.Utilities.General.csproj" />
   </ItemGroup>
 
 </Project>
