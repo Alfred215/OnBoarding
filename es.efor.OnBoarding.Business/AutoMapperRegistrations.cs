@@ -43,8 +43,8 @@ namespace es.efor.OnBoarding.Business
 
             #region Roles
             CreateMap<Roles, RoleDTO>()
-                .ForMember(dst => dst.Id, src => src.MapFrom<int>(sc => sc.Id))
-                .ForMember(dst => dst.Name, src => src.MapFrom<string>(sc => sc.Nombre));
+                .ForMember(dst => dst.Id, src => src.MapFrom(sc => sc.Id))
+                .ForMember(dst => dst.Name, src => src.MapFrom(sc => sc.Nombre));
             #endregion
         }
     }

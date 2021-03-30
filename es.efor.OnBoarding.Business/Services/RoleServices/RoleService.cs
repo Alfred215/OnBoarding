@@ -5,6 +5,7 @@ using es.efor.OnBoarding.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,24 +24,19 @@ namespace es.efor.OnBoarding.Business.Services.RoleServices
         }
         #endregion
 
-        /// <summary>
-        /// Obtiene la lista de roles de la aplicación
-        /// </summary>
-        /// <returns></returns>
-        public async Task<List<RoleDTO>> GetRoleList()
+        public async Task<List<RoleDTO>> List(string name)
         {
-            List<Roles> rolesList = await _dbContext.Roles.AsNoTracking().ToListAsync();
+            name ??= "";
+            List<Roles> rolesList = await _dbContext.Roles
+                .Where(x => x.Nombre.Contains(name))
+                .AsNoTracking().ToListAsync();
             return _mapper.Map<List<RoleDTO>>(rolesList);
         }
 
-        /// <summary>
-        /// Obtiene un rol por su id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public async Task<RoleDTO> GetRoleById(int id)
+        public async Task<RoleDTO> Get(int id)
         {
-            Roles role = await _dbContext.Roles.AsNoTracking().FirstOrDefaultAsync(r => r.Id == id);
+            Roles role = await _dbContext.Roles.AsNoTracking()
+                .FirstOrDefaultAsync(r => r.Id == id);
             return _mapper.Map<RoleDTO>(role);
         }
     }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using es.efor.OnBoarding.Data.Context;
 using es.efor.OnBoarding.Business.Services.UserServices;
+using es.efor.OnBoarding.Business.Services.RoleServices;
 
 namespace es.efor.OnBoarding.Business
 {
@@ -24,6 +25,7 @@ namespace es.efor.OnBoarding.Business
 
             // Inyección dependencias SERVICIOS
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IRoleService, RoleService>();
 
             return services;
         }
