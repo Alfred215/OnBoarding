@@ -14,10 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\es.efor.OnBoarding.Business\es.efor.OnBoarding.Business.csproj" />
   </ItemGroup>
 
