@@ -54,17 +54,17 @@ namespace es.efor.OnBoarding.Business.Services.UserServices
             if (userFilterDTO.Id > 0)
                 query = query.Where(u => u.Id == userFilterDTO.Id);
             if (!string.IsNullOrWhiteSpace(userFilterDTO.Username))
-                query = query.Where(u => u.Usuario == userFilterDTO.Username);
+                query = query.Where(u => u.Usuario.Contains(userFilterDTO.Username));
             if (!string.IsNullOrWhiteSpace(userFilterDTO.Name))
-                query = query.Where(u => u.Nombre == userFilterDTO.Name);
+                query = query.Where(u => u.Nombre.Contains(userFilterDTO.Name));
             if (!string.IsNullOrWhiteSpace(userFilterDTO.Surnames))
-                query = query.Where(u => u.Apellidos == userFilterDTO.Surnames);
+                query = query.Where(u => u.Apellidos.Contains(userFilterDTO.Surnames));
             if (!string.IsNullOrWhiteSpace(userFilterDTO.Email))
-                query = query.Where(u => u.Email == userFilterDTO.Email);
+                query = query.Where(u => u.Email.Contains(userFilterDTO.Email));
             if (userFilterDTO.RoleId > 0)
-                query = query.Where(u => u.RoleId == (int)userFilterDTO.RoleId);
+                query = query.Where(u => u.RoleId == userFilterDTO.RoleId);
             if (!string.IsNullOrWhiteSpace(userFilterDTO.RoleName))
-                query = query.Where(u => u.Role.Nombre == userFilterDTO.RoleName);
+                query = query.Where(u => u.Role.Nombre.Contains(userFilterDTO.RoleName));
             if (userFilterDTO.Active.HasValue)
                 query = query.Where(u => u.Activo == userFilterDTO.Active);
 
@@ -99,7 +99,7 @@ namespace es.efor.OnBoarding.Business.Services.UserServices
             List<Usuarios> usersList = await query.EforPaginate(pageIndex, pageSize).AsNoTracking().ToListAsync();
 
             result.Items = _mapper.Map<List<UserGridDTO>>(usersList);
-            result.Total = await _dbContext.Usuarios.CountAsync();
+            result.Total = await query.CountAsync();
 
             return result;
         }

@@ -29,31 +29,28 @@ namespace es.efor.OnBoarding.Business.DTO.UsersDTOs
         /// Campo Usuario del usuario
         /// </summary>
         [MaxLength(50, ErrorMessage = "API.ERROR.USER.USERNAME.MAXLENGTH")]
-        [MinLength(6, ErrorMessage = "API.ERROR.USER.USERNAME.MINLENGTH")]
         public string Username { get; set; }
 
         /// <summary>
         /// Correo del usuario
         /// </summary>
-        [MaxLength(50, ErrorMessage = "API.ERROR.USER.PASSWORD.MAXLENGTH")]
-        [MinLength(6, ErrorMessage = "API.ERROR.USER.PASSWORD.MINLENGTH")]
+        [MaxLength(50, ErrorMessage = "API.ERROR.USER.EMAIL.MAXLENGTH")]
         public string Email { get; set; }
 
         /// <summary>
         /// Campo activo del usuario
-        /// </summary>
-        [MaxLength(50, ErrorMessage = "API.ERROR.USER.EMAL.MAXLENGTH")]
+        /// </summary>        
         public bool? Active { get; set; }
 
         /// <summary>
         /// Rol del usuario
         /// </summary>
+        [MaxLength(50, ErrorMessage = "API.ERROR.ROLE.NAME.MAXLENGTH")]
         public string RoleName { get; set; }
 
         /// <summary>
         /// Identificador del rol del usuario
         /// </summary>
-        [EnumDataType(typeof(RolesEnum), ErrorMessage = "API.ERROR.USER.ROLE.INVALID")]
-        public RolesEnum RoleId { get; set; }
+        public int RoleId { get; set; }
     }
 }

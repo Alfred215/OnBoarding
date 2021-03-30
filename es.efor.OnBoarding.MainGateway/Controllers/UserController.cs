@@ -40,7 +40,7 @@ namespace es.efor.OnBoarding.MainGateway.Controllers
         public async Task<IActionResult> GetDatatableUsersAsync(
             [FromBody] DatatableDTO<UserFilterDTO> Filters)            
         {
-
+            Filters.filters ??= new UserFilterDTO();
             CollectionList<UserGridDTO> users = await _UserService.Datatable(Filters.filters, Filters.pageIndex, Filters.pageSize, Filters.sortName, Filters.sortDescending);
             return Ok(users);
         }
