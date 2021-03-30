@@ -13,7 +13,7 @@ namespace es.efor.OnBoarding.Business
     {
         /// <param name="configuration">Application settings</param>
         /// <returns></returns>
-        public static IServiceCollection AddAPPHotelesService(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddOnBoardingService(this IServiceCollection services, IConfiguration configuration)
         {
 
             services.AddDbContext<OnboardingContext>(options =>
