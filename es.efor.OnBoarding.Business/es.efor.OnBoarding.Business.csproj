@@ -6,6 +6,17 @@
 
   <ItemGroup>
     <Folder Include="DTO\" />
+    <Folder Include="Services\UserServices\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\es.efor.OnBoarding.Data\es.efor.OnBoarding.Data.csproj" />
   </ItemGroup>
 
 </Project>
