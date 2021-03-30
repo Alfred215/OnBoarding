@@ -11,7 +11,7 @@ namespace es.efor.OnBoarding.Business.Services.RoleServices
         /// <summary>
         /// Obtiene la lista de roles de la aplicación
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="name">Busqueda por nombre dle rol</param>
         /// <returns></returns>
         Task<List<RoleDTO>> List(string name);
 

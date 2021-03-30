@@ -40,11 +40,6 @@ namespace es.efor.OnBoarding.Business.Services.UserServices
         }
 
         #region Auth
-        /// <summary>
-        /// Crea un usuario, para pruebas
-        /// </summary>
-        /// <param name="User"></param>
-        /// <returns></returns>
         public async Task<bool> Register(RegisterModelDTO User)
         {
             Usuarios UserDb = this._Mapper.Map<Usuarios>(User);
@@ -58,11 +53,6 @@ namespace es.efor.OnBoarding.Business.Services.UserServices
             await this._dbContext.SaveChangesAsync();
             return true;
         }
-        /// <summary>
-        /// Obtiene un usuario a partir de la información enviada durante el login
-        /// </summary>
-        /// <param name="Login"></param>
-        /// <returns></returns>
         public async Task<UserDTO> Get(LoginModelDTO Login)
         {
             //encriptar contraseña

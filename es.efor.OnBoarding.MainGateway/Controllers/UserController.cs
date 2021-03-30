@@ -2,6 +2,7 @@
 using es.efor.OnBoarding.Business.DTO.UsersDTOs;
 using es.efor.OnBoarding.Business.Services.UserServices;
 using es.efor.Utilities.General;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -32,6 +33,7 @@ namespace es.efor.OnBoarding.MainGateway.Controllers
         /// <response code="200">La solicitud ha ido correctamente</response>
         /// <response code="401">El usuario no ha iniciado sesión</response>
         [HttpPost("datatable")]
+        [Authorize]
         [ProducesResponseType(typeof(CollectionList<UserGridDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -54,6 +56,7 @@ namespace es.efor.OnBoarding.MainGateway.Controllers
         /// <response code="401">El usuario no ha iniciado sesión</response>
         /// <response code="404">No se ha encontrado el usuario especificado</response>
         [HttpGet("{id}")]
+        [Authorize]
         [ProducesResponseType(typeof(UserDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -77,6 +80,7 @@ namespace es.efor.OnBoarding.MainGateway.Controllers
         /// <response code="400">Los datos de la publicación no son correctos</response>
         /// <response code="401">El usuario no ha iniciado sesión</response>
         [HttpPost]
+        [Authorize]
         [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -116,6 +120,7 @@ namespace es.efor.OnBoarding.MainGateway.Controllers
         /// <response code="401">El usuario no ha iniciado sesión</response> 
         /// <response code="404">No se ha encontrado el usuario especificado</response>    
         [HttpPost("setactive/{Id}")]
+        [Authorize]
         [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -141,12 +146,13 @@ namespace es.efor.OnBoarding.MainGateway.Controllers
         /// <summary>
         /// Elimina un usuario
         /// </summary>
-        /// <param name="Id">Id del hotel</param>
+        /// <param name="Id">Id del usuario</param>
         /// <returns>>Booleano con el resultado de la solicitud</returns>
         /// <response code="200">La solicitud ha ido correctamente</response>
         /// <response code="401">El usuario no ha iniciado sesión</response>
         /// <response code="404">No se ha encontrado el usuario</response>   
         [HttpDelete]
+        [Authorize]
         [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
