@@ -107,6 +107,7 @@ namespace es.efor.OnBoarding.MainGateway
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
