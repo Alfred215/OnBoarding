@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\es.efor.OnBoarding.Data\es.efor.OnBoarding.Data.csproj" />
+    <ProjectReference Include="..\es.efor.Utilities.General\es.efor.Utilities.General.csproj" />
   </ItemGroup>
 
 </Project>

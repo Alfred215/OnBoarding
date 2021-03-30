@@ -4,7 +4,7 @@ using System.Text;
 
 namespace es.efor.OnBoarding.Business.DTO.UsersDTOs
 {
-    public class UserGridDTO
+    public class UserFilterDTO
     {
         /// <summary>
         /// Identificador del usuario
@@ -34,11 +34,16 @@ namespace es.efor.OnBoarding.Business.DTO.UsersDTOs
         /// <summary>
         /// Campo activo del usuario
         /// </summary>
-        public bool Active { get; set; }
+        public bool? Active { get; set; }
 
         /// <summary>
         /// Rol del usuario
         /// </summary>
         public string RoleName { get; set; }
+
+        /// <summary>
+        /// Identificador del rol del usuario
+        /// </summary>
+        public int RoleId { get; set; }
     }
 }
