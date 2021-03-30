@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using es.efor.OnBoarding.Business.DTO.AuthDTOs;
 using es.efor.OnBoarding.Business.DTO.RolesDTOs;
 using es.efor.OnBoarding.Business.DTO.UsersDTOs;
 using es.efor.OnBoarding.Data.Entities;
@@ -30,6 +31,14 @@ namespace es.efor.OnBoarding.Business
                 .ForMember(dst => dst.Apellidos, src => src.MapFrom(usr => usr.Surnames))
                 .ForMember(dst => dst.Email, src => src.MapFrom(usr => usr.Email))
                 .ForMember(dst => dst.Activo, src => src.MapFrom(usr => usr.Active));
+
+            CreateMap<RegisterModelDTO, Usuarios>()
+              .ForMember(dst => dst.Usuario, src => src.MapFrom(usr => usr.User))
+              .ForMember(dst => dst.Clave, src => src.MapFrom(usr => usr.Password))
+              .ForMember(dst => dst.Nombre, src => src.MapFrom(usr => usr.Name))
+              .ForMember(dst => dst.Apellidos, src => src.MapFrom(usr => usr.Surname))
+              .ForMember(dst => dst.RoleId, src => src.MapFrom(usr => usr.RoleId))
+              .ForMember(dst => dst.Activo, src => src.MapFrom(usr => true));
             #endregion
 
             #region Roles

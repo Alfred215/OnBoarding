@@ -20,6 +20,6 @@ namespace es.efor.OnBoarding.Business.DTO.AuthDTOs
         [MaxLength(100)]
         public string Surname { get; set; }
         [Required]
-        public int Role { get; set; }
+        public int RoleId { get; set; }
     }
 }
