@@ -31,7 +31,7 @@ namespace es.efor.OnBoarding.MainGateway
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddOnBoardingService(Configuration);
             services.AddControllers();
 
             // Adding Authentication  
@@ -108,6 +108,10 @@ namespace es.efor.OnBoarding.MainGateway
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(
+                options => options.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowAnyHeader().AllowCredentials()
+            );
 
             app.UseAuthentication();
             app.UseAuthorization();
