@@ -6,5 +6,6 @@ namespace es.efor.OnBoarding.Business.Services.UserServices
 {
     public interface IUserService
     {
+
     }
 }
