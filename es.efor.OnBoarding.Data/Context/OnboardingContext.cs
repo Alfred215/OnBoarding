@@ -35,8 +35,6 @@ namespace es.efor.OnBoarding.Data.Context
 
             modelBuilder.Entity<Usuarios>(entity =>
             {
-                entity.Property(e => e.Activo).HasDefaultValueSql("((1))");
-
                 entity.Property(e => e.Apellidos).IsFixedLength(true);
 
                 entity.Property(e => e.Clave).IsFixedLength(true);

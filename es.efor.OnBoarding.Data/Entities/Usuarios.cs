@@ -25,8 +25,7 @@ namespace es.efor.OnBoarding.Data.Entities
         public string Apellidos { get; set; }
         [StringLength(50)]
         public string Email { get; set; }
-        [Required]
-        public bool? Activo { get; set; }
+        public bool Activo { get; set; }
         public int RoleId { get; set; }
 
         [ForeignKey(nameof(RoleId))]
