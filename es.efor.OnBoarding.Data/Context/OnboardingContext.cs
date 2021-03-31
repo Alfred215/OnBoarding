@@ -29,22 +29,10 @@ namespace es.efor.OnBoarding.Data.Context
             modelBuilder.Entity<Roles>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.Nombre).IsFixedLength(true);
             });
 
             modelBuilder.Entity<Usuarios>(entity =>
             {
-                entity.Property(e => e.Apellidos).IsFixedLength(true);
-
-                entity.Property(e => e.Clave).IsFixedLength(true);
-
-                entity.Property(e => e.Email).IsFixedLength(true);
-
-                entity.Property(e => e.Nombre).IsFixedLength(true);
-
-                entity.Property(e => e.Usuario).IsFixedLength(true);
-
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.Usuarios)
                     .HasForeignKey(d => d.RoleId)
