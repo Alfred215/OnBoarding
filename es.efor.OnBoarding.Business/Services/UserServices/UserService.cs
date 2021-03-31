@@ -120,6 +120,7 @@ namespace es.efor.OnBoarding.Business.Services.UserServices
             else
             {
                 userEntity = _mapper.Map<UserDTO, Usuarios>(user);
+                userEntity.Clave = GetMd5Hash(user.Password);
                 await _dbContext.Usuarios.AddAsync(userEntity);
                 await _dbContext.SaveChangesAsync();
                 return true;

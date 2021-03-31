@@ -49,7 +49,7 @@ namespace es.efor.OnBoarding.MainGateway.Controllers
         /// Obtiene un usuario a partir de su Id
         /// </summary>
         /// <param name="id">Id del usuario</param>
-        /// <returns>Usuario especificada</returns>
+        /// <returns>Usuario especificado</returns>
         /// <response code="200">La solicitud ha ido correctamente</response>
         /// <response code="401">El usuario no ha iniciado sesión</response>
         /// <response code="404">No se ha encontrado el usuario especificado</response>
@@ -75,7 +75,7 @@ namespace es.efor.OnBoarding.MainGateway.Controllers
         /// <param name="user">Datos del usuarios</param>
         /// <returns>Booleano con el resultado de la solicitud</returns>
         /// <response code="200">La solicitud ha ido correctamente</response>
-        /// <response code="400">Los datos de la publicación no son correctos</response>
+        /// <response code="400">Los datos del usuario no son correctos</response>
         /// <response code="401">El usuario no ha iniciado sesión</response>
         [HttpPost]
         [Authorize]
