@@ -1,0 +1,360 @@
+{
+	"API": {
+		"ERROR": {
+			"AUTH": {
+				"PASS": {
+					"FAIL": "Datos incorrectos"
+				}
+			},
+			"USER": {
+				"USERNAME": {
+					"REQUIRED": "Es necesario introducir un nombre de usuario",
+					"MINLENGTH": "El nombre de usuario debe tener al menos 6 carácteres",
+					"MAXLENGTH": "El nombre de usuario no puede tener más de 50 carácteres"
+				},
+				"PASSWORD": {
+					"REQUIRED": "Es necesario introducir una contraseña al usuario",
+					"MINLENGTH": "La contraseña debe tener al menos 6 carácteres",
+					"MAXLENGTH": "La contraseña no puede tener más de 50 carácteres"
+				},
+				"NAME": {
+					"REQUIRED": "Es necesario introducir un nombre ",
+					"MINLENGTH": "El nombre debe tener al menos 3 carácteres",
+					"MAXLENGTH": "El nombre no puede tener más de 50 carácteres"
+				},
+				"SURNAME": {
+					"REQUIRED": "Es necesario introducir un apellido",
+					"MINLENGTH": "El apellido debe tener al menos 3 carácteres",
+					"MAXLENGTH": "El apellido no puede tener más de 50 carácteres"
+				},
+				"EMAIL": {
+					"REQUIRED": "Es necesario introducir un email",
+					"MINLENGTH": "El email debe tener al menos 6 carácteres",
+					"MAXLENGTH": "El email no puede tener más de 50 carácteres"
+				},
+				"DNI": {
+					"REQUIRED": "Es necesario introducir un dni",
+					"MINLENGTH": "El dni debe tener al menos 6 carácteres",
+					"MAXLENGTH": "El dni no puede tener más de 12 carácteres"
+				},
+				"ROLEID": {
+					"REQUIRED": "Es necesario introducir un rol al usuario",
+					"INVALID": "El rol debe ser valido (1-3)"
+				}
+			},
+			"TASK": {
+				"ID": {
+					"REQUIRED": "Es necesario introducir un id de tarea"
+				},
+				"NAME": {
+					"REQUIRED": "Es necesario introducir un nombre ",
+					"MINLENGTH": "El nombre debe tener al menos 6 carácteres",
+					"MAXLENGTH": "El nombre no puede tener más de 50 carácteres"
+				},
+				"ESTIMATEDHOURS": {
+					"REQUIRED": "Es necesario introducir unas horas estimadas"
+				},
+				"COMMENT": {
+					"MINLENGTH": "El comentario debe tener al menos 6 carácteres",
+					"MAXLENGTH": "El comentario no puede tener más de 500 carácteres"
+				}
+			},
+			"PART": {
+				"ID":{
+					"REQUIRED": "Es necesario introducir un id de Parte"
+				},
+				"DATE":{
+					"REQUIRED": "Es necesario poner un formato de fecha correcto",
+					"REGULAREXPRESION": "Formato de fecha incorrecto"
+				},
+				"INVERTEDHOURS":{
+					"REQUIRED": "El número de horas debe ser superior a 1"
+				},
+				"COMMENTS": {
+					"MAXLENGTH": "El máximo permitido es de 500 carácteres",
+					"REQUIRED": "Es necesario rellenar este campo"
+				},
+				"TASKID":{
+					"REQUIRED": "Es necesario introducir un id de tarea"
+				},
+				"USERID": {
+					"REQUIRED": "Es necesario introducir un id de usuario"
+				}
+			}
+		}
+	},
+	"APP": {
+		"NAME": "GestorActividades"
+	},
+	"APP_NAME": "GestorActividades",
+	"COMPONENT": {
+		"FILEDROP": {
+			"LABEL": {
+				"CHOOSEFILE": "COMPONENT.FILEDROP.LABEL.CHOOSEFILE",
+				"ORDRAGHERE": "COMPONENT.FILEDROP.LABEL.ORDRAGHERE",
+				"RELEASETOUPLOAD": "COMPONENT.FILEDROP.LABEL.RELEASETOUPLOAD",
+				"UPLOADING": "COMPONENT.FILEDROP.LABEL.UPLOADING"
+			},
+			"MODAL": {
+				"DELETE": {
+					"BODY": "¿Desea eliminar este objeto?",
+					"BTN": {
+						"CANCEL": "Cancelar",
+						"CONFIRM": "Aceptar"
+					},
+					"TITLE": "AVISO"
+				},
+				"DOWNLOAD":{
+					"BODY": "Seleccione que datos que desea obtener en el archivo",
+					"BTN": {
+						"CANCEL": "Volver",
+						"CONFIRM": "Descargar"
+					},
+					"TITLE": "DESCARGA"
+				}
+			}
+		}
+	},
+	"FORMAT": {
+		"DATE": "DD/MM/yyyy",
+		"DATETIME": "dd/MM/yyyy HH:mm",
+		"TIME": "HH:mm",
+		"TIMESECONDS": "HH:mm:ss"
+	},
+	"GENERIC": {
+		"BTN": {
+			"CLOSE": "Cerrar",
+			"DELETE": "Eliminar",
+			"GOTO": {
+				"LIST": "Ir al listado"
+			},
+			"GO_HOME": "Inicio",
+			"SAVE": "Guardar"
+		},
+		"LABEL": {
+			"LOADING": "Cargando..."
+		},
+		"SELECT": {
+			"BOOLSELECT": {
+				"ENABLED": "Habilitado",
+				"DISABLED": "Deshabilitado"
+			}
+		},
+		"MONTHS": {
+			"JANUARY": "Enero",
+			"FEBRUARY": "Febrero",
+			"MARCH": "Marzo",
+			"APRIL": "Abril",
+			"MAY": "Mayo",
+			"JUNE": "Junio",
+			"JULY": "Julio",
+			"AUGUST": "Agosto",
+			"SEPTEMBER": "Septiembre",
+			"OCTOBER": "Octubre",
+			"NOVEMBER": "Noviembre",
+			"DECEMBER": "Diciembre"
+		}
+	},
+	"LANG": {
+		"EN": "English",
+		"EN_SHORT": "EN",
+		"ES": "Castellano",
+		"ES_SHORT": "ES"
+	},
+	"MENU": {
+		"NAV": {
+			"HOME": "Home",
+			"PARTS": "Partes",
+			"TASKS": "Tareas",
+			"USERS": "Usuarios"
+		},
+		"BTN": {
+			"LOGOUT": "Cerrar sesión"
+		}
+	},
+	"PAGE": {
+		"DASHBOARD": {
+			"TITLE": "Dashboard"
+		},
+		"ERROR": {
+			"404": {
+				"BODY": "No hemos podido encontrar la página que buscas",
+				"TITLE": "Página no encontrada"
+			}
+		}
+	},
+	"PAGES": {
+		"AUTH": {
+			"LOGIN": {
+				"LOGINERROR": "Usuario o Contraseña incorrectos",
+				"BTN": {
+					"LOGIN": "Iniciar sesión",
+					"RECOVERPASSWORD": "Recuperar Contraseña"
+				},
+				"LABEL": {
+					"PASSWORD": "Contraseña",
+					"REMEMBERME": "Permanecer conectado",
+					"USERNAME": "Usuario",
+					"LOGIN": "Inicio de Sesión"
+				}
+			}
+		},
+		"MAIN": {
+			"PARTS": {
+				"ITEM": {
+					"SELECT_USER": "Seleccione un Usuario:",
+					"SELECT_TASK": "Seleccione una Tarea",
+					"SELECT_DATE": "Fecha",
+					"SELECT_HOURS": "Horas Invertidas",
+					"SELECT_COMMENTS": "Comentario",
+					"ID": "Parte Id"
+				},
+				"LIST": {
+					"COLUMN": {
+						"ID": "ID",
+						"DATE": "Fecha",
+						"INVERTEDHOURS": "Horas Invertidas",
+						"COMMENTS": "Comentarios",
+						"USERID": "User ID"
+					}
+				}
+			},
+			"TASKS": {
+				"LIST": {
+					"COLUMN": {
+						"ID": "Id",
+						"NAME": "Nombre",
+						"ESTIMATEDHOURS": "Horas Estimadas",
+						"COMMENTS": "Comentarios"
+					}
+				},
+				"ITEM": {
+					"ID": "Tarea ID",
+					"NAME": "Nombre",
+					"ESTIMATED_HOURS": "Horas Estimadas",
+					"COMMENTS": "Comentario"
+				}
+			},
+			"USERS": {
+				"LIST": {
+					"COLUMN": {
+						"ID": "Id",
+						"USERNAME": "Usuario",
+						"PASSWORD": "Contraseña",
+						"NAME": "Nombre",
+						"SURNAMES": "Apellidos",
+						"EMAIL": "Email",
+						"DNI": "DNI",
+						"ESTATE": "Bloqueado"
+					}
+				},
+				"ITEM": {
+					"ID": "Id",
+					"USERNAME": "Usuario",
+					"PASSWORD": "Contraseña",
+					"NAME": "Nombre",
+					"SURNAMES": "Apellidos",
+					"EMAIL": "Email",
+					"DNI": "DNI",
+					"ROLID": "Rol"
+				}
+			},
+			"TEMPLATE": {
+				"LIST": {
+					"TITLE": "Listado Partes"
+				}
+			}
+		}
+	},
+	"TOASTR": {
+		"PARTS": {
+			"ITEM": {
+				"SAVED": {
+					"SUCCESS": {
+						"LABEL": "Partes",
+						"MESSAGE": "Se ha guardado correctamente"
+					},
+					"DOWNLOAD": {
+						"SUCCESS": {
+							"LABEL": "DESCARGA",
+							"MESSAGE": "Completada correctamente"
+						},
+						"ERROR": {
+							"LABEL": "DESCARGA",
+							"MESSAGE": "Ocurrio un error inesperado"
+						}
+					}
+					
+				},
+				"DELETE":{
+					"LABEL": "ELIMINADO",
+					"MESSAGE": "Se ha eliminado correctamente"
+				},
+				"ERROR": {
+					"LABEL": "ERROR AL CREAR PARTE",
+					"MESSAGE": "No se ha podido completar la creación"
+				}
+			}
+		},
+		"TASKS": {
+			"ITEM": {
+				"SAVED": {
+					"SUCCESS": {
+						"LABEL": "Tareas",
+						"MESSAGE": "Se ha guardado correctamente"
+					}
+				},
+				"ERROR": {
+					"LABEL": "ERROR AL CREAR TAREA",
+					"MESSAGE": "No se ha podido completar la creación"
+				},
+				"DELETE":{
+					"LABEL": "ELIMINADO",
+					"MESSAGE": "Se ha eliminado correctamente"
+				}
+			}
+		},
+		"USERS": {
+			"ITEM": {
+				"SAVED": {
+					"SUCCESS": {
+						"LABEL": "Usuarios",
+						"MESSAGE": "Se ha guardado correctamente"
+					}
+				},
+				"ERROR": {
+					"LABEL": "ERROR AL CREAR USUARIO",
+					"MESSAGE": "No se ha podido completar la creación"
+				},
+				"DELETE":{
+					"LABEL": "ELIMINADO",
+					"MESSAGE": "Se ha eliminado correctamente"
+				}
+			}
+		}
+	},
+	"SERVICEWORKER": {
+		"MODAL": {
+			"BODY": "SERVICEWORKER.MODAL.BODY",
+			"BTN": {
+				"CLOSE": "SERVICEWORKER.MODAL.BTN.CLOSE",
+				"CONFIRM": "SERVICEWORKER.MODAL.BTN.CONFIRM"
+			},
+			"HEADER": "SERVICEWORKER.MODAL.HEADER"
+		}
+	},
+	"TOAST_ERR_HTTP_0_BODY": "TOAST_ERR_HTTP_0_BODY",
+	"TOAST_ERR_HTTP_0_TITLE": "TOAST_ERR_HTTP_0_TITLE",
+	"no": "no",
+	"EDIT": "Editar",
+	"DELETE": "Borrar",
+	"ADD": "Añadir",
+	"SAVE": "Guardar",
+	"LOCK": "Bloquear",
+	"UNLOCK": "Desbloquear",
+	"BUTTON": {
+		"CREATE": "CREAR",
+		"BACK": "VOLVER",
+		"GRAPHICS": "ESTADISTICAS"
+	}
+}

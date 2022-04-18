@@ -1,0 +1,118 @@
+<div class="card">
+    <div class="card-body">
+        <form>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group row">
+                        <!-- Selct ID -->
+                        <label class="col-form-label col-sm-12" #lblIdPart for="ID">{{'PAGES.MAIN.PARTS.ITEM.ID' |
+                            translate}}
+                        </label>
+                        <div class="col-sm-12">
+                            <input type="text" autocomplete="off" class="form-control form-control-sm"
+                                [id]="lblIdPart.getAttribute('for')" [name]="lblIdPart.getAttribute('for')"
+                                [(ngModel)]="_item.id" [disabled]="_isLoading" [required]="true">
+                                <ax-array-translator class="invalid-feedback d-block"
+                                [(labels)]="_serverSideError[lblIdPart.getAttribute('for')]">
+                                </ax-array-translator>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <!-- Select Fecha-->
+                    <label class="col-form-label col-sm-12" #lblDatePart
+                        for="DATE">{{'PAGES.MAIN.PARTS.ITEM.SELECT_DATE' | translate}}</label>
+                    <div class="col-sm-12">
+                        <input type="date" autocomplete="off" class="form-control form-control-sm"
+                            [id]="lblDatePart.getAttribute('for')" [name]="lblDatePart.getAttribute('for')"
+                            [(ngModel)]="selectedDate" [disabled]="_isLoading" [required]="true">
+                            <ax-array-translator class="invalid-feedback d-block"
+                            [(labels)]="_serverSideError[lblDatePart.getAttribute('for')]">
+                            </ax-array-translator>
+                           
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group row">
+                        <!-- Select Comment-->
+                        <label class="col-form-label col-sm-12" #lblCommentPart
+                            for="COMMENTS">{{'PAGES.MAIN.PARTS.ITEM.SELECT_COMMENTS' | translate}}</label>
+                        <div class="col-sm-12">
+                            <input type="text" placeholder="Comentario" autocomplete="off" class="form-control form-control-sm"
+                                [id]="lblCommentPart.getAttribute('for')" [name]="lblCommentPart.getAttribute('for')"
+                                [(ngModel)]="_item.comments" [disabled]="_isLoading" [required]="true">
+                                <ax-array-translator class="invalid-feedback d-block"
+                                [(labels)]="_serverSideError[lblCommentPart.getAttribute('for')]">
+                                </ax-array-translator>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <!-- Select Hours-->
+                    <label class="col-form-label col-sm-12" #lblHoursPart for="INVERTEDHOURS">{{'PAGES.MAIN.PARTS.ITEM.SELECT_HOURS' | translate}}</label>
+                    <div class="col-sm-12">
+                        <input type="number" autocomplete="off" class="form-control form-control-sm"
+                            [id]="lblHoursPart.getAttribute('for')" [name]="lblHoursPart.getAttribute('for')"
+                            [(ngModel)]="_item.invertedHours" [disabled]="_isLoading" [required]="true">
+                            <ax-array-translator class="invalid-feedback d-block"
+                            [(labels)]="_serverSideError[lblHoursPart.getAttribute('for')]">
+                            </ax-array-translator>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group row">
+                        <!-- Select Usuario-->
+                        <label class="col-form-label col-sm-12" #lblUserId for="USERID">Seleccione Usuario</label>
+                        <div class="col-sm-12">
+                            <ax-bs-form-autocomplete #acUser placeholder="Usuario" [cssClassContainer]="'pl-0 pr-0 input-group'"
+                                [getterFn]="acUserGetterFn.bind(this)" [pSize]="20" [disabled]="_isLoading"
+                                [(selected)]="_item.userId"  [(filter)]="selectUserName"  (selectedChange)="onSelectUser($event)">
+                            </ax-bs-form-autocomplete>
+                            <ax-array-translator class="invalid-feedback d-block"
+                                [labels]="_serverSideError[lblUserId.getAttribute('for')]">
+                            </ax-array-translator>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                        <!-- Select Tarea-->
+                        <label class="col-form-label col-sm-12" #lblTaskId for="TASKID">Seleccione Tarea</label>
+                        <div class="col-sm-12">
+                            <ax-bs-form-autocomplete #acTask placeholder="Tarea" [cssClassContainer]="'pl-0 pr-0 input-group'"
+                                [getterFn]="acTaskGetterFn.bind(this)" [pSize]="20" [disabled]="_isLoading"
+                                [(selected)]="_item.taskId" [(filter)]="selecTaskName"  (selectedChange)="onSelectTask($event)">
+                            </ax-bs-form-autocomplete>
+                            <ax-array-translator class="invalid-feedback d-block"
+                                [labels]="_serverSideError[lblTaskId.getAttribute('for')]">
+                            </ax-array-translator>
+                        </div>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+
+    <div class="card-footer">
+        <div class="row">
+            <div class="col clearfix">
+                <button type="button" class="btn btn-primary m-1 float-right" (click)="saveForm()">
+                    <i class="fa fa-floppy-o"></i>
+                    <span class="p-2">CREAR</span>
+                </button>
+                <button type="reset" class="btn btn-secondary m-1 float-right" (click)="goBack()">
+                    <i class="fa fa-angle-left"></i>
+                    <span class="p-2">VOLVER</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

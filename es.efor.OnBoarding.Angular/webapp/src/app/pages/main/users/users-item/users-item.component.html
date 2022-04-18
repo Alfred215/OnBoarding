@@ -1,0 +1,171 @@
+<div class="card">
+    <div class="card-body">
+        <form>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group row">
+                        <!--Select ID -->
+                        <label class="col-form-label col-sm-12 " #lblIdUser for="_user.id">{{'PAGES.MAIN.USERS.ITEM.ID'
+                            | translate}}:
+                        </label>
+                        <div class="col-sm-12">
+                            <input type="text" autocomplete="off" class="form-control form-control-sm"
+                                [id]="lblIdUser.getAttribute('for')" [name]="lblIdUser.getAttribute('for')"
+                                [(ngModel)]="_user.id" [disabled]="_isLoading" [required]="true">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group row">
+                        <!-- Select Username -->
+                        <label class="col-form-label col-sm-12" #lblUserNameUser for="USERNAME">{{'PAGES.MAIN.USERS.ITEM.USERNAME' | translate}}:</label>
+                        <div class="col-sm-12">
+                            <input type="text" autocomplete="off"
+                                placeholder="{{'PAGES.MAIN.USERS.ITEM.USERNAME' | translate}}"
+                                class="form-control form-control-sm" [id]="lblUserNameUser.getAttribute('for')"
+                                [name]="lblUserNameUser.getAttribute('for')" [(ngModel)]="_user.username"
+                                [disabled]="_isLoading" [required]="true">
+                                
+                                <ax-array-translator class="invalid-feedback d-block"
+                                [(labels)]="_serverSideError[lblUserNameUser.getAttribute('for')]">
+                                </ax-array-translator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group row">
+                        <!--Select Nombre -->
+                        <label class="col-form-label col-sm-12 " #lblNameUser
+                            for="NAME">{{'PAGES.MAIN.USERS.ITEM.NAME'  | translate}}:
+                        </label>
+                        <div class="col-sm-12">
+                            <input type="text" autocomplete="off"
+                                placeholder="{{'PAGES.MAIN.USERS.ITEM.NAME' | translate}}"
+                                class="form-control form-control-sm" [id]="lblNameUser.getAttribute('for')"
+                                [name]="lblNameUser.getAttribute('for')" [(ngModel)]="_user.name"
+                                [disabled]="_isLoading" [required]="true">
+                                <ax-array-translator class="invalid-feedback d-block"
+                                [(labels)]="_serverSideError[lblNameUser.getAttribute('for')]">
+                                </ax-array-translator>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group row">
+                        <!-- Select Apellidos -->
+                        <label class="col-form-label col-sm-12" #lblSurnamesUser
+                            for="SURNAMES">{{'PAGES.MAIN.USERS.ITEM.SURNAMES' | translate}}:</label>
+                        <div class="col-sm-12">
+                            <input type="text" autocomplete="off"
+                                placeholder="{{'PAGES.MAIN.USERS.ITEM.SURNAMES' | translate}}"
+                                class="form-control form-control-sm" [id]="lblSurnamesUser.getAttribute('for')"
+                                [name]="lblSurnamesUser.getAttribute('for')" [(ngModel)]="_user.surnames"
+                                [disabled]="_isLoading" [required]="true">
+                                <ax-array-translator class="invalid-feedback d-block"
+                                [(labels)]="_serverSideError[lblSurnamesUser.getAttribute('for')]">
+                                </ax-array-translator>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group row">
+                        <!--Select Email -->
+                        <label class="col-form-label col-sm-12 " #lblEmailUser
+                            for="EMAIL">{{'PAGES.MAIN.USERS.ITEM.EMAIL'
+                            | translate}}:
+                        </label>
+                        <div class="col-sm-12">
+                            <input type="text" autocomplete="off"
+                                placeholder="{{'PAGES.MAIN.USERS.ITEM.EMAIL' | translate}}"
+                                class="form-control form-control-sm" [id]="lblEmailUser.getAttribute('for')"
+                                [name]="lblEmailUser.getAttribute('for')" [(ngModel)]="_user.email"
+                                [disabled]="_isLoading" [required]="true">
+                                <ax-array-translator class="invalid-feedback d-block"
+                                [(labels)]="_serverSideError[lblEmailUser.getAttribute('for')]">
+                                </ax-array-translator>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group row">
+                        <!-- Select DNI -->
+                        <label class="col-form-label col-sm-12" #lblDNIUser
+                            for="DNI">{{'PAGES.MAIN.USERS.ITEM.DNI' | translate}}:</label>
+                        <div class="col-sm-12">
+                            <input type="text" autocomplete="off"
+                                placeholder="{{'PAGES.MAIN.USERS.ITEM.DNI' | translate}}"
+                                class="form-control form-control-sm" [id]="lblDNIUser.getAttribute('for')"
+                                [name]="lblDNIUser.getAttribute('for')" [(ngModel)]="_user.dni" [disabled]="_isLoading"
+                                [required]="true">
+                                <ax-array-translator class="invalid-feedback d-block"
+                                [(labels)]="_serverSideError[lblDNIUser.getAttribute('for')]">
+                                </ax-array-translator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group row">
+                        <!--Select Password -->
+                        <label class="col-form-label col-sm-12 " #lblPassUser
+                            for="PASSWORD">{{'PAGES.MAIN.USERS.ITEM.PASSWORD'
+                            | translate}}:
+                        </label>
+                        <div class="col-sm-12">
+                            <input type="text" autocomplete="off"
+                                placeholder="{{'PAGES.MAIN.USERS.ITEM.PASSWORD' | translate}}"
+                                class="form-control form-control-sm" [id]="lblPassUser.getAttribute('for')"
+                                [name]="lblPassUser.getAttribute('for')" [(ngModel)]="_user.password"
+                                [disabled]="_isLoading" [required]="true">
+                                <ax-array-translator class="invalid-feedback d-block"
+                                [(labels)]="_serverSideError[lblPassUser.getAttribute('for')]">
+                                </ax-array-translator>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group row">
+                        <!-- Select rolId -->
+                        <label class="col-form-label col-sm-12" #lblRolUser
+                            for="ROLEID">{{'PAGES.MAIN.USERS.ITEM.ROLID' | translate}}:</label>
+                        <div class="col-sm-12">
+                            <input type="number" autocomplete="off"
+                                placeholder="1-3"
+                                class="form-control form-control-sm" [id]="lblRolUser.getAttribute('for')"
+                                [name]="lblRolUser.getAttribute('for')" [(ngModel)]="_user.roleId" [disabled]="_isLoading"
+                                [required]="true">
+                                <ax-array-translator class="invalid-feedback d-block"
+                                [(labels)]="_serverSideError[lblRolUser.getAttribute('for')]">
+                                </ax-array-translator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+    
+    <div class="card-footer">
+        <div class="row">
+            <div class="col clearfix">
+                <button type="button" class="btn btn-primary m-1 float-right" (click)="saveForm()">
+                    <i class="fa fa-floppy-o"></i>
+                    <span class="p-2">{{'BUTTON.CREATE' |
+                        translate}}</span>
+                </button>
+                <button type="reset" class="btn btn-secondary m-1 float-right" (click)="goBack()">
+                    <i class="fa fa-angle-left"></i>
+                    <span class="p-2"> {{'BUTTON.BACK' |
+                        translate}}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

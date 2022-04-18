@@ -14,26 +14,30 @@
    "SelectedToBeGenerated": 0,
    "Tables": [
       {
-         "Name": "[dbo].[Roles]",
+         "Name": "[dbo].[Equipo]",
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[Usuarios]",
+         "Name": "[dbo].[players]",
          "ObjectType": 0
       }
    ],
-   "UiHint": "SQL2019.OnBoarding",
+   "UiHint": "PORT-330\\SQLEXPRESS.Futbol",
    "UseBoolPropertiesWithoutDefaultSql": false,
    "UseDatabaseNames": false,
    "UseDbContextSplitting": false,
    "UseFluentApiOnly": false,
    "UseHandleBars": false,
+   "UseHierarchyId": false,
    "UseInflector": false,
    "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
    "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
    "UseNoNavigations": false,
    "UseNoObjectFilter": false,
    "UseNodaTime": false,
    "UseNullableReferences": false,
+   "UseSchemaFolders": false,
    "UseSpatial": false
 }

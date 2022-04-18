@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-body">
+
+      <div class="card-body">
+        <form>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-dark btn-lg col-sm-5 " (click)="mostrar(true)">CALENDARIO</button>
+                    <button class="btn btn-dark btn-lg col-sm-5 float-right" (click)="mostrar(false)">USUARIOS</button>
+                </div>
+            </div>
+        </form>
+      </div>
+      
+      <div class="card-body" *ngIf="mostrarb == true">
+          <form>
+              <button type="button" class="btn btn-sm btn-secondary m-1" (click)="updateHeader()" id="updateHeader">
+                  <i class="fa fa-refresh"></i>
+                  <span class="p-2">Update header</span>
+              </button>
+
+              <button type="reset" class="btn btn-sm btn-secondary m-1" (click)="updateEvents()" id="updateEvents">
+                  <i class="fa fa-bolt"></i>
+                  <span class="p-2">Update events</span>
+              </button>
+              <br><br>
+
+              <full-calendar 
+                *ngIf="calendarOptions" #fullcalendar [options]="calendarOptions">
+              </full-calendar>
+
+              <router-outlet></router-outlet>
+          </form>
+      </div>
+
+      <div class="card-body" *ngIf="mostrarb == false ">
+          <form>
+            <div class="card-body">
+                <div class="chart-wrapper">
+                  <canvas baseChart class="chart"
+                    [datasets]= "barChartData"  [labels]="barChartLabels" [options]="barChartOptions"
+                    [legend]="barChartLegend" [chartType]="barChartType" [colors]="barChartColors"
+                    (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                  </canvas>
+                </div>
+              </div>
+          </form>
+      </div>
+
+  </div>

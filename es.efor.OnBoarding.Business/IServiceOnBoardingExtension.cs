@@ -5,8 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using es.efor.OnBoarding.Data.Context;
-using es.efor.OnBoarding.Business.Services.UserServices;
-using es.efor.OnBoarding.Business.Services.RoleServices;
+using es.efor.OnBoarding.Business.Services.TeamServices;
+using es.efor.OnBoarding.Business.Services.PlayerServices;
+using es.efor.OnBoarding.Business.Services;
 
 namespace es.efor.OnBoarding.Business
 {
@@ -24,8 +25,8 @@ namespace es.efor.OnBoarding.Business
             });
 
             // Inyección dependencias SERVICIOS
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IPlayerService, PlayerService>();
+            services.AddScoped<ITeamService, TeamService>();
 
             return services;
         }

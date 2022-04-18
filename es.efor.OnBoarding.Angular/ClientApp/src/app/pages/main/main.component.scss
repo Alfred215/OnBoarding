@@ -1,0 +1,55 @@
+
+:host{
+    ::ng-deep{    
+        .sidebar .nav-link:hover, .sidebar .nav-link.active:hover, .sidebar .nav-link.active:hover i{
+            color:rgb(0, 0, 0) !important;
+            background-color: #ffffff !important;
+        }
+        .sidebar .nav-link:hover .nav-icon{
+            color: black;
+        }
+        .sidebar .nav-link.active, .sidebar .nav-link.active i{
+            color:rgb(0, 0, 0) !important;
+            background-color: #f3a260 !important;
+            
+        }
+        .sidebar .sidebar-minimizer{
+            background-color: #5c2c00;
+        }
+        app-sidebar-nav-link a,  app-sidebar-nav-dropdown a{
+            color: rgb(0, 0, 0) !important;
+            background-color: #f3a260 !important;
+        }
+        .sidebar .nav-dropdown-items .nav-item a{
+            padding-left: 2em;
+        }
+        app-sidebar{
+            background-color: #5c2c00 !important;
+        }
+        table tbody .btn{
+            min-width: 2rem;
+        }
+        table thead .table-primary, table thead .table-primary > th{
+            background-color: white !important;
+        }
+        div.form-autocomplete-results li {
+            padding: 0.5rem;
+            font-size: 0.9em;
+        }
+        main{
+            min-height: 84vh;
+        }
+        /*.breadcrumb{
+            
+        }*/
+               
+        app-footer {
+            position: fixed;
+            width: 100%;
+            bottom: 0px;
+        }
+
+        
+    }
+    
+}

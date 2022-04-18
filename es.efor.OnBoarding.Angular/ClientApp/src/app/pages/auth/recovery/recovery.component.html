@@ -1,0 +1,49 @@
+<div class="background">
+    <div class="bg-image"></div>
+</div>
+
+<form class="text-center d-flex align-items-center" (ngSubmit)="onFormSubmit($event)">
+    <div class="card m-auto text-left shadow">
+        <div class="card-header bg-primary text-white">
+            <div class="card-title">
+                <h4 class="">{{'APP_NAME' | translate}}</h4>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label #lblPassword class="sr-only"
+                    for="PASSWORD">{{'PAGES.AUTH.LOGIN.PASSWORDFORGET.LABEL.NEWPASSWORD' | translate}}</label>
+                <input [id]="lblPassword.getAttribute('for')" [name]="lblPassword.getAttribute('for')"
+                    class="form-control" [ngClass]="{'is-invalid': _errors[lblPassword.getAttribute('for')] }"
+                    [type]="'password'" [placeholder]="lblPassword.innerText" [required]="true" [minLength]="10"
+                    [(ngModel)]="_userData.password" [disabled]="_isLoading">
+                <ax-array-translator class="invalid-feedback d-block" [labels]="_errors[lblPassword.getAttribute('for')]">
+                </ax-array-translator>
+            </div>
+            <div class="form-group">
+                <label #lblRePassword class="sr-only"
+                    for="REPASSWORD">{{'PAGES.AUTH.LOGIN.PASSWORDFORGET.LABEL.CONFIRMPASSWORD' |
+                    translate}}</label>
+                <input [id]="lblRePassword.getAttribute('for')" [name]="lblRePassword.getAttribute('for')"
+                    class="form-control" [ngClass]="{'is-invalid': _errors[lblRePassword.getAttribute('for')] }"
+                    [type]="'password'" [placeholder]="lblRePassword.innerText" [required]="true"
+                    [(ngModel)]="confirmPassword" [disabled]="_isLoading" (change)="onChangeConfirmPassword()">
+                <ax-array-translator class="invalid-feedback d-block" [labels]="_errors[lblRePassword.getAttribute('for')]">
+                </ax-array-translator>
+                <!-- <ax-array-translator *ngIf="!_confirmedPassword" class="invalid-feedback d-block"
+                    [labels]="['PAGES.AUTH.LOGIN.PASSWORDFORGET.LABEL.NOCOINCIDENCE' | translate]">
+                </ax-array-translator> -->
+            </div>
+        </div>
+        <div class="mt-3 card-footer text-right">
+            <div class="card-logo"></div>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-sm btn-primary" [disabled]="_isLoading || !_activeConfirm">
+                    <fa-icon *ngIf="_isLoading" [icon]="['fas', 'sync']" [spin]="true"></fa-icon>
+                    <ng-container *ngIf="!_isLoading">{{'PAGES.AUTH.LOGIN.PASSWORDFORGET.BTN.CONFIRM' | translate}}
+                    </ng-container>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

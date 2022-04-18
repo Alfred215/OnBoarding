@@ -1,0 +1,21 @@
+<div class="card"> 
+    <div class="card-body">
+        <div class="row"> 
+            <div class="col"> 
+                 <ax-bs-datatable #dtTasks [columns]="dtColumns" [actionButtonShowFilter]="true"
+                    [dataGetterFn]="dtGetterFn.bind(this)" [newItemType]="_dummyNewItemType.inlineTop"
+                    [actionButtons]="dtColumnsActionButtons">
+                </ax-bs-datatable>
+            </div>
+            <div>
+                <ax-bs-modal-confirmation-message #mDeleteConfirm
+                    [labelHeader]="'COMPONENT.FILEDROP.MODAL.DELETE.TITLE'| translate"
+                    (clickConfirm)="onBtnModalConfirmation()">
+                    <ng-container slot="body">
+                        <p class="h4 text-center">{{'COMPONENT.FILEDROP.MODAL.DELETE.BODY' | translate}}</p>
+                    </ng-container>
+                </ax-bs-modal-confirmation-message>
+            </div>
+        </div>
+    </div>
+</div>

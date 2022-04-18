@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using es.efor.OnBoarding.Business.DTO.AuthDTOs;
-using es.efor.OnBoarding.Business.DTO.RolesDTOs;
-using es.efor.OnBoarding.Business.DTO.UsersDTOs;
+using es.efor.OnBoarding.Business.DTO.TeamsDTOs;
+using es.efor.OnBoarding.Business.DTO.PlayersDTOs;
 using es.efor.OnBoarding.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,49 +13,41 @@ namespace es.efor.OnBoarding.Business
     {
         public MapperProfileRegistrations()
         {
-            #region Usuarios
-            CreateMap<Usuarios, UserDTO>()
+            #region Jugadores
+            CreateMap<Players, PlayerDTO>()
                 .ForMember(dst => dst.Id, src => src.MapFrom(usr => usr.Id))
-                .ForMember(dst => dst.Username, src => src.MapFrom(usr => usr.Usuario))
-                .ForMember(dst => dst.Password, src => src.MapFrom(usr => usr.Clave))
                 .ForMember(dst => dst.Name, src => src.MapFrom(usr => usr.Nombre))
-                .ForMember(dst => dst.Surnames, src => src.MapFrom(usr => usr.Apellidos))
-                .ForMember(dst => dst.Email, src => src.MapFrom(usr => usr.Email))
-                .ForMember(dst => dst.RoleId, src => src.MapFrom(usr => usr.RoleId))
-                .ForMember(dst => dst.Active, src => src.MapFrom(usr => usr.Activo));
+                .ForMember(dst => dst.Position, src => src.MapFrom(usr => usr.Posicion))
+                .ForMember(dst => dst.Number, src => src.MapFrom(usr => usr.Numero))
+                .ForMember(dst => dst.TeamId, src => src.MapFrom(usr => usr.EquipoId));
 
-            CreateMap<UserDTO, Usuarios>()
+            CreateMap<PlayerDTO, Players>()
                 .ForMember(dst => dst.Id, src => src.MapFrom(usr => usr.Id))
-                .ForMember(dst => dst.Usuario, src => src.MapFrom(usr => usr.Username))
-                .ForMember(dst => dst.Clave, src => src.MapFrom(usr => usr.Password))
                 .ForMember(dst => dst.Nombre, src => src.MapFrom(usr => usr.Name))
-                .ForMember(dst => dst.Apellidos, src => src.MapFrom(usr => usr.Surnames))
-                .ForMember(dst => dst.Email, src => src.MapFrom(usr => usr.Email))
-                .ForMember(dst => dst.RoleId, src => src.MapFrom(usr => usr.RoleId))
-                .ForMember(dst => dst.Activo, src => src.MapFrom(usr => usr.Active));
+                .ForMember(dst => dst.Posicion, src => src.MapFrom(usr => usr.Position))
+                .ForMember(dst => dst.Numero, src => src.MapFrom(usr => usr.Number))
+                .ForMember(dst => dst.EquipoId, src => src.MapFrom(usr => usr.TeamId));
 
-            CreateMap<RegisterModelDTO, Usuarios>()
-              .ForMember(dst => dst.Usuario, src => src.MapFrom(usr => usr.User))
-              .ForMember(dst => dst.Clave, src => src.MapFrom(usr => usr.Password))
-              .ForMember(dst => dst.Nombre, src => src.MapFrom(usr => usr.Name))
-              .ForMember(dst => dst.Apellidos, src => src.MapFrom(usr => usr.Surname))
-              .ForMember(dst => dst.RoleId, src => src.MapFrom(usr => usr.RoleId))
-              .ForMember(dst => dst.Activo, src => src.MapFrom(usr => true));
-
-            CreateMap<Usuarios, UserGridDTO>()
+            CreateMap<Players, PlayerGridDTO>()
                 .ForMember(dst => dst.Id, src => src.MapFrom(usr => usr.Id))
-                .ForMember(dst => dst.Username, src => src.MapFrom(usr => usr.Usuario))
                 .ForMember(dst => dst.Name, src => src.MapFrom(usr => usr.Nombre))
-                .ForMember(dst => dst.Surnames, src => src.MapFrom(usr => usr.Apellidos))
-                .ForMember(dst => dst.Email, src => src.MapFrom(usr => usr.Email))
-                .ForMember(dst => dst.RoleName, src => src.MapFrom(usr => usr.Role.Nombre))
-                .ForMember(dst => dst.Active, src => src.MapFrom(usr => usr.Activo));
+                .ForMember(dst => dst.Position, src => src.MapFrom(usr => usr.Posicion))
+                .ForMember(dst => dst.Number, src => src.MapFrom(usr => usr.Numero))
+                .ForMember(dst => dst.TeamId, src => src.MapFrom(usr => usr.EquipoId));
             #endregion
 
-            #region Roles
-            CreateMap<Roles, RoleDTO>()
-                .ForMember(dst => dst.Id, src => src.MapFrom(sc => sc.Id))
-                .ForMember(dst => dst.Name, src => src.MapFrom(sc => sc.Nombre));
+            #region Equipos
+            CreateMap<Equipo, TeamDTO>()
+                .ForMember(dst => dst.Id, src => src.MapFrom(usr => usr.Id))
+                .ForMember(dst => dst.Name, src => src.MapFrom(usr => usr.Nombre))
+                .ForMember(dst => dst.League, src => src.MapFrom(usr => usr.Liga))
+                .ForMember(dst => dst.Active, src => src.MapFrom(usr => usr.Activo))
+                .ReverseMap();
+
+            CreateMap<Equipo, TeamGridDTO>()
+               .ForMember(dst => dst.Id, src => src.MapFrom(usr => usr.Id))
+               .ForMember(dst => dst.Name, src => src.MapFrom(usr => usr.Nombre))
+               .ForMember(dst => dst.League, src => src.MapFrom(usr => usr.Liga));
             #endregion
         }
     }

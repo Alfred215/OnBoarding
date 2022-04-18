@@ -1,0 +1,135 @@
+{
+	"API": {
+		"ERROR": {
+			"AUTH": {
+				"PASS": {
+					"FAIL": "Datos incorrectos"
+				}
+			}
+		}
+	},
+	"APP":{
+		"NAME": "GestorActividades"
+	},
+	"APP_NAME": "GestorActividades",
+	"COMPONENT": {
+		"FILEDROP": {
+			"LABEL": {
+				"CHOOSEFILE": "COMPONENT.FILEDROP.LABEL.CHOOSEFILE",
+				"ORDRAGHERE": "COMPONENT.FILEDROP.LABEL.ORDRAGHERE",
+				"RELEASETOUPLOAD": "COMPONENT.FILEDROP.LABEL.RELEASETOUPLOAD",
+				"UPLOADING": "COMPONENT.FILEDROP.LABEL.UPLOADING"
+			},
+			"MODAL": {
+				"DELETE": {
+					"BODY": "COMPONENT.FILEDROP.MODAL.DELETE.BODY",
+					"BTN": {
+						"CANCEL": "COMPONENT.FILEDROP.MODAL.DELETE.BTN.CANCEL",
+						"CONFIRM": "COMPONENT.FILEDROP.MODAL.DELETE.BTN.CONFIRM"
+					},
+					"TITLE": "COMPONENT.FILEDROP.MODAL.DELETE.TITLE"
+				}
+			}
+		}
+	},
+	"FORMAT": {
+		"DATE": "DD/MM/yyyy",
+		"DATETIME": "dd/MM/yyyy HH:mm",
+		"TIME": "HH:mm",
+		"TIMESECONDS": "HH:mm:ss"
+	},
+	"GENERIC": {
+		"BTN": {
+			"CLOSE": "Cerrar",
+			"DELETE": "Eliminar",
+			"GOTO": {
+				"LIST": "Ir al listado"
+			},
+			"GO_HOME": "Inicio",
+			"SAVE": "Guardar"
+		},
+		"LABEL": {
+			"LOADING": "Cargando..."
+		},
+		"SELECT":{
+			"BOOLSELECT":{
+				"ENABLED": "Habilitado",
+				"DISABLED": "Deshabilitado"
+			}
+		},
+		"MONTHS":{
+			"JANUARY": "Enero",
+			"FEBRUARY": "Febrero",
+			"MARCH": "Marzo",
+			"APRIL": "Abril",
+			"MAY": "Mayo",
+			"JUNE": "Junio",
+			"JULY": "Julio",
+			"AUGUST": "Agosto",
+			"SEPTEMBER": "Septiembre",
+			"OCTOBER": "Octubre",
+			"NOVEMBER": "Noviembre",
+			"DECEMBER": "Diciembre"
+		}
+	},
+	"LANG": {
+		"EN": "English",
+		"EN_SHORT": "EN",
+		"ES": "Castellano",
+		"ES_SHORT": "ES"
+	},
+	"MENU": {
+		"NAV":{
+			"HOME": "Home",
+			"PARTS": "Partes"
+		},
+		"BTN": {
+			"LOGOUT": "Cerrar sesión"
+		}
+	},
+	"PAGE": {
+		"DASHBOARD": {
+			"TITLE": "Dashboard"
+		},
+		"ERROR": {
+			"404": {
+				"BODY": "No hemos podido encontrar la página que buscas",
+				"TITLE": "Página no encontrada"
+			}
+		}
+	},
+	"PAGES": {
+		"AUTH": {
+			"LOGIN": {
+				"LOGINERROR":"Usuario o Contraseña incorrectos",
+				"BTN": {
+					"LOGIN": "Iniciar sesión",
+					"RECOVERPASSWORD": "Recuperar Contraseña"				
+				},
+				"LABEL": {
+					"PASSWORD": "Contraseña",
+					"REMEMBERME": "Permanecer conectado",
+					"USERNAME": "Usuario",
+					"LOGIN": "Inicio de Sesión"
+				}
+			}
+		}
+	},
+	"SERVICEWORKER": {
+		"MODAL": {
+			"BODY": "SERVICEWORKER.MODAL.BODY",
+			"BTN": {
+				"CLOSE": "SERVICEWORKER.MODAL.BTN.CLOSE",
+				"CONFIRM": "SERVICEWORKER.MODAL.BTN.CONFIRM"
+			},
+			"HEADER": "SERVICEWORKER.MODAL.HEADER"
+		}
+	},
+	"TOAST_ERR_HTTP_0_BODY": "TOAST_ERR_HTTP_0_BODY",
+	"TOAST_ERR_HTTP_0_TITLE": "TOAST_ERR_HTTP_0_TITLE",
+	"no": "no",
+	"EDIT": "Editar",
+	"DELETE": "Borrar",
+	"ADD": "Añadir",
+	"SAVE": "Guardar"
+}

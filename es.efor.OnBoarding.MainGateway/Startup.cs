@@ -35,12 +35,14 @@ namespace es.efor.OnBoarding.MainGateway
             services.AddControllers();
 
             // Adding Authentication  
+            
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             })
+            
             // Adding Jwt Bearer  
             .AddJwtBearer(options =>
             {
@@ -54,6 +56,7 @@ namespace es.efor.OnBoarding.MainGateway
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
                 };
             });
+            
             // swagger
             services.AddSwaggerGen(c =>
             {
@@ -84,7 +87,7 @@ namespace es.efor.OnBoarding.MainGateway
                     }
                 });
             });
-
+            
             //Automapper
             MapperConfiguration mappingConfig = new MapperConfiguration(mc =>
             {
