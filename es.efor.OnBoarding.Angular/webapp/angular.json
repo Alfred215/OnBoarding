@@ -23,7 +23,7 @@
               "chart.js",
               "classnames"
             ],
-            "outputPath": "../../es.efor.GestorActividades.MainGateway/wwwroot",
+            "outputPath": "../../es.efor.OnBoarding.MainGateway/wwwroot",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -85,18 +85,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "GestorActividades-app:build"
+            "browserTarget": "OnBoarding-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "GestorActividades-app:build:production"
+              "browserTarget": "OnBoarding-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "GestorActividades-app:build"
+            "browserTarget": "OnBoarding-app:build"
           }
         },
         "test": {
@@ -146,16 +146,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "GestorActividades-app:serve"
+            "devServerTarget": "OnBoarding-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "GestorActividades-app:serve:production"
+              "devServerTarget": "OnBoarding-app:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "GestorActividades-app"
+  "defaultProject": "OnBoarding-app"
 }
