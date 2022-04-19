@@ -23,6 +23,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { BreadcrumbModule } from 'src/app/shared/components/breadcrumb/breadcrumb.module';
+import { Roles } from 'src/app/shared/models/enums/role.enum';
 
 
 
@@ -44,7 +45,6 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
-    // canActivate: [AuthGuard], canLoad: [AuthGuard],
     data: {
       title: 'Home',
       policy: []

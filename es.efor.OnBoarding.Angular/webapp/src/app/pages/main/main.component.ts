@@ -33,6 +33,8 @@ export class MainComponent extends DestroySubscriptions implements OnInit, OnDes
     super();
     this._copyrightYear = (new Date()).getFullYear();
     iconSet.icons = { ...freeSet };
+
+    this.fillNav();
   }
 
   public sidebarMinimized = false;
@@ -59,15 +61,56 @@ export class MainComponent extends DestroySubscriptions implements OnInit, OnDes
     });
     this.initRouterListeners();
     this.initLangListeners();
+
+    const s = this.translateSv.onLangChange.subscribe(() => {
+      this.fillNav();
+    });
+    this.subs.push(s);
+
+
   }
 
   ngOnDestroy() {
     super.ngOnDestroy();
   }
 
+  // Genera navegación respecto al Rol del Usuario
+  async fillNav() {
+    this.navMenuItems = [];
+    navByRoles.sort((a, b) => a.order - b.order);
+    for (const navItem of navByRoles) {
+      const newItem: INavData = {};
+      if (navItem.roles.length === 0 ) {
+        newItem.name = this.translateSv.instant(navItem.name);
+        newItem.url = navItem.url;
+        newItem.icon = navItem.icon;
+        if (navItem.childsWithRole != null) {
+          newItem.children = [];
+          navItem.childsWithRole.sort((a, b) => a.order - b.order);
+          for (const navChildItem of navItem.childsWithRole) {
+            const newChildItem: INavData = {};
+            newChildItem.name = this.translateSv.instant(navChildItem.name);
+            newChildItem.url = navChildItem.url;
+            newChildItem.icon = navChildItem.icon;
+            if (navChildItem.roles.length === 0 ) {
+              newItem.children.push(newChildItem);
+            }
+          }
+        }
+        this.navMenuItems.push(newItem);
+      }
+    }
+  }
+
   toggleMinimize(e) {
     this.sidebarMinimized = e;
   }
+  /*
+  logout() {
+    this.authSV.logout().then(() => {
+      this.router.navigate(['/auth']);
+    });
+  }*/
 
   private initRouterListeners() {
     const s = this.router.events

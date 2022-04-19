@@ -29,7 +29,6 @@ const routes: Routes = [
   {
     path: '', component: MainComponent,
     loadChildren: () => import('./main/main.module').then(m => m.MainModule),
-    //canLoad: [TranslateGuard, AuthGuard], canActivate: [],
     data: {
       title: "",
       policy: []

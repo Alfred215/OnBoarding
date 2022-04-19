@@ -1,0 +1,69 @@
+<div class="card">
+    <div class="card-body">
+
+
+        <div class="row">
+            <label class="d-inline text-secondary ml-4 pt-1">FILTROS: </label>
+            <div class="col-sm-1">
+                <label class="switch switch-label switch-primary">
+                    <input type="checkbox" checked class="switch-input" (change)="refreshdatatable()"
+                        [(ngModel)]="mostrarfiltros">
+                    <span data-checked="✓" data-unchecked="✕" class="switch-slider">
+                    </span>
+                </label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col" *ngIf="mostrarfiltros">
+                <label class="col-sm-3" *ngIf="_canEdit">
+                    <ax-bs-form-autocomplete #acUser placeholder="Alumnos" [cssClassContainer]="'pl-0 pr-0 input-group'"
+                        [getterFn]="acUserGetterFn.bind(this)" [pSize]="20" [disabled]="_isLoading"
+                        [(selected)]="_item.userId" (selectedChange)="onSelectedUser($event)">
+                    </ax-bs-form-autocomplete>
+                </label>
+
+                <label class="col-sm-3">
+                    <input type="date" autocomplete="off" class="form-control" [id]="'dateStart'" [name]="'dateStart'"
+                        [(ngModel)]="dstart" [disabled]="_isLoading" [required]="false">
+                </label>
+
+                <label class="col-sm-3">
+                    <input type="date" autocomplete="off" class="form-control" [id]="'dateEnd'" [name]="'dateEnd'"
+                        [(ngModel)]="dend" [disabled]="_isLoading" [required]="false">
+                </label>
+
+
+                <label class="col-sm-3" *ngIf="_canEdit == true">
+                    <button type="button" class="btn btn-block btn-primary" (click)="refreshdatatable()">Buscar</button>
+                </label>
+
+
+                <label class="col-sm-6" *ngIf="_canEdit == false">
+                    <button type="button" class="btn btn-block btn-primary" (click)="refreshdatatable()">Buscar</button>
+                </label>
+
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <ax-bs-datatable #dtParts [columns]="dtColumns" [actionButtonShowFilter]="true"
+                    [dataGetterFn]="dtGetterFn.bind(this)" [newItemType]="_dummyNewItemType.inlineTop"
+                    [actionButtons]="dtColumnsActionButtons">
+                </ax-bs-datatable>
+            </div>s
+            <div>
+                <ax-bs-modal-confirmation-message #mDeleteConfirm
+                    [labelHeader]="'COMPONENT.FILEDROP.MODAL.DELETE.TITLE'| translate"
+                    (clickConfirm)="onBtnModalConfirmation()">
+                    <ng-container slot="body">
+                        <p class="h4 text-center">{{'COMPONENT.FILEDROP.MODAL.DELETE.BODY' | translate}}</p>
+                    </ng-container>
+                </ax-bs-modal-confirmation-message>
+            </div>
+        </div>
+        
+    </div>
+</div>

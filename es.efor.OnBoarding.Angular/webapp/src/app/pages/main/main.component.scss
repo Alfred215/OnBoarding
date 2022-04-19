@@ -9,22 +9,22 @@
             color: black;
         }
         .sidebar .nav-link.active, .sidebar .nav-link.active i{
-            color:rgb(0, 0, 0) !important;
-            background-color: #f3a260 !important;
+            color:rgb(255, 255, 255) !important;
+            background-color: #192649ce !important;
             
         }
         .sidebar .sidebar-minimizer{
-            background-color: #5c2c00;
+            background-color: #0f1c2b;
         }
         app-sidebar-nav-link a,  app-sidebar-nav-dropdown a{
-            color: rgb(0, 0, 0) !important;
-            background-color: #f3a260 !important;
+            color: rgb(255, 253, 253) !important;
+            background-color: #0f1c2b !important;
         }
         .sidebar .nav-dropdown-items .nav-item a{
             padding-left: 2em;
         }
         app-sidebar{
-            background-color: #5c2c00 !important;
+            background-color: #192649ce !important;
         }
         table tbody .btn{
             min-width: 2rem;
