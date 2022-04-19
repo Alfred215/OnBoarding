@@ -48,7 +48,7 @@ export class PlayersItemComponent implements OnInit {
     public cdRef: ChangeDetectorRef,
     public router: Router,
     public aRoute: ActivatedRoute,
-    public teanSv: TeamService,
+    public playerSv: PlayerService,
     private location: Location,
     private toastrSV: ToastrService,
     private translateSV: TranslateService,

@@ -4,12 +4,12 @@ import { faCar, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { TranslateService } from '@ngx-translate/core';
 import { AxBsDatatableNewItemType, BsDatatableComponent, BsModalConfirmationMessageComponent, DtActionButton, DtActionColumnButton, DtColumnItem, FilterItem, LabelAndValueExtended, nameof } from 'ax-toolbox';
 import { first } from 'rxjs/operators';
-import { TeamGridDto, TeamGridDtoCollectionList, TeamFilterDtoDatatableDto, TeamDto } from 'src/app/shared/api/models';
+import { TeamGridDto, TeamGridDtoCollectionList, TeamFilterDtoDatatableDto, PlayerDto } from 'src/app/shared/api/models';
 import { Location } from '@angular/common';
 import { Roles } from 'src/app/shared/models/enums/role.enum';
 import { ToastrService } from 'ngx-toastr';
 import { saveAs } from 'file-saver';
-import { TeamService } from 'src/app/shared/api/services';
+import { PlayerService, TeamService } from 'src/app/shared/api/services';
 
 
 @Component({
@@ -52,18 +52,19 @@ export class PlayersListComponent implements OnInit {
   newId: number;
   angular: any;
 
-  _item: TeamDto = {
+  _item: PlayerDto = {
     id: 0,
     name: "",
-    league: "",
-    active: null
+    number: 0,
+    position: "",
+    teamId: 0
   }
   
 
   constructor(
     private translateSV: TranslateService,
     private router: Router,
-    private teamSV: TeamService,
+    private playerSV: PlayerService,
     public aRoute: ActivatedRoute,
     private location: Location,
     private toastSV: ToastrService
@@ -80,7 +81,7 @@ export class PlayersListComponent implements OnInit {
   }
 
   async deletePart(Id: number) {
-    const resp = await this.teamSV.apiTeamDelete$Json().pipe(first()).toPromise();
+    const resp = await this.playerSV.apiPlayerDelete$Json().pipe(first()).toPromise();
   }
 
   /*
@@ -103,7 +104,7 @@ export class PlayersListComponent implements OnInit {
       sortDescending: queryParams.sd,
       sortName: queryParams.sn,
     };
-    const parts = await this.teamSV.apiTeamDatatablePost$Json({ body: request })
+    const parts = await this.playerSV.apiPlayerDatatablePost$Json({ body: request })
       .pipe(first())
       .toPromise();
     return parts;
