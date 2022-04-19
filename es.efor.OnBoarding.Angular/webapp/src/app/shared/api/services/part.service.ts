@@ -8,13 +8,11 @@ import { RequestBuilder } from '../request-builder';
 import { Observable } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 
-import { CountPartGridDtoCollectionList } from '../models/count-part-grid-dto-collection-list';
-import { PartDto } from '../models/part-dto';
-import { PartFilterDtoDatatableDto } from '../models/part-filter-dto-datatable-dto';
-import { PartGridDto } from '../models/part-grid-dto';
-import { PartGridDtoCollectionList } from '../models/part-grid-dto-collection-list';
-import { PartHoursFilterDtoDatatableDto } from '../models/part-hours-filter-dto-datatable-dto';
-import { PartHoursGridDtoCollectionList } from '../models/part-hours-grid-dto-collection-list';
+import { CountTeamGridDtoCollectionList } from '../models/count-team-grid-dto-collection-list';
+import { TeamDto } from '../models/team-dto';
+import { TeamFilterDtoDatatableDto } from '../models/team-filter-dto-datatable-dto';
+import { TeamGridDto } from '../models/team-grid-dto';
+import { TeamGridDtoCollectionList } from '../models/team-grid-dto-collection-list';
 import { TaskFilterDtoDatatableDto } from '../models/task-filter-dto-datatable-dto';
 import { TaskGridPartesDtoCollectionList } from '../models/task-grid-partes-dto-collection-list';
 
@@ -51,7 +49,7 @@ export class PartService extends BaseService {
      */
     id?: number;
 
-  }): Observable<StrictHttpResponse<PartDto>> {
+  }): Observable<StrictHttpResponse<TeamDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, PartService.ApiPartGetPartGetPath, 'get');
     if (params) {
@@ -65,7 +63,7 @@ export class PartService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<PartDto>;
+        return r as StrictHttpResponse<TeamDto>;
       })
     );
   }
@@ -87,10 +85,10 @@ export class PartService extends BaseService {
      */
     id?: number;
 
-  }): Observable<PartDto> {
+  }): Observable<TeamDto> {
 
     return this.apiPartGetPartGet$Plain$Response(params).pipe(
-      map((r: StrictHttpResponse<PartDto>) => r.body as PartDto)
+      map((r: StrictHttpResponse<TeamDto>) => r.body as TeamDto)
     );
   }
 
@@ -111,7 +109,7 @@ export class PartService extends BaseService {
      */
     id?: number;
 
-  }): Observable<StrictHttpResponse<PartDto>> {
+  }): Observable<StrictHttpResponse<TeamDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, PartService.ApiPartGetPartGetPath, 'get');
     if (params) {
@@ -125,7 +123,7 @@ export class PartService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<PartDto>;
+        return r as StrictHttpResponse<TeamDto>;
       })
     );
   }
@@ -147,10 +145,10 @@ export class PartService extends BaseService {
      */
     id?: number;
 
-  }): Observable<PartDto> {
+  }): Observable<TeamDto> {
 
     return this.apiPartGetPartGet$Json$Response(params).pipe(
-      map((r: StrictHttpResponse<PartDto>) => r.body as PartDto)
+      map((r: StrictHttpResponse<TeamDto>) => r.body as TeamDto)
     );
   }
 
@@ -174,8 +172,8 @@ export class PartService extends BaseService {
     /**
      * Id del parte
      */
-    body?: PartDto
-  }): Observable<StrictHttpResponse<PartGridDto>> {
+    body?: TeamDto
+  }): Observable<StrictHttpResponse<TeamGridDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, PartService.ApiPartSetPartPostPath, 'post');
     if (params) {
@@ -189,7 +187,7 @@ export class PartService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<PartGridDto>;
+        return r as StrictHttpResponse<TeamGridDto>;
       })
     );
   }
@@ -209,11 +207,11 @@ export class PartService extends BaseService {
     /**
      * Id del parte
      */
-    body?: PartDto
-  }): Observable<PartGridDto> {
+    body?: TeamDto
+  }): Observable<TeamGridDto> {
 
     return this.apiPartSetPartPost$Plain$Response(params).pipe(
-      map((r: StrictHttpResponse<PartGridDto>) => r.body as PartGridDto)
+      map((r: StrictHttpResponse<TeamGridDto>) => r.body as TeamGridDto)
     );
   }
 
@@ -232,8 +230,8 @@ export class PartService extends BaseService {
     /**
      * Id del parte
      */
-    body?: PartDto
-  }): Observable<StrictHttpResponse<PartGridDto>> {
+    body?: TeamDto
+  }): Observable<StrictHttpResponse<TeamGridDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, PartService.ApiPartSetPartPostPath, 'post');
     if (params) {
@@ -247,7 +245,7 @@ export class PartService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<PartGridDto>;
+        return r as StrictHttpResponse<TeamGridDto>;
       })
     );
   }
@@ -267,11 +265,11 @@ export class PartService extends BaseService {
     /**
      * Id del parte
      */
-    body?: PartDto
-  }): Observable<PartGridDto> {
+    body?: TeamDto
+  }): Observable<TeamGridDto> {
 
     return this.apiPartSetPartPost$Json$Response(params).pipe(
-      map((r: StrictHttpResponse<PartGridDto>) => r.body as PartGridDto)
+      map((r: StrictHttpResponse<TeamGridDto>) => r.body as TeamGridDto)
     );
   }
 
@@ -292,7 +290,7 @@ export class PartService extends BaseService {
    */
   apiPartSelectGet$Plain$Response(params?: {
 
-  }): Observable<StrictHttpResponse<PartGridDtoCollectionList>> {
+  }): Observable<StrictHttpResponse<TeamGridDtoCollectionList>> {
 
     const rb = new RequestBuilder(this.rootUrl, PartService.ApiPartSelectGetPath, 'get');
     if (params) {
@@ -305,7 +303,7 @@ export class PartService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<PartGridDtoCollectionList>;
+        return r as StrictHttpResponse<TeamGridDtoCollectionList>;
       })
     );
   }
@@ -322,10 +320,10 @@ export class PartService extends BaseService {
    */
   apiPartSelectGet$Plain(params?: {
 
-  }): Observable<PartGridDtoCollectionList> {
+  }): Observable<TeamGridDtoCollectionList> {
 
     return this.apiPartSelectGet$Plain$Response(params).pipe(
-      map((r: StrictHttpResponse<PartGridDtoCollectionList>) => r.body as PartGridDtoCollectionList)
+      map((r: StrictHttpResponse<TeamGridDtoCollectionList>) => r.body as TeamGridDtoCollectionList)
     );
   }
 
@@ -341,7 +339,7 @@ export class PartService extends BaseService {
    */
   apiPartSelectGet$Json$Response(params?: {
 
-  }): Observable<StrictHttpResponse<PartGridDtoCollectionList>> {
+  }): Observable<StrictHttpResponse<TeamGridDtoCollectionList>> {
 
     const rb = new RequestBuilder(this.rootUrl, PartService.ApiPartSelectGetPath, 'get');
     if (params) {
@@ -354,7 +352,7 @@ export class PartService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<PartGridDtoCollectionList>;
+        return r as StrictHttpResponse<TeamGridDtoCollectionList>;
       })
     );
   }
@@ -371,10 +369,10 @@ export class PartService extends BaseService {
    */
   apiPartSelectGet$Json(params?: {
 
-  }): Observable<PartGridDtoCollectionList> {
+  }): Observable<TeamGridDtoCollectionList> {
 
     return this.apiPartSelectGet$Json$Response(params).pipe(
-      map((r: StrictHttpResponse<PartGridDtoCollectionList>) => r.body as PartGridDtoCollectionList)
+      map((r: StrictHttpResponse<TeamGridDtoCollectionList>) => r.body as TeamGridDtoCollectionList)
     );
   }
 
@@ -394,8 +392,8 @@ export class PartService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiPartDatatablePost$Plain$Response(params?: {
-      body?: PartFilterDtoDatatableDto
-  }): Observable<StrictHttpResponse<PartGridDtoCollectionList>> {
+      body?: TeamFilterDtoDatatableDto
+  }): Observable<StrictHttpResponse<TeamGridDtoCollectionList>> {
 
     const rb = new RequestBuilder(this.rootUrl, PartService.ApiPartDatatablePostPath, 'post');
     if (params) {
@@ -409,7 +407,7 @@ export class PartService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<PartGridDtoCollectionList>;
+        return r as StrictHttpResponse<TeamGridDtoCollectionList>;
       })
     );
   }
@@ -425,11 +423,11 @@ export class PartService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiPartDatatablePost$Plain(params?: {
-      body?: PartFilterDtoDatatableDto
-  }): Observable<PartGridDtoCollectionList> {
+      body?: TeamFilterDtoDatatableDto
+  }): Observable<TeamGridDtoCollectionList> {
 
     return this.apiPartDatatablePost$Plain$Response(params).pipe(
-      map((r: StrictHttpResponse<PartGridDtoCollectionList>) => r.body as PartGridDtoCollectionList)
+      map((r: StrictHttpResponse<TeamGridDtoCollectionList>) => r.body as TeamGridDtoCollectionList)
     );
   }
 
@@ -444,8 +442,8 @@ export class PartService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiPartDatatablePost$Json$Response(params?: {
-      body?: PartFilterDtoDatatableDto
-  }): Observable<StrictHttpResponse<PartGridDtoCollectionList>> {
+      body?: TeamFilterDtoDatatableDto
+  }): Observable<StrictHttpResponse<TeamGridDtoCollectionList>> {
 
     const rb = new RequestBuilder(this.rootUrl, PartService.ApiPartDatatablePostPath, 'post');
     if (params) {
@@ -459,7 +457,7 @@ export class PartService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<PartGridDtoCollectionList>;
+        return r as StrictHttpResponse<TeamGridDtoCollectionList>;
       })
     );
   }
@@ -475,11 +473,11 @@ export class PartService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiPartDatatablePost$Json(params?: {
-      body?: PartFilterDtoDatatableDto
-  }): Observable<PartGridDtoCollectionList> {
+      body?: TeamFilterDtoDatatableDto
+  }): Observable<TeamGridDtoCollectionList> {
 
     return this.apiPartDatatablePost$Json$Response(params).pipe(
-      map((r: StrictHttpResponse<PartGridDtoCollectionList>) => r.body as PartGridDtoCollectionList)
+      map((r: StrictHttpResponse<TeamGridDtoCollectionList>) => r.body as TeamGridDtoCollectionList)
     );
   }
 
@@ -505,7 +503,7 @@ export class PartService extends BaseService {
      */
     userId?: number;
 
-  }): Observable<StrictHttpResponse<PartGridDto>> {
+  }): Observable<StrictHttpResponse<TeamGridDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, PartService.ApiPartListadoPartesPostPath, 'post');
     if (params) {
@@ -519,7 +517,7 @@ export class PartService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<PartGridDto>;
+        return r as StrictHttpResponse<TeamGridDto>;
       })
     );
   }
@@ -541,10 +539,10 @@ export class PartService extends BaseService {
      */
     userId?: number;
 
-  }): Observable<PartGridDto> {
+  }): Observable<TeamGridDto> {
 
     return this.apiPartListadoPartesPost$Plain$Response(params).pipe(
-      map((r: StrictHttpResponse<PartGridDto>) => r.body as PartGridDto)
+      map((r: StrictHttpResponse<TeamGridDto>) => r.body as TeamGridDto)
     );
   }
 
@@ -565,7 +563,7 @@ export class PartService extends BaseService {
      */
     userId?: number;
 
-  }): Observable<StrictHttpResponse<PartGridDto>> {
+  }): Observable<StrictHttpResponse<TeamGridDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, PartService.ApiPartListadoPartesPostPath, 'post');
     if (params) {
@@ -579,7 +577,7 @@ export class PartService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<PartGridDto>;
+        return r as StrictHttpResponse<TeamGridDto>;
       })
     );
   }
@@ -601,10 +599,10 @@ export class PartService extends BaseService {
      */
     userId?: number;
 
-  }): Observable<PartGridDto> {
+  }): Observable<TeamGridDto> {
 
     return this.apiPartListadoPartesPost$Json$Response(params).pipe(
-      map((r: StrictHttpResponse<PartGridDto>) => r.body as PartGridDto)
+      map((r: StrictHttpResponse<TeamGridDto>) => r.body as TeamGridDto)
     );
   }
 
@@ -751,7 +749,7 @@ export class PartService extends BaseService {
    */
   apiPartListadoTotalesHorasPost$Plain$Response(params?: {
 
-  }): Observable<StrictHttpResponse<CountPartGridDtoCollectionList>> {
+  }): Observable<StrictHttpResponse<CountTeamGridDtoCollectionList>> {
 
     const rb = new RequestBuilder(this.rootUrl, PartService.ApiPartListadoTotalesHorasPostPath, 'post');
     if (params) {
@@ -764,7 +762,7 @@ export class PartService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<CountPartGridDtoCollectionList>;
+        return r as StrictHttpResponse<CountTeamGridDtoCollectionList>;
       })
     );
   }
@@ -781,10 +779,10 @@ export class PartService extends BaseService {
    */
   apiPartListadoTotalesHorasPost$Plain(params?: {
 
-  }): Observable<CountPartGridDtoCollectionList> {
+  }): Observable<CountTeamGridDtoCollectionList> {
 
     return this.apiPartListadoTotalesHorasPost$Plain$Response(params).pipe(
-      map((r: StrictHttpResponse<CountPartGridDtoCollectionList>) => r.body as CountPartGridDtoCollectionList)
+      map((r: StrictHttpResponse<CountTeamGridDtoCollectionList>) => r.body as CountTeamGridDtoCollectionList)
     );
   }
 
@@ -800,7 +798,7 @@ export class PartService extends BaseService {
    */
   apiPartListadoTotalesHorasPost$Json$Response(params?: {
 
-  }): Observable<StrictHttpResponse<CountPartGridDtoCollectionList>> {
+  }): Observable<StrictHttpResponse<CountTeamGridDtoCollectionList>> {
 
     const rb = new RequestBuilder(this.rootUrl, PartService.ApiPartListadoTotalesHorasPostPath, 'post');
     if (params) {
@@ -813,7 +811,7 @@ export class PartService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<CountPartGridDtoCollectionList>;
+        return r as StrictHttpResponse<CountTeamGridDtoCollectionList>;
       })
     );
   }
@@ -830,10 +828,10 @@ export class PartService extends BaseService {
    */
   apiPartListadoTotalesHorasPost$Json(params?: {
 
-  }): Observable<CountPartGridDtoCollectionList> {
+  }): Observable<CountTeamGridDtoCollectionList> {
 
     return this.apiPartListadoTotalesHorasPost$Json$Response(params).pipe(
-      map((r: StrictHttpResponse<CountPartGridDtoCollectionList>) => r.body as CountPartGridDtoCollectionList)
+      map((r: StrictHttpResponse<CountTeamGridDtoCollectionList>) => r.body as CountTeamGridDtoCollectionList)
     );
   }
 
@@ -854,7 +852,7 @@ export class PartService extends BaseService {
    */
   apiPartTotalHourListMonthPost$Plain$Response(params?: {
 
-  }): Observable<StrictHttpResponse<CountPartGridDtoCollectionList>> {
+  }): Observable<StrictHttpResponse<CountTeamGridDtoCollectionList>> {
 
     const rb = new RequestBuilder(this.rootUrl, PartService.ApiPartTotalHourListMonthPostPath, 'post');
     if (params) {
@@ -867,7 +865,7 @@ export class PartService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<CountPartGridDtoCollectionList>;
+        return r as StrictHttpResponse<CountTeamGridDtoCollectionList>;
       })
     );
   }
@@ -884,10 +882,10 @@ export class PartService extends BaseService {
    */
   apiPartTotalHourListMonthPost$Plain(params?: {
 
-  }): Observable<CountPartGridDtoCollectionList> {
+  }): Observable<CountTeamGridDtoCollectionList> {
 
     return this.apiPartTotalHourListMonthPost$Plain$Response(params).pipe(
-      map((r: StrictHttpResponse<CountPartGridDtoCollectionList>) => r.body as CountPartGridDtoCollectionList)
+      map((r: StrictHttpResponse<CountTeamGridDtoCollectionList>) => r.body as CountTeamGridDtoCollectionList)
     );
   }
 
@@ -903,7 +901,7 @@ export class PartService extends BaseService {
    */
   apiPartTotalHourListMonthPost$Json$Response(params?: {
 
-  }): Observable<StrictHttpResponse<CountPartGridDtoCollectionList>> {
+  }): Observable<StrictHttpResponse<CountTeamGridDtoCollectionList>> {
 
     const rb = new RequestBuilder(this.rootUrl, PartService.ApiPartTotalHourListMonthPostPath, 'post');
     if (params) {
@@ -916,7 +914,7 @@ export class PartService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<CountPartGridDtoCollectionList>;
+        return r as StrictHttpResponse<CountTeamGridDtoCollectionList>;
       })
     );
   }
@@ -933,10 +931,10 @@ export class PartService extends BaseService {
    */
   apiPartTotalHourListMonthPost$Json(params?: {
 
-  }): Observable<CountPartGridDtoCollectionList> {
+  }): Observable<CountTeamGridDtoCollectionList> {
 
     return this.apiPartTotalHourListMonthPost$Json$Response(params).pipe(
-      map((r: StrictHttpResponse<CountPartGridDtoCollectionList>) => r.body as CountPartGridDtoCollectionList)
+      map((r: StrictHttpResponse<CountTeamGridDtoCollectionList>) => r.body as CountTeamGridDtoCollectionList)
     );
   }
 
@@ -957,7 +955,7 @@ export class PartService extends BaseService {
    */
   apiPartCountTotalPartsPost$Plain$Response(params?: {
 
-  }): Observable<StrictHttpResponse<CountPartGridDtoCollectionList>> {
+  }): Observable<StrictHttpResponse<CountTeamGridDtoCollectionList>> {
 
     const rb = new RequestBuilder(this.rootUrl, PartService.ApiPartCountTotalPartsPostPath, 'post');
     if (params) {
@@ -970,7 +968,7 @@ export class PartService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<CountPartGridDtoCollectionList>;
+        return r as StrictHttpResponse<CountTeamGridDtoCollectionList>;
       })
     );
   }
@@ -987,10 +985,10 @@ export class PartService extends BaseService {
    */
   apiPartCountTotalPartsPost$Plain(params?: {
 
-  }): Observable<CountPartGridDtoCollectionList> {
+  }): Observable<CountTeamGridDtoCollectionList> {
 
     return this.apiPartCountTotalPartsPost$Plain$Response(params).pipe(
-      map((r: StrictHttpResponse<CountPartGridDtoCollectionList>) => r.body as CountPartGridDtoCollectionList)
+      map((r: StrictHttpResponse<CountTeamGridDtoCollectionList>) => r.body as CountTeamGridDtoCollectionList)
     );
   }
 
@@ -1006,7 +1004,7 @@ export class PartService extends BaseService {
    */
   apiPartCountTotalPartsPost$Json$Response(params?: {
 
-  }): Observable<StrictHttpResponse<CountPartGridDtoCollectionList>> {
+  }): Observable<StrictHttpResponse<CountTeamGridDtoCollectionList>> {
 
     const rb = new RequestBuilder(this.rootUrl, PartService.ApiPartCountTotalPartsPostPath, 'post');
     if (params) {
@@ -1019,7 +1017,7 @@ export class PartService extends BaseService {
     })).pipe(
       filter((r: any) => r instanceof HttpResponse),
       map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<CountPartGridDtoCollectionList>;
+        return r as StrictHttpResponse<CountTeamGridDtoCollectionList>;
       })
     );
   }
@@ -1036,113 +1034,10 @@ export class PartService extends BaseService {
    */
   apiPartCountTotalPartsPost$Json(params?: {
 
-  }): Observable<CountPartGridDtoCollectionList> {
+  }): Observable<CountTeamGridDtoCollectionList> {
 
     return this.apiPartCountTotalPartsPost$Json$Response(params).pipe(
-      map((r: StrictHttpResponse<CountPartGridDtoCollectionList>) => r.body as CountPartGridDtoCollectionList)
-    );
-  }
-
-  /**
-   * Path part for operation apiPartListadoTotalesTuToHorasPost
-   */
-  static readonly ApiPartListadoTotalesTuToHorasPostPath = '/api/Part/ListadoTotalesTuTOHoras';
-
-  /**
-   * Obtiene el listado por fechas de los partes de los alumnos.
-   *
-   *
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiPartListadoTotalesTuToHorasPost$Plain()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  apiPartListadoTotalesTuToHorasPost$Plain$Response(params?: {
-
-  }): Observable<StrictHttpResponse<PartHoursGridDtoCollectionList>> {
-
-    const rb = new RequestBuilder(this.rootUrl, PartService.ApiPartListadoTotalesTuToHorasPostPath, 'post');
-    if (params) {
-
-
-    }
-    return this.http.request(rb.build({
-      responseType: 'text',
-      accept: 'text/plain'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<PartHoursGridDtoCollectionList>;
-      })
-    );
-  }
-
-  /**
-   * Obtiene el listado por fechas de los partes de los alumnos.
-   *
-   *
-   *
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiPartListadoTotalesTuToHorasPost$Plain$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  apiPartListadoTotalesTuToHorasPost$Plain(params?: {
-
-  }): Observable<PartHoursGridDtoCollectionList> {
-
-    return this.apiPartListadoTotalesTuToHorasPost$Plain$Response(params).pipe(
-      map((r: StrictHttpResponse<PartHoursGridDtoCollectionList>) => r.body as PartHoursGridDtoCollectionList)
-    );
-  }
-
-  /**
-   * Obtiene el listado por fechas de los partes de los alumnos.
-   *
-   *
-   *
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiPartListadoTotalesTuToHorasPost$Json()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  apiPartListadoTotalesTuToHorasPost$Json$Response(params?: {
-
-  }): Observable<StrictHttpResponse<PartHoursGridDtoCollectionList>> {
-
-    const rb = new RequestBuilder(this.rootUrl, PartService.ApiPartListadoTotalesTuToHorasPostPath, 'post');
-    if (params) {
-
-
-    }
-    return this.http.request(rb.build({
-      responseType: 'json',
-      accept: 'text/json'
-    })).pipe(
-      filter((r: any) => r instanceof HttpResponse),
-      map((r: HttpResponse<any>) => {
-        return r as StrictHttpResponse<PartHoursGridDtoCollectionList>;
-      })
-    );
-  }
-
-  /**
-   * Obtiene el listado por fechas de los partes de los alumnos.
-   *
-   *
-   *
-   * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiPartListadoTotalesTuToHorasPost$Json$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  apiPartListadoTotalesTuToHorasPost$Json(params?: {
-
-  }): Observable<PartHoursGridDtoCollectionList> {
-
-    return this.apiPartListadoTotalesTuToHorasPost$Json$Response(params).pipe(
-      map((r: StrictHttpResponse<PartHoursGridDtoCollectionList>) => r.body as PartHoursGridDtoCollectionList)
+      map((r: StrictHttpResponse<CountTeamGridDtoCollectionList>) => r.body as CountTeamGridDtoCollectionList)
     );
   }
 

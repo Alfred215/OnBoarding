@@ -1,5 +1,5 @@
 /* tslint:disable */
-import { PartDto } from './part-dto';
+import { PartDto } from './team-dto';
 export interface TaskDto {
   comement?: null | string;
   delete?: boolean;

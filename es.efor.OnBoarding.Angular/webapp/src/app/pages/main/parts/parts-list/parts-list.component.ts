@@ -4,7 +4,7 @@ import { faCar, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { TranslateService } from '@ngx-translate/core';
 import { AxBsDatatableNewItemType, BsDatatableComponent, BsModalConfirmationMessageComponent, DtActionButton, DtActionColumnButton, DtColumnItem, FilterItem, LabelAndValueExtended, nameof } from 'ax-toolbox';
 import { first } from 'rxjs/operators';
-import { PartGridDto, PartGridDtoCollectionList, PartFilterDtoDatatableDto, UserSelectDto, PartDto } from 'src/app/shared/api/models';
+import { TeamGridDto, TeamGridDtoCollectionList, TeamFilterDtoDatatableDto, UserSelectDto, TeamDto } from 'src/app/shared/api/models';
 import { PartService, UserService } from 'src/app/shared/api/services';
 import { Location } from '@angular/common';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
@@ -266,11 +266,11 @@ export class PartsListComponent implements OnInit {
 
   private async initcolumns() {
   this.dtColumns = [
-    new DtColumnItem<PartGridDto, string>().setData({
+    new DtColumnItem<TeamGridDto, string>().setData({
       thTHeadClass: 'cell-narrow',
       buttons: [
-        new DtActionColumnButton<PartGridDto, string>().setData({
-          onClick: (ev: Event, dt: BsDatatableComponent<any>, item: PartGridDto) => {
+        new DtActionColumnButton<TeamGridDto, string>().setData({
+          onClick: (ev: Event, dt: BsDatatableComponent<any>, item: TeamGridDto) => {
             this.router.navigate(['parts/edit', item.id]);
           },
           iconPreffix: 'fas',
@@ -280,7 +280,7 @@ export class PartsListComponent implements OnInit {
           btnClass: 'btn btn-sm btn-warning text-white',
         }),
         new DtActionColumnButton<PartGridDto, string>().setData({
-          onClick: (ev: Event, dt: BsDatatableComponent<any>, item: PartGridDto) => {
+          onClick: (ev: Event, dt: BsDatatableComponent<any>, item: TeamGridDto) => {
 
             this.idDelete = item.id;
             this.mDeleteConfirm.open();
@@ -293,40 +293,25 @@ export class PartsListComponent implements OnInit {
         })
       ]
     }),
-    new DtColumnItem<PartGridDto, number>().setData({
+    new DtColumnItem<TeamGridDto, number>().setData({
       columnName: this.translateSV.instant('PAGES.MAIN.PARTS.LIST.COLUMN.ID'),
       field: 'id',
       sort: true,
       filter: true
     }),
     
-    new DtColumnItem<PartGridDto, string>().setData({
-      columnName: this.translateSV.instant('PAGES.MAIN.PARTS.LIST.COLUMN.DATE'),
-      field: 'date',
-      sort: true,
-      fieldDisplayType: 'date',
-      fieldDisplayFormatTime: 'dd/mm/yyyy',
-      filter: true
-    }),
-    new DtColumnItem<PartGridDto, number>().setData({
-      columnName: this.translateSV.instant('PAGES.MAIN.PARTS.LIST.COLUMN.INVERTEDHOURS'),
-      field: 'invertedHours',
+    new DtColumnItem<TeamGridDto, string>().setData({
+      columnName: this.translateSV.instant('PAGES.MAIN.PARTS.LIST.COLUMN.NAME'),
+      field: 'name',
       sort: true,
       filter: true
     }),
-    new DtColumnItem<PartGridDto, string>().setData({
-      columnName: this.translateSV.instant('PAGES.MAIN.PARTS.LIST.COLUMN.COMMENTS'),
-      field: 'comments',
-      sort: true,
-      filter: false
-    }),
-    new DtColumnItem<PartGridDto, number>().setData({
-      columnName: this.translateSV.instant('PAGES.MAIN.PARTS.LIST.COLUMN.USERID'),
-      field: 'userId',
+    new DtColumnItem<TeamGridDto, string>().setData({
+      columnName: this.translateSV.instant('PAGES.MAIN.PARTS.LIST.COLUMN.LEAGUE'),
+      field: 'league',
       sort: true,
       filter: true
-    })
-    
+    })    
   ];
   }
 

@@ -212,10 +212,8 @@
 				"LIST": {
 					"COLUMN": {
 						"ID": "ID",
-						"DATE": "Fecha",
-						"INVERTEDHOURS": "Horas Invertidas",
-						"COMMENTS": "Comentarios",
-						"USERID": "User ID"
+						"NAME": "Nombre",
+						"LEAGUE": "Liga"
 					}
 				}
 			},
