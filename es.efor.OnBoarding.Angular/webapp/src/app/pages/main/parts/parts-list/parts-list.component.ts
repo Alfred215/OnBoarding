@@ -202,25 +202,6 @@ export class PartsListComponent implements OnInit {
       onClick: () => {
         this.router.navigate(['parts/new']);
       }
-    }),
-    new DtActionButton().setData({
-      tooltip: this.translateSV.instant('DOWNLOAD'),
-      iconPreffix: 'fas',
-      iconName: 'download',
-      btnClass: 'btn btn-sm btn-outline-info',
-      onClick: () => {
-          this.mDownloadConfirm.open();
-      }
-    })
-    ,
-    new DtActionButton().setData({
-      tooltip: this.translateSV.instant('Car'),
-      iconPreffix: faCar.prefix,
-      iconName: faCar.iconName,
-      btnClass: 'btn btn-sm btn-outline-info',
-      onClick: () => {
-          this.mDownloadConfirm.open();
-      }
     })
   ];
 
