@@ -9,9 +9,9 @@
 		}
 	},
 	"APP":{
-		"NAME": "GestorActividades"
+		"NAME": "OnBoarding"
 	},
-	"APP_NAME": "GestorActividades",
+	"APP_NAME": "OnBoarding",
 	"COMPONENT": {
 		"FILEDROP": {
 			"LABEL": {

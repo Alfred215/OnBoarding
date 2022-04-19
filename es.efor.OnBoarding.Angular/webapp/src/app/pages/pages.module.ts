@@ -25,19 +25,12 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 };
 const routes: Routes = [
   /** Authentication layout */
-  {
-    path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
-    canLoad: [TranslateGuard], canActivate: [],
-    data: {
-      title: "Auth"
-    }
-  },
+  
   /** Main layout */
   {
     path: '', component: MainComponent,
     loadChildren: () => import('./main/main.module').then(m => m.MainModule),
-    canLoad: [TranslateGuard, AuthGuard], canActivate: [],
+    //canLoad: [TranslateGuard, AuthGuard], canActivate: [],
     data: {
       title: "",
       policy: []

@@ -9,34 +9,34 @@ Si fuera diferente habría que ponerle una dummy
 Si no le ponemos url al nav padre saldrá siempre desplegada
 */
 export const navByRoles: NavByRole[] = [
-    {
+    /*{
         name: 'MENU.NAV.HOME',
         url: '/home',
         icon: 'icon-fire',
         roles: [],
         order: 1
-    },
+    },*/
     {
-        name: 'MENU.NAV.PARTS',
+        name: 'MENU.NAV.EQUIPOS',
         url: '/parts',
         icon: 'icon-paypal',
         roles: [],
         order: 2
     },
     {
-        name: 'MENU.NAV.TASKS',
+        name: 'MENU.NAV.JUGADOR',
         url: '/tasks',
         icon: 'icon-social-tumblr',
         roles: [],
         order: 3
     },
-    {
+    /*{
         name: 'MENU.NAV.USERS',
         url: '/users',
         icon: 'cil-child',
         roles: [Roles.Tutor, Roles.Admin],
         order: 4
-    }
+    }*/
 ];
 
 interface NavByRole extends INavData {

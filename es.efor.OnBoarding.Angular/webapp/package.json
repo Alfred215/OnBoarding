@@ -20,7 +20,7 @@
     "e2e": "ng e2e",
     "stats": "npm-run-all build:dev-nowatch-stats analyze",
     "stats:prod": "npm-run-all build:prod-aot-stats analyze",
-    "analyze": "webpack-bundle-analyzer ../../es.efor.GestorActividades.MainGateway/wwwroot/stats.json",
+    "analyze": "webpack-bundle-analyzer ../../es.efor.OnBoarding.MainGateway/wwwroot/stats.json",
     "favicon": "start https://realfavicongenerator.net"
   },
   "private": true,

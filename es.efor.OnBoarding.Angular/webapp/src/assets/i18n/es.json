@@ -84,9 +84,9 @@
 		}
 	},
 	"APP": {
-		"NAME": "GestorActividades"
+		"NAME": "OnBoarding"
 	},
-	"APP_NAME": "GestorActividades",
+	"APP_NAME": "OnBoarding",
 	"COMPONENT": {
 		"FILEDROP": {
 			"LABEL": {
@@ -164,8 +164,8 @@
 	"MENU": {
 		"NAV": {
 			"HOME": "Home",
-			"PARTS": "Partes",
-			"TASKS": "Tareas",
+			"EQUIPOS": "Equipo",
+			"JUGADOR": "Jugador",
 			"USERS": "Usuarios"
 		},
 		"BTN": {

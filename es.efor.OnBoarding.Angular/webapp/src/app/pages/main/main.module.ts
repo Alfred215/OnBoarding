@@ -54,14 +54,14 @@ const routes: Routes = [
     path: 'parts',
     loadChildren: () => import('./parts/parts.module').then(m => m.PartsModule),
     data: {
-      title: 'Partes'
+      title: 'Equipos'
     }
   },
   {
     path: 'tasks',
     loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksModule),
     data: {
-      title: 'Tareas'
+      title: 'Jugadores'
     }
   },
   {
