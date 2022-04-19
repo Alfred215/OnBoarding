@@ -13,11 +13,11 @@ import { ServerSideError } from 'src/app/shared/interceptors/api-error/api-error
 import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-parts-item',
-  templateUrl: './parts-item.component.html',
-  styleUrls: ['./parts-item.component.scss']
+  selector: 'app-players-item',
+  templateUrl: './players-item.component.html',
+  styleUrls: ['./players-item.component.scss']
 })
-export class PartsItemComponent implements OnInit {
+export class PlayersItemComponent implements OnInit {
 
   parentUrl = this.router.url;
 

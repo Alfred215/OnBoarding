@@ -8,28 +8,28 @@ const routes: Routes = [
   { path: '', redirectTo: 'list', pathMatch: 'full' },
   {
     path: 'list',
-    loadChildren: () => import('./player-list/players-list.module').then(m => m.PartsListModule),
+    loadChildren: () => import('./player-list/players-list.module').then(m => m.PlayersListModule),
     data: {
       title: 'Listado '
     }
   },
   {
     path: 'new',
-    loadChildren: () => import('./player-item/players-item.module').then(m => m.PartsItemModule),
+    loadChildren: () => import('./player-item/players-item.module').then(m => m.PlayersItemModule),
     data: {
       title: 'Nuevo Parte'
     }
   },
   {
     path: 'edit',
-    loadChildren: () => import('./player-item/players-item.module').then(m => m.PartsItemModule),
+    loadChildren: () => import('./player-item/players-item.module').then(m => m.PlayersItemModule),
     data: {
       title: 'Editar Parte'
     }
   },
   {
     path: 'search',
-    loadChildren: () => import('./player-item/players-item.module').then(m => m.PartsItemModule),
+    loadChildren: () => import('./player-item/players-item.module').then(m => m.PlayersItemModule),
     data: {
       title: 'Buscar'
     }

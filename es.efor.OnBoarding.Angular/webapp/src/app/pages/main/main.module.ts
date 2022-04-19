@@ -57,6 +57,13 @@ const routes: Routes = [
       title: 'Equipos'
     }
   },
+  {
+    path: 'player',
+    loadChildren: () => import('./player/players.module').then(m => m.PartsModule),
+    data: {
+      title: 'Equipos'
+    }
+  },
 ];
 
 @NgModule({

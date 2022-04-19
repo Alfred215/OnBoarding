@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { PartsListComponent } from './players-list.component';
+import { PlayersListComponent } from './players-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import {
   BsDatatableModule, BsFormAutocompleteModule, BsModalConfirmationMessageModule,
@@ -9,11 +9,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
-  {path: '', component: PartsListComponent}
+  {path: '', component: PlayersListComponent}
 ]
 
 @NgModule({
-  declarations: [PartsListComponent],
+  declarations: [PlayersListComponent],
   imports: [
     ReactiveFormsModule,
     FormsModule,
@@ -26,4 +26,4 @@ const routes: Routes = [
   ],
   providers:[DatePipe]
 })
-export class PartsListModule { }
+export class PlayersListModule { }

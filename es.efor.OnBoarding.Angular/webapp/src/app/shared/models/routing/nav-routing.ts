@@ -24,7 +24,7 @@ export const navByRoles: NavByRole[] = [
     },
     {
         name: 'MENU.NAV.JUGADOR',
-        url: '/tasks',
+        url: '/player',
         icon: 'icon-social-tumblr',
         roles: [],
         order: 3

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
-import { PartsItemComponent } from './players-item.component';
+import { PlayersItemComponent } from './players-item.component';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { ArrayTranslatorModule, BsDatatableModule, BsFormAutocompleteModule } from 'ax-toolbox';
@@ -8,10 +8,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
-  {path: '', component: PartsItemComponent},
-  {path: ':id', component: PartsItemComponent},
+  {path: '', component: PlayersItemComponent},
+  {path: ':id', component: PlayersItemComponent},
   {path: 'create',
-    loadChildren: () => import('../player-list/players-list.module').then(m => m.PartsListModule),
+    loadChildren: () => import('../player-list/players-list.module').then(m => m.PlayersListModule),
     data: {
       title: 'Crear Parte'
     }
@@ -19,7 +19,7 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [PartsItemComponent],
+  declarations: [PlayersItemComponent],
   imports: [
     FormsModule,
     CommonModule,
@@ -32,4 +32,4 @@ const routes: Routes = [
   ],
   providers:[DatePipe]
 })
-export class PartsItemModule { }
+export class PlayersItemModule { }

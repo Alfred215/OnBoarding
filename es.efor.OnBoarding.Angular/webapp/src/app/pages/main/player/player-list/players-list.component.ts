@@ -13,11 +13,11 @@ import { TeamService } from 'src/app/shared/api/services';
 
 
 @Component({
-  selector: 'app-parts-list',
-  templateUrl: './parts-list.component.html',
-  styleUrls: ['./parts-list.component.scss']
+  selector: 'app-players-list',
+  templateUrl: './players-list.component.html',
+  styleUrls: ['./players-list.component.scss']
 })
-export class PartsListComponent implements OnInit {
+export class PlayersListComponent implements OnInit {
 
   dtColumns: DtColumnItem[] = [];
   dtColumnsActionButtons = [];
