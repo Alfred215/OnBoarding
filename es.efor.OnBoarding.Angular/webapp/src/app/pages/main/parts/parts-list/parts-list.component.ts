@@ -48,20 +48,16 @@ export class PartsListComponent implements OnInit {
   dateEx: string; 
   invertedHours: number;
 
-  dstart: string;
-  dend: string;
+  name: string;
+  league: string;
   idDelete: number;
   newId: number;
-  selectedUser: number;
   angular: any;
 
-  _item: PartDto = {
+  _item: TeamDto = {
     id: 0,
-    date: new Date().toISOString(),
-    invertedHours: 0,
-    comments: "",
-    userId: 0,
-    taskId: 0,
+    name: "",
+    league: "",
   }
   
 
@@ -77,7 +73,7 @@ export class PartsListComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    await this.checkRoles();
+    //await this.checkRoles();
     this.initbtnPlus();
     this.initcolumns();
   }
@@ -104,11 +100,12 @@ export class PartsListComponent implements OnInit {
     const resp = await this.partSV.apiPartDelete$Json({ id: Id }).pipe(first()).toPromise();
   }
 
+  /*
   onSelectedUser(event: number) {
     this.selectedUser = event;
     this._item.userId = event;
     this.dtParts.refreshData();
-  }
+  }*/
 
   async acUserGetterFn(filter?: string, pSize: number = 20) {
 
@@ -140,17 +137,13 @@ export class PartsListComponent implements OnInit {
     return result;
   }
 
-  async dtGetterFn(queryParams: { [param: string]: any }, filters: FilterItem[]): Promise<PartGridDtoCollectionList> {
+  async dtGetterFn(queryParams: { [param: string]: any }, filters: FilterItem[]): Promise<TeamGridDtoCollectionList> {
 
-    console.log(this.dstart)
-    const request: PartFilterDtoDatatableDto = {
+    const request: TeamFilterDtoDatatableDto = {
       filters: {
-        id: filters.find(f => f.field === nameof<PartGridDto>('id'))?.value as number,
-        invertedHours: filters.find(f => f.field === nameof<PartGridDto>('invertedHours'))?.value as number,
-        date: filters.find(f => f.field === nameof<PartGridDto>('date'))?.value as any,
-        userId: this.selectedUser,
-        dstart: (this.dstart != undefined && this.dstart != '') ? new Date(this.dstart).toISOString() : null,
-        dend: (this.dend != undefined && this.dend != '') ? new Date(this.dend).toISOString() : null
+        id: filters.find(f => f.field === nameof<TeamGridDto>('id'))?.value as number,
+        name:this.name,
+        league:this.league 
       },
       pageIndex: queryParams.pi,
       pageSize: queryParams.ps,
@@ -222,7 +215,7 @@ export class PartsListComponent implements OnInit {
           tooltip: this.translateSV.instant('EDIT'),
           btnClass: 'btn btn-sm btn-warning text-white',
         }),
-        new DtActionColumnButton<PartGridDto, string>().setData({
+        new DtActionColumnButton<TeamGridDto, string>().setData({
           onClick: (ev: Event, dt: BsDatatableComponent<any>, item: TeamGridDto) => {
 
             this.idDelete = item.id;

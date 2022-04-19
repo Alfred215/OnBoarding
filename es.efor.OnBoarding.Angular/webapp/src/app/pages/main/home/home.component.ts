@@ -5,7 +5,6 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { LabelAndValueExtended, nameof } from 'ax-toolbox';
-import { PartHoursGridDto } from 'src/app/shared/api/models';
 import { PartService } from 'src/app/shared/api/services';
 import { first } from 'rxjs/operators';
 import { Color } from 'ng2-charts';
