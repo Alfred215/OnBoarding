@@ -1,5 +1,4 @@
 import { INavData } from '@coreui/angular';
-import { RolesEnum } from '../../api/models';
 import { Roles } from '../enums/role.enum';
 /*
 Para que en el menú lateral la nav que tenga hijos salga colapsado, la nav padre tiene que tener la raiz de la url de los hijos siempre que sea la misma:

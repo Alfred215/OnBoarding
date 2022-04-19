@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { TeamDto, UserSelectDto } from 'src/app/shared/api/models';
-import { PartService, TaskService, UserService } from 'src/app/shared/api/services';
+import { TeamDto, PlayerDto } from 'src/app/shared/api/models';
+import { TeamService, PlayerService} from 'src/app/shared/api/services';
 import { Router } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 import { first } from 'rxjs/operators';
@@ -25,7 +25,8 @@ export class PartsItemComponent implements OnInit {
   _item: TeamDto = {
     id: 0,
     name: "",
-    league: ""
+    league: "",
+    active: null
   }
 
  
@@ -47,9 +48,7 @@ export class PartsItemComponent implements OnInit {
     public cdRef: ChangeDetectorRef,
     public router: Router,
     public aRoute: ActivatedRoute,
-    public servicio: PartService,
-    private userSV: UserService,
-    private taskSV: TaskService,
+    public teanSv: TeamService,
     private location: Location,
     private toastrSV: ToastrService,
     private translateSV: TranslateService,

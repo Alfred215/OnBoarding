@@ -5,7 +5,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { LabelAndValueExtended, nameof } from 'ax-toolbox';
-import { PartService } from 'src/app/shared/api/services';
+import { TeamService } from 'src/app/shared/api/services';
 import { first } from 'rxjs/operators';
 import { Color } from 'ng2-charts';
 
@@ -30,12 +30,12 @@ export class HomeComponent implements OnInit {
   i: number = 0;
   
   constructor(
-    private partSV: PartService,
+    private teamSV: TeamService,
   ) { }
 
   ngOnInit() {
     this.barChartLabels = [];
-    this.acPartListGetterFn();
+    //this.acTeamListGetterFn();
     //this.acPartListCountGetterFn();
 
     //calendario
@@ -128,10 +128,10 @@ export class HomeComponent implements OnInit {
     }
   }
   
-  //Barra
+  /*Barra
   async acPartListGetterFn() {
 
-    const resp = await this.partSV.apiPartListadoTotalesHorasPost$Json().pipe(first()).toPromise();
+    const resp = await this.teamSV.apiTeamListadoTotalesHorasPost$Json().pipe(first()).toPromise();
     
       resp.items.forEach((x)=>{
           console.log(x);   
@@ -145,7 +145,7 @@ export class HomeComponent implements OnInit {
           {data: this.hours, label: 'Horas'},
           {data: this.parts, label: 'Contador de partes'} 
        );
-  }
+  }*/
   
   public barChartType = 'bar';
   public barChartLegend = true;

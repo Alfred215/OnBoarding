@@ -6,7 +6,6 @@ import { AxBsDatatableNewItemType, BsDatatableComponent, BsModalConfirmationMess
 import { first } from 'rxjs/operators';
 import { TeamGridDto, TeamGridDtoCollectionList, TeamFilterDtoDatatableDto, TeamDto } from 'src/app/shared/api/models';
 import { Location } from '@angular/common';
-import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { Roles } from 'src/app/shared/models/enums/role.enum';
 import { ToastrService } from 'ngx-toastr';
 import { saveAs } from 'file-saver';
@@ -67,7 +66,6 @@ export class PartsListComponent implements OnInit {
     private teamSV: TeamService,
     public aRoute: ActivatedRoute,
     private location: Location,
-    private authSV: AuthService,
     private toastSV: ToastrService
   ) { }
 
@@ -79,20 +77,6 @@ export class PartsListComponent implements OnInit {
 
   refreshdatatable() {
     this.dtParts.refreshData();
-  }
-
-  async checkRoles() {
-    const roles = await this.authSV.getUserRol();
-
-    this._isAdmin = (roles.indexOf(Roles.Admin) !== -1) ? true : false;
-    this._isTutor = (roles.indexOf(Roles.Tutor) !== -1) ? true : false;
-
-    if (this._isAdmin || this._isTutor)
-      this._canEdit = true;
-    else
-      this._canEdit = false
-
-    console.log(this._canEdit);
   }
 
   async deletePart(Id: number) {

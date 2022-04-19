@@ -57,20 +57,6 @@ const routes: Routes = [
       title: 'Equipos'
     }
   },
-  {
-    path: 'tasks',
-    loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksModule),
-    data: {
-      title: 'Jugadores'
-    }
-  },
-  {
-    path: 'users',
-    loadChildren: () => import('./users/users.module').then(m => m.UsersModule),
-    data: {
-      title: 'Usuarios'
-    }
-  }
 ];
 
 @NgModule({
