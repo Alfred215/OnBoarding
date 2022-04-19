@@ -1,7 +1,7 @@
 /* tslint:disable */
 export interface TeamDto {
-  name: string;
-  delete?: boolean;
+  active: boolean;
   id: number;
   league: string;
+  name: string;
 }

@@ -1,6 +1,9 @@
 /* tslint:disable */
+import { PlayerDto } from './player-dto';
 export interface TeamFilterDto {
-  name?: null | string;
+  active?: boolean;
+  id?: number;
   league?: null | string;
-  id?: null | number;
+  name?: null | string;
+  players?: null | Array<PlayerDto>;
 }

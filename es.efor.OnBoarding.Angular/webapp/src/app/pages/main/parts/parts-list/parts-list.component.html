@@ -14,22 +14,6 @@
             </div>
         </div>
 
-        
-        <div class="row">
-            <div class="col" *ngIf="mostrarfiltros">
-
-                <label class="col-sm-3" *ngIf="_canEdit">Seleccione un alumno:</label>
-
-
-                <label class="col-sm-3">Desde:</label>
-
-
-                <label class="col-sm-3">Hasta:</label>
-
-            </div>
-        </div>
-
-
         <div class="row">
             <div class="col" *ngIf="mostrarfiltros">
                 <label class="col-sm-3" *ngIf="_canEdit">
@@ -69,61 +53,7 @@
                     [dataGetterFn]="dtGetterFn.bind(this)" [newItemType]="_dummyNewItemType.inlineTop"
                     [actionButtons]="dtColumnsActionButtons">
                 </ax-bs-datatable>
-            </div>
-            <div>
-                <ax-bs-modal-confirmation-message #mDownloadConfirm
-                    [labelHeader]="'COMPONENT.FILEDROP.MODAL.DOWNLOAD.TITLE'| translate"
-                    (clickConfirm)="onBtnDownload()">
-                    <ng-container slot="body">
-                        <p class="h4 text-center">{{'COMPONENT.FILEDROP.MODAL.DOWNLOAD.BODY' | translate}}</p>
-                    </ng-container>
-                    <ng-container slot="body">
-                        <div class="row mt-4">
-                            <div class="col">
-                
-                                <label class="col-sm-3">Fecha:</label>
-
-                                <label class="col-sm-3">Horas invertidas:</label>
-
-                                <label class="col-sm-3" *ngIf="_canEdit">Seleccione un alumno:</label>
-                
-                                <label class="col-sm-3" *ngIf="_canEdit" >ID del Parte:</label>
-                
-                
-                                
-                
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col ">
-                                <label class="col-sm-3">
-                                    <input type="date" autocomplete="off" class="form-control" [name]="'dateEx'"
-                                        [(ngModel)]="dateEx" [disabled]="_isLoading"
-                                        [required]="false">
-                                </label>
-                                <label class="col-sm-3">
-                                    <input type="number" autocomplete="off" placeholder="0" class="form-control" [name]="'partId'"
-                                        [(ngModel)]="invertedHours" [disabled]="_isLoading" [required]="false">
-                                </label>
-                                <label class="col-sm-3" *ngIf="_canEdit">
-                                    <ax-bs-form-autocomplete #acUser placeholder="Alumnos"  
-                                        [cssClassContainer]="'pl-0 pr-0 input-group'"
-                                        [getterFn]="acUserFilterFn.bind(this)" [pSize]="20" [disabled]="_isLoading"
-                                        [(selected)]="userId">
-                                        
-                                    </ax-bs-form-autocomplete>
-                                </label>                
-                                <label class="col-sm-3"  *ngIf="_canEdit">
-                                    <input type="number" autocomplete="off" placeholder="0" class="form-control" [name]="'invertedHours'"
-                                        [(ngModel)]="id" [disabled]="_isLoading" [required]="false">
-                                </label>
-                                
-                            </div>
-                        </div>
-                    </ng-container>
-                </ax-bs-modal-confirmation-message>
-            </div>
+            </div>s
             <div>
                 <ax-bs-modal-confirmation-message #mDeleteConfirm
                     [labelHeader]="'COMPONENT.FILEDROP.MODAL.DELETE.TITLE'| translate"

@@ -4,13 +4,13 @@ import { faCar, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { TranslateService } from '@ngx-translate/core';
 import { AxBsDatatableNewItemType, BsDatatableComponent, BsModalConfirmationMessageComponent, DtActionButton, DtActionColumnButton, DtColumnItem, FilterItem, LabelAndValueExtended, nameof } from 'ax-toolbox';
 import { first } from 'rxjs/operators';
-import { TeamGridDto, TeamGridDtoCollectionList, TeamFilterDtoDatatableDto, UserSelectDto, TeamDto } from 'src/app/shared/api/models';
-import { PartService, UserService } from 'src/app/shared/api/services';
+import { TeamGridDto, TeamGridDtoCollectionList, TeamFilterDtoDatatableDto, TeamDto } from 'src/app/shared/api/models';
 import { Location } from '@angular/common';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { Roles } from 'src/app/shared/models/enums/role.enum';
 import { ToastrService } from 'ngx-toastr';
 import { saveAs } from 'file-saver';
+import { TeamService } from 'src/app/shared/api/services';
 
 
 @Component({
@@ -22,7 +22,6 @@ export class PartsListComponent implements OnInit {
 
   dtColumns: DtColumnItem[] = [];
   dtColumnsActionButtons = [];
-  usersList: UserSelectDto[] = [];
   public _serverSideError: any = {};
   parentUrl = this.router.url;
   _dummyNewItemType = { ...AxBsDatatableNewItemType };
@@ -58,14 +57,14 @@ export class PartsListComponent implements OnInit {
     id: 0,
     name: "",
     league: "",
+    active: null
   }
   
 
   constructor(
     private translateSV: TranslateService,
     private router: Router,
-    public partSV: PartService,
-    public userSV: UserService,
+    private teamSV: TeamService,
     public aRoute: ActivatedRoute,
     private location: Location,
     private authSV: AuthService,
@@ -97,7 +96,7 @@ export class PartsListComponent implements OnInit {
   }
 
   async deletePart(Id: number) {
-    const resp = await this.partSV.apiPartDelete$Json({ id: Id }).pipe(first()).toPromise();
+    const resp = await this.teamSV.apiTeamDelete$Json().pipe(first()).toPromise();
   }
 
   /*
@@ -107,50 +106,20 @@ export class PartsListComponent implements OnInit {
     this.dtParts.refreshData();
   }*/
 
-  async acUserGetterFn(filter?: string, pSize: number = 20) {
-
-    const resp = await this.userSV.apiUserSelectStudentGet$Json({ name: filter }).pipe(first()).toPromise();
-
-    const result = resp.items.map(user => {
-      const asLav = new LabelAndValueExtended<number>().setData({
-        label: user.nombre,
-        value: user.id,
-        extraData: user
-      });
-      return asLav;
-    });
-    return result;
-  }
-
-  async acUserFilterFn(filter?: string, pSize: number = 20) {
-
-    const resp = await this.userSV.apiUserSelectStudentGet$Json({ name: filter }).pipe(first()).toPromise();
-
-    const result = resp.items.map(user => {
-      const asLav = new LabelAndValueExtended<number>().setData({
-        label: user.nombre,
-        value: user.id,
-        extraData: user
-      });
-      return asLav;
-    });
-    return result;
-  }
-
   async dtGetterFn(queryParams: { [param: string]: any }, filters: FilterItem[]): Promise<TeamGridDtoCollectionList> {
 
     const request: TeamFilterDtoDatatableDto = {
       filters: {
         id: filters.find(f => f.field === nameof<TeamGridDto>('id'))?.value as number,
-        name:this.name,
-        league:this.league 
+        name:filters.find(f => f.field === nameof<TeamGridDto>('name'))?.value as string,
+        league:filters.find(f => f.field === nameof<TeamGridDto>('league'))?.value as string 
       },
       pageIndex: queryParams.pi,
       pageSize: queryParams.ps,
       sortDescending: queryParams.sd,
       sortName: queryParams.sn,
     };
-    const parts = await this.partSV.apiPartDatatablePost$Json({ body: request })
+    const parts = await this.teamSV.apiTeamDatatablePost$Json({ body: request })
       .pipe(first())
       .toPromise();
     return parts;

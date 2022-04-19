@@ -3,10 +3,8 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
-import { AuthService } from './services/auth.service';
-import { PartService } from './services/part.service';
-import { TaskService } from './services/task.service';
-import { UserService } from './services/user.service';
+import { PlayerService } from './services/player.service';
+import { TeamService } from './services/team.service';
 
 /**
  * Module that provides all services and configuration.
@@ -16,10 +14,8 @@ import { UserService } from './services/user.service';
   exports: [],
   declarations: [],
   providers: [
-    AuthService,
-    PartService,
-    TaskService,
-    UserService,
+    PlayerService,
+    TeamService,
     ApiConfiguration
   ],
 })

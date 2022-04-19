@@ -1,6 +1,9 @@
 /* tslint:disable */
+import { PlayerDto } from './player-dto';
 export interface TeamGridDto {
+  active?: boolean;
+  id?: number;
+  league?: null | string;
   name?: null | string;
-  id: number;
-  league?: null | number;
+  players?: null | Array<PlayerDto>;
 }
