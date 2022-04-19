@@ -188,44 +188,6 @@ export class PartsListComponent implements OnInit {
 
   }
 
-  private downloadFile(blob) {
-
-  const fileName = `${this.translateSV.instant('PAGES.MAIN.TEMPLATE.LIST.TITLE')}_${this._item.userId}_${new Date().getFullYear()}`;
-
-  const file = new File([blob], fileName, { type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
-
-  saveAs(file);
-  }
-
-  async onBtnDownload() {
-  try {
-    dateEx: (this.dateEx != undefined && this.dateEx != '') ? new Date(this.dateEx).toISOString() : null
-   
-    console.log(this.dateEx);
-    const resp = await this.partSV.apiPartListadoExcelFiltrosPost$Json({userId: this.userId,idPart: this.id, date: this.dateEx, hours: this.invertedHours}).pipe(first()).toPromise();
-
-    this.downloadFile(resp);
-
-    this.toastSV.success(
-      this.translateSV.instant('TOASTR.PARTS.ITEM.SAVED.DOWNLOAD.SUCCESS.LABEL'),
-      this.translateSV.instant('TOASTR.PARTS.ITEM.SAVED.DOWNLOAD.SUCCESS.MESSAGE')
-    );
-
-    this.dtParts.refreshData(true);
-    this.mDownloadConfirm.close();
-  }
-  catch(error){
-
-    this.toastSV.error(
-      this.translateSV.instant('TOASTR.PARTS.ITEM.SAVED.DOWNLOAD.ERROR.LABEL'),
-      this.translateSV.instant('TOASTR.PARTS.ITEM.SAVED.DOWNLOAD.ERROR.MESSAGE')
-    );
-
-    this.mDownloadConfirm.close();
-  }
-
-  }
-
   private async initbtnPlus() {
   this.dtColumnsActionButtons = []
 
