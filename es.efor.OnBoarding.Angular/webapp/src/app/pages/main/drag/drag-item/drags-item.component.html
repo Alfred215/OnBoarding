@@ -1,0 +1,82 @@
+<div class="card">
+    <div class="card-body">
+        <form (keydown.enter)="false" autocomplete="off">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group row">
+                        <label #lblName for="NAME" class="col-form-label col-sm-12 col-md-2 col-lg-2">
+                            {{'PAGES.MAIN.PLAYERS.LIST.NAME' | translate}}
+                            <span class="h5 text-danger">*</span>
+                        </label>
+                        <div class="col-sm-12 col-md-7 col-lg-7">
+                            <input type="text" class="form-control" [id]="lblName.getAttribute('for')"
+                                [name]="lblName.getAttribute('for')" [required]="true"
+                                [value]="item.name" [(ngModel)]="item.name">
+                            <ax-array-translator class="invalid-feedback d-block"
+                                [labels]="itemErrors[lblName.getAttribute('for')]">
+                            </ax-array-translator>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label #lblNumber for="NUMBER" class="col-form-label col-sm-12 col-md-2 col-lg-2">
+                            {{'PAGES.MAIN.PLAYERS.LIST.NUMBER' | translate}}
+                            <span class="h5 text-danger">*</span>
+                        </label>
+                        <div class="col-sm-12 col-md-7 col-lg-7">
+                            <input type="number" class="form-control" [id]="lblNumber.getAttribute('for')"
+                                [name]="lblNumber.getAttribute('for')" [required]="true"
+                                [value]="item.number" [(ngModel)]="item.number">
+                            <ax-array-translator class="invalid-feedback d-block">
+                                [labels]="itemErrors[lblNumber.getAttribute('for')]">
+                            </ax-array-translator>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label #lblPosition for="POSITION" class="col-form-label col-sm-12 col-md-2 col-lg-2">
+                            {{'PAGES.MAIN.PLAYERS.LIST.POSITION' | translate}}
+                            <span class="h5 text-danger">*</span>
+                        </label>
+                        <div class="col-sm-12 col-md-7 col-lg-7">
+                            <input type="text" class="form-control" [id]="lblPosition.getAttribute('for')"
+                                [name]="lblPosition.getAttribute('for')" [required]="true"
+                                [value]="item.position" [(ngModel)]="item.position">
+                            <ax-array-translator class="invalid-feedback d-block"
+                                [labels]="itemErrors[lblPosition.getAttribute('for')]">
+                            </ax-array-translator>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label #lblTeamid for="TEAMID" class="col-form-label col-sm-12 col-md-2 col-lg-2">
+                            {{'PAGES.MAIN.PLAYERS.LIST.TEAMID' | translate}}
+                            <span class="h5 text-danger">*</span>
+                        </label>
+                        <div class="col-sm-12 col-md-7 col-lg-7">
+                            <input type="number" class="form-control" [id]="lblTeamid.getAttribute('for')"
+                                [name]="lblTeamid.getAttribute('for')" [required]="true"
+                                [value]="item.teamId" [(ngModel)]="item.teamId">
+                            <ax-array-translator class="invalid-feedback d-block"
+                                [labels]="itemErrors[lblTeamid.getAttribute('for')]">
+                            </ax-array-translator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col clearfix">
+                <button type="button" class="btn btn-primary m-1 float-right"
+                    (click)="onBtnSave()">
+                    <i class="fa fa-floppy-o"></i>
+                    <span class="p-2">{{'PAGES.MODAL.SAVE.BTN.SAVE' | translate}}</span>
+                </button>
+               
+                <button type="reset" class="btn btn-secondary m-1 float-right" (click)="goBack()">
+                    <i class="fa fa-angle-left"></i>
+                    <span class="p-2">{{'PAGES.MODAL.SAVE.BTN.RETURN' | translate}}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
