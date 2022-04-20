@@ -47,4 +47,4 @@ const routes: Routes = [
     
   ]
 })
-export class PartsModule { }
+export class PlayersModule { }

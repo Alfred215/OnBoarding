@@ -23,6 +23,23 @@ namespace es.efor.OnBoarding.MainGateway.Controllers
             _TeamService = teamService;
         }
 
+        #region
+        /// <summary>
+        /// Recoger
+        /// </summary>
+        /// <returns>Rexoger equipo</returns>
+        /// <response code="200">La solicitud ha ido correctamente</response>
+        [HttpGet("get")]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Get(int id)
+        {
+            TeamDTO resp = await _TeamService.Get(id);
+
+            return Ok(resp);
+        }
+        #endregion
+
         #region Create  
         /// <summary>
         /// Crear un equipo

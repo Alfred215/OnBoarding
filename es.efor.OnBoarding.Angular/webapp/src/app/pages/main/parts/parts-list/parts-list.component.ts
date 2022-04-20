@@ -25,32 +25,9 @@ export class PartsListComponent implements OnInit {
   parentUrl = this.router.url;
   _dummyNewItemType = { ...AxBsDatatableNewItemType };
 
-  @ViewChild('dtParts') dtParts: BsDatatableComponent;
+  @ViewChild('dtTeams') dtTeams: BsDatatableComponent;
   @ViewChild('mDeleteConfirm') mDeleteConfirm: BsModalConfirmationMessageComponent;
   @ViewChild('mDownloadConfirm') mDownloadConfirm: BsModalConfirmationMessageComponent
-  
-  ///4149380511265175
-
-  mostrarfiltros: boolean = false;
-  esNuevoItem: boolean = false;
-  _isLoading: boolean = false;
-  
-  //Roles
-  _isAdmin: boolean = false;
-  _isTutor: boolean = false;
-  _canEdit: boolean = false;
-
-  //Filtros excel
-  userId: number;
-  id: number;
-  dateEx: string; 
-  invertedHours: number;
-
-  name: string;
-  league: string;
-  idDelete: number;
-  newId: number;
-  angular: any;
 
   _item: TeamDto = {
     id: 0,
@@ -59,6 +36,18 @@ export class PartsListComponent implements OnInit {
     active: null
   }
   
+  mostrarfiltros: boolean = false;
+  esNuevoItem: boolean = false;
+  _isLoading: boolean = false;
+
+  name: string;
+  league: string;
+  idDelete: number;
+  newId: number;
+  angular: any;
+
+  _teamIdDelete: number;
+  showModal = false;
 
   constructor(
     private translateSV: TranslateService,
@@ -76,62 +65,7 @@ export class PartsListComponent implements OnInit {
   }
 
   refreshdatatable() {
-    this.dtParts.refreshData();
-  }
-
-  async deletePart(Id: number) {
-    const resp = await this.teamSV.apiTeamDelete$Json().pipe(first()).toPromise();
-  }
-
-  /*
-  onSelectedUser(event: number) {
-    this.selectedUser = event;
-    this._item.userId = event;
-    this.dtParts.refreshData();
-  }*/
-
-  async dtGetterFn(queryParams: { [param: string]: any }, filters: FilterItem[]): Promise<TeamGridDtoCollectionList> {
-
-    const request: TeamFilterDtoDatatableDto = {
-      filters: {
-        id: filters.find(f => f.field === nameof<TeamGridDto>('id'))?.value as number,
-        name:filters.find(f => f.field === nameof<TeamGridDto>('name'))?.value as string,
-        league:filters.find(f => f.field === nameof<TeamGridDto>('league'))?.value as string 
-      },
-      pageIndex: queryParams.pi,
-      pageSize: queryParams.ps,
-      sortDescending: queryParams.sd,
-      sortName: queryParams.sn,
-    };
-    const parts = await this.teamSV.apiTeamDatatablePost$Json({ body: request })
-      .pipe(first())
-      .toPromise();
-    return parts;
-  }
-
-  async onBtnModalConfirmation() {
-    try {
-
-      await this.deletePart(this.idDelete);
-      this.toastSV.success(
-        this.translateSV.instant('TOASTR.PARTS.ITEM.DELETE.LABEL'),
-        this.translateSV.instant('TOASTR.PARTS.ITEM.DELETE.MESSAGE')
-      );
-
-      this.dtParts.refreshData(true);
-      this.mDeleteConfirm.close();
-
-    } catch (error) {
-
-      this.toastSV.error(
-        this.translateSV.instant('API.ERROR.TOASTR.PARTS.DELETE.LABEL'),
-        this.translateSV.instant('API.ERROR.TOASTR.PARTS.DELETE.MESSAGE')
-      );
-
-      this.mDeleteConfirm.close();
-
-    } 
-
+    this.dtTeams.refreshData();
   }
 
   private async initbtnPlus() {
@@ -171,8 +105,8 @@ export class PartsListComponent implements OnInit {
         new DtActionColumnButton<TeamGridDto, string>().setData({
           onClick: (ev: Event, dt: BsDatatableComponent<any>, item: TeamGridDto) => {
 
-            this.idDelete = item.id;
-            this.mDeleteConfirm.open();
+            this.showModal = true;
+            this._teamIdDelete = item.id;
 
           },
           iconName: 'trash',
@@ -183,25 +117,65 @@ export class PartsListComponent implements OnInit {
       ]
     }),
     new DtColumnItem<TeamGridDto, number>().setData({
-      columnName: this.translateSV.instant('PAGES.MAIN.PARTS.LIST.COLUMN.ID'),
+      columnName: this.translateSV.instant('PAGES.MAIN.TEAMS.LIST.COLUMN.ID'),
       field: 'id',
       sort: true,
       filter: true
     }),
     
     new DtColumnItem<TeamGridDto, string>().setData({
-      columnName: this.translateSV.instant('PAGES.MAIN.PARTS.LIST.COLUMN.NAME'),
+      columnName: this.translateSV.instant('PAGES.MAIN.TEAMS.LIST.COLUMN.NAME'),
       field: 'name',
       sort: true,
       filter: true
     }),
     new DtColumnItem<TeamGridDto, string>().setData({
-      columnName: this.translateSV.instant('PAGES.MAIN.PARTS.LIST.COLUMN.LEAGUE'),
+      columnName: this.translateSV.instant('PAGES.MAIN.TEAMS.LIST.COLUMN.LEAGUE'),
       field: 'league',
       sort: true,
       filter: true
     })    
   ];
+  }
+
+  async dtGetterFn(queryParams: { [param: string]: any }, filters: FilterItem[]): Promise<TeamGridDtoCollectionList> {
+
+    const request: TeamFilterDtoDatatableDto = {
+      filters: {
+        id: filters.find(f => f.field === nameof<TeamGridDto>('id'))?.value as number,
+        name:filters.find(f => f.field === nameof<TeamGridDto>('name'))?.value as string,
+        league:filters.find(f => f.field === nameof<TeamGridDto>('league'))?.value as string 
+      },
+      pageIndex: queryParams.pi,
+      pageSize: queryParams.ps,
+      sortDescending: queryParams.sd,
+      sortName: queryParams.sn,
+    };
+    const parts = await this.teamSV.apiTeamDatatablePost$Json({ body: request })
+      .pipe(first())
+      .toPromise();
+    return parts;
+  }
+
+  deletePlayer(): void {
+    this.teamSV.apiTeamDelete$Json({ Id: this._teamIdDelete })
+      .subscribe(() => {
+        this.toastSV.success(
+          this.translateSV.instant('SUCCESS.USER.DELETE_MESSAGE'),
+          this.translateSV.instant('SUCCESS.USER.DELETE_HEADER'),
+        )
+        this.showModal = false;
+        this.dtTeams.refreshData();
+      }, () => {
+        this.toastSV.error(
+          this.translateSV.instant('API.ERROR.GENERIC.MESSAGE'),
+          this.translateSV.instant('API.ERROR.GENERIC.TITLE'),
+        );
+      })
+  }
+
+  closeModal(): void {
+    this.showModal = !this.showModal;
   }
 
   public goBack() {

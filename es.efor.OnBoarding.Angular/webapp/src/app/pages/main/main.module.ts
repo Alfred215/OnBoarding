@@ -51,7 +51,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'parts',
+    path: 'team',
     loadChildren: () => import('./parts/parts.module').then(m => m.PartsModule),
     data: {
       title: 'Equipos'
@@ -59,9 +59,9 @@ const routes: Routes = [
   },
   {
     path: 'player',
-    loadChildren: () => import('./player/players.module').then(m => m.PartsModule),
+    loadChildren: () => import('./player/players.module').then(m => m.PlayersModule),
     data: {
-      title: 'Equipos'
+      title: 'Jugadores'
     }
   },
 ];

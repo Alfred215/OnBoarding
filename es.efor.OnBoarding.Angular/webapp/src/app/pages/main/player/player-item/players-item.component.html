@@ -1,42 +1,68 @@
 <div class="card">
     <div class="card-body">
-        <form>
+        <form (keydown.enter)="false" autocomplete="off">
             <div class="row">
-                <div class="col-sm-12 col-md-6">
+                <div class="col">
                     <div class="form-group row">
-                        <!-- Selct ID -->
-                        <label class="col-form-label col-sm-12" #lblIdPart for="ID">{{'PAGES.MAIN.PARTS.ITEM.ID' |
-                            translate}}
+                        <label #lblName for="NAME" class="col-form-label col-sm-12 col-md-2 col-lg-2">
+                            {{'PAGES.MAIN.PLAYERS.LIST.NAME' | translate}}
+                            <span class="h5 text-danger">*</span>
                         </label>
-                        <div class="col-sm-12">
-                            <input type="text" autocomplete="off" class="form-control form-control-sm"
-                                [id]="lblIdPart.getAttribute('for')" [name]="lblIdPart.getAttribute('for')"
-                                [(ngModel)]="_item.id" [disabled]="_isLoading" [required]="true">
-                                <ax-array-translator class="invalid-feedback d-block"
-                                [(labels)]="_serverSideError[lblIdPart.getAttribute('for')]">
-                                </ax-array-translator>
+                        <div class="col-sm-12 col-md-7 col-lg-7">
+                            <input type="text" class="form-control" [id]="lblName.getAttribute('for')"
+                                [name]="lblName.getAttribute('for')" [required]="true"
+                                [value]="item.name" [(ngModel)]="item.name">
+                            <ax-array-translator class="invalid-feedback d-block"
+                                [labels]="itemErrors[lblName.getAttribute('for')]">
+                            </ax-array-translator>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label #lblNumber for="NUMBER" class="col-form-label col-sm-12 col-md-2 col-lg-2">
+                            {{'PAGES.MAIN.PLAYERS.LIST.NUMBER' | translate}}
+                            <span class="h5 text-danger">*</span>
+                        </label>
+                        <div class="col-sm-12 col-md-7 col-lg-7">
+                            <input type="number" class="form-control" [id]="lblNumber.getAttribute('for')"
+                                [name]="lblNumber.getAttribute('for')" [required]="true"
+                                [value]="item.number" [(ngModel)]="item.number">
+                            <ax-array-translator class="invalid-feedback d-block">
+                                [labels]="itemErrors[lblNavision.getAttribute('for')]">
+                            </ax-array-translator>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label #lblPosition for="POSITION" class="col-form-label col-sm-12 col-md-2 col-lg-2">
+                            {{'PAGES.MAIN.PLAYERS.LIST.POSITION' | translate}}
+                            <span class="h5 text-danger">*</span>
+                        </label>
+                        <div class="col-sm-12 col-md-7 col-lg-7">
+                            <input type="text" class="form-control" [id]="lblPosition.getAttribute('for')"
+                                [name]="lblPosition.getAttribute('for')" [required]="true"
+                                [value]="item.position" [(ngModel)]="item.position">
+                            <ax-array-translator class="invalid-feedback d-block"
+                                [labels]="itemErrors[lblPosition.getAttribute('for')]">
+                            </ax-array-translator>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label #lblTeamid for="TEAMID" class="col-form-label col-sm-12 col-md-2 col-lg-2">
+                            {{'PAGES.MAIN.PLAYERS.LIST.TEAMID' | translate}}
+                            <span class="h5 text-danger">*</span>
+                        </label>
+                        <div class="col-sm-12 col-md-7 col-lg-7">
+                            <input type="number" class="form-control" [id]="lblTeamid.getAttribute('for')"
+                                [name]="lblTeamid.getAttribute('for')" [required]="true"
+                                [value]="item.teamId" [(ngModel)]="item.teamId">
+                            <ax-array-translator class="invalid-feedback d-block"
+                                [labels]="itemErrors[lblTeamid.getAttribute('for')]">
+                            </ax-array-translator>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                        <label class="col-form-label col-sm-12" #lblTaskId for="TASKID">Seleccione equipo</label>
-                        <div class="col-sm-12">
-                            <ax-bs-form-autocomplete #acTask placeholder="Tarea" [cssClassContainer]="'pl-0 pr-0 input-group'"
-                                [getterFn]="acTaskGetterFn.bind(this)" [pSize]="20" [disabled]="_isLoading"
-                                [(selected)]="_item.taskId" [(filter)]="selecTaskName"  (selectedChange)="onSelectTask($event)">
-                            </ax-bs-form-autocomplete>
-                            <ax-array-translator class="invalid-feedback d-block"
-                                [labels]="_serverSideError[lblTaskId.getAttribute('for')]">
-                            </ax-array-translator>
-                        </div>
-                </div>
-            </div>
         </form>
     </div>
-
     <div class="card-footer">
         <div class="row">
             <div class="col clearfix">

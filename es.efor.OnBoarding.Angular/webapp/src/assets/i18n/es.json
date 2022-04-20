@@ -184,23 +184,8 @@
 		}
 	},
 	"PAGES": {
-		"AUTH": {
-			"LOGIN": {
-				"LOGINERROR": "Usuario o Contraseña incorrectos",
-				"BTN": {
-					"LOGIN": "Iniciar sesión",
-					"RECOVERPASSWORD": "Recuperar Contraseña"
-				},
-				"LABEL": {
-					"PASSWORD": "Contraseña",
-					"REMEMBERME": "Permanecer conectado",
-					"USERNAME": "Usuario",
-					"LOGIN": "Inicio de Sesión"
-				}
-			}
-		},
 		"MAIN": {
-			"PARTS": {
+			"TEAMS": {
 				"ITEM": {
 					"SELECT_USER": "Seleccione un Usuario:",
 					"SELECT_TASK": "Seleccione una Tarea",
@@ -210,57 +195,45 @@
 					"ID": "Parte Id"
 				},
 				"LIST": {
-					"COLUMN": {
-						"ID": "ID",
-						"NAME": "Nombre",
-						"LEAGUE": "Liga"
-					}
+					"ID": "ID",
+					"NAME": "Nombre",
+					"LEAGUE": "Liga"
 				}
 			},
-			"TASKS": {
-				"LIST": {
-					"COLUMN": {
-						"ID": "Id",
-						"NAME": "Nombre",
-						"ESTIMATEDHOURS": "Horas Estimadas",
-						"COMMENTS": "Comentarios"
-					}
-				},
+			"PLAYERS": {
 				"ITEM": {
-					"ID": "Tarea ID",
-					"NAME": "Nombre",
-					"ESTIMATED_HOURS": "Horas Estimadas",
-					"COMMENTS": "Comentario"
-				}
-			},
-			"USERS": {
-				"LIST": {
-					"COLUMN": {
-						"ID": "Id",
-						"USERNAME": "Usuario",
-						"PASSWORD": "Contraseña",
-						"NAME": "Nombre",
-						"SURNAMES": "Apellidos",
-						"EMAIL": "Email",
-						"DNI": "DNI",
-						"ESTATE": "Bloqueado"
-					}
+					"SELECT_USER": "Seleccione un Usuario:",
+					"SELECT_TASK": "Seleccione una Tarea",
+					"SELECT_DATE": "Fecha",
+					"SELECT_HOURS": "Horas Invertidas",
+					"SELECT_COMMENTS": "Comentario",
+					"ID": "Parte Id"
 				},
-				"ITEM": {
-					"ID": "Id",
-					"USERNAME": "Usuario",
-					"PASSWORD": "Contraseña",
+				"LIST": {
+					"ID": "ID",
 					"NAME": "Nombre",
-					"SURNAMES": "Apellidos",
-					"EMAIL": "Email",
-					"DNI": "DNI",
-					"ROLID": "Rol"
+					"NUMBER": "Número",
+					"POSITION":"Posición",
+					"TEAMID":"Id de equipo"
 				}
 			},
 			"TEMPLATE": {
 				"LIST": {
 					"TITLE": "Listado Partes"
 				}
+			}
+		},
+		"MODAL":{
+			"DELETE": {
+				"BODY": {
+					"TEAM":"¿Desea eliminar este equipo?",
+					"PLAYER":"¿Desea eliminar este jugador?"
+				},
+				"BTN": {
+					"CANCEL": "Cancelar",
+					"CONFIRM": "Aceptar"
+				},
+				"TITLE": "AVISO"
 			}
 		}
 	},

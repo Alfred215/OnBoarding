@@ -21,42 +21,66 @@ export class PlayersItemComponent implements OnInit {
 
   parentUrl = this.router.url;
 
-  //DTO
-  _item: TeamDto = {
+  item: PlayerDto = {
     id: 0,
     name: "",
-    league: "",
-    active: null
+    number: 0,
+    position:"",
+    teamId:0
   }
 
- 
   _isLoading = true;
-  esNuevoItem: boolean = false;
-  selectedDate: string;
-  selecTaskName: string;
-  selectUserName: string;
-  partSelected: number;
-  selectUserId: number;
-  selectTaskId: number;
-  dstart: Date;
-  dend: Date;
-  
+  newItem: boolean;
+  editItem: boolean;
+  itemErrors = [];  
 
   public _serverSideError: any = {};
 
   constructor(
-    public cdRef: ChangeDetectorRef,
     public router: Router,
     public aRoute: ActivatedRoute,
-    public playerSv: PlayerService,
+    public playerSV: PlayerService,
     private location: Location,
     private toastrSV: ToastrService,
     private translateSV: TranslateService,
-    private datepipe: DatePipe
   ) { }  
 
   ngOnInit(): void {
-    this.mostrar();
+    this.ngListener();
+  }
+
+   //Metodo de inicio de la pagina
+   public ngListener(){
+    this.aRoute.paramMap.subscribe(async (data) => {
+      const router = this.router.url;
+      const id = Number(data.get('id'));
+      //this.subordinate = false;
+      if (router.match) {
+        if (router.match('new')) {
+          this.newItem = true;
+          this.editItem = false;
+        } else {
+          if (!id || this.item.id === undefined) {
+            this.goBack();
+            return;
+          }
+          //this.item = await this.getPlayerByID(id);
+          if (router.match('edit')) {
+            this.newItem = false;
+            this.editItem = true;
+          } 
+        }
+      }
+    });
+  }
+
+  
+  async getPlayerByID(id: number): Promise<PlayerDto> {
+    try {
+      return await this.playerSV.apiPlayerGet$Json({ body: id }).pipe(first()).toPromise();
+    } catch (error) {
+      return error;
+    }
   }
 
   /*Lista con filtros TAREA
@@ -74,60 +98,51 @@ export class PlayersItemComponent implements OnInit {
     return result;
   }*/
 
-  /*BotonSAVE
-  async saveForm() {
-    this._serverSideError = {};
+  //BotonSAVE
+  async onBtnSave(): Promise<void> {
     try {
-      const formselectedDate =  (this.selectedDate != undefined && this.selectedDate != '') ? new Date(this.selectedDate).toISOString() : null;
-
-      const resp = await this.servicio.apiPartSetPartPost$Json({ body: this._item }).pipe(first()).toPromise();
-
+       await this.playerSV.apiPlayerPost$Json({ body: this.item })
+        .pipe(first())
+        .toPromise();
+        
       this.toastrSV.success(
-        this.translateSV.instant('TOASTR.PARTS.ITEM.SAVED.SUCCESS.MESSAGE'),
-        this.translateSV.instant('TOASTR.PARTS.ITEM.SAVED.SUCCESS.LABEL')
+        this.translateSV.instant('SUCCESS.USER.CREATE_EDIT_MESSAGE'),
+        this.translateSV.instant('SUCCESS.USER.CREATE_EDIT_HEADER')
       );
-      this.goBack();
+
     } catch (err) {
       if (err instanceof ServerSideError) {
         const propertyAndErrors: string[] = [];
-
         if (err.errorData.errors) {
-          Object.keys(err.errorData.errors).map((property) => {
-            propertyAndErrors[property.toUpperCase()] = err.errorData.errors[property];
-          });
-          this._serverSideError = propertyAndErrors;
-          this.toastrSV.error
-            (
-              this.translateSV.instant('TOASTR.PARTS.ITEM.ERROR.MESSAGE'),
-              this.translateSV.instant('TOASTR.PARTS.ITEM.ERROR.LABEL')
-            );
+          Object.keys(err.errorData.errors)
+            .map((property) => {
+              propertyAndErrors[property.toUpperCase()] = err.errorData.errors[property];
+            });
+          this.itemErrors = propertyAndErrors;
         }
-        else if (err.errorData) {
-          Object.keys(err.errorData).map((property) => {
-            propertyAndErrors[property.toUpperCase()] = err.errorData[property];
-          });
-          this._serverSideError = propertyAndErrors;
-          this.toastrSV.error
-            (
-              this.translateSV.instant('TOASTR.PARTS.ITEM.ERROR.MESSAGE'),
-              this.translateSV.instant('TOASTR.PARTS.ITEM.ERROR.LABEL')
-            );
+
+        if (err.errorData) {
+          Object.keys(err.errorData)
+            .map((property) => {
+              if (Array.isArray(err.errorData[property])) {
+                propertyAndErrors[property.toUpperCase()] = err.errorData[property];
+              }
+            });
+          this.itemErrors = propertyAndErrors;
+          this.toastrSV.error(
+            this.translateSV.instant('API.ERROR.USER.MESSAGE_ERROR'),
+            this.translateSV.instant('API.ERROR.USER.TITLE_ERROR')
+          );
+         
         }
       }
     }
-  }*/
-  
+  }
   //Boton Volver
   public goBack() {
     this.location.back();
   }
 
-  //Metodo de inicio de la pagina
-  public mostrar(){
-    
-  }
+ 
   //Seleccion de objetos
-  onSelectLeague(event: string) {
-    this._item.league = event;
-  }
 }

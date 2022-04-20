@@ -25,6 +25,23 @@ namespace es.efor.OnBoarding.MainGateway.Controllers
             _PlayerService = playerService;
         }
 
+        #region Get
+        /// <summary>
+        /// Recoger
+        /// </summary>
+        /// <returns>Rexoger jugador</returns>
+        /// <response code="200">La solicitud ha ido correctamente</response>
+        [HttpGet("get")]
+        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Get(int id )
+        {
+           PlayerDTO resp = await _PlayerService.Get(id);
+
+            return Ok(resp);
+        }
+        #endregion
+
         #region Create  
         /// <summary>
         /// Crear 

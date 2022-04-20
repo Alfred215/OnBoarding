@@ -17,7 +17,7 @@ export const navByRoles: NavByRole[] = [
     },
     {
         name: 'MENU.NAV.EQUIPOS',
-        url: '/parts',
+        url: '/team',
         icon: 'icon-paypal',
         roles: [],
         order: 2
