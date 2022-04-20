@@ -80,61 +80,6 @@ export class PlayersListComponent implements OnInit {
     this.dtParts.refreshData();
   }
 
-  async deletePart(Id: number) {
-    const resp = await this.playerSV.apiPlayerDelete$Json().pipe(first()).toPromise();
-  }
-
-  /*
-  onSelectedUser(event: number) {
-    this.selectedUser = event;
-    this._item.userId = event;
-    this.dtParts.refreshData();
-  }*/
-
-  async dtGetterFn(queryParams: { [param: string]: any }, filters: FilterItem[]): Promise<TeamGridDtoCollectionList> {
-
-    const request: TeamFilterDtoDatatableDto = {
-      filters: {
-        id: filters.find(f => f.field === nameof<TeamGridDto>('id'))?.value as number,
-        name:filters.find(f => f.field === nameof<TeamGridDto>('name'))?.value as string,
-        league:filters.find(f => f.field === nameof<TeamGridDto>('league'))?.value as string 
-      },
-      pageIndex: queryParams.pi,
-      pageSize: queryParams.ps,
-      sortDescending: queryParams.sd,
-      sortName: queryParams.sn,
-    };
-    const parts = await this.playerSV.apiPlayerDatatablePost$Json({ body: request })
-      .pipe(first())
-      .toPromise();
-    return parts;
-  }
-
-  async onBtnModalConfirmation() {
-    try {
-
-      await this.deletePart(this.idDelete);
-      this.toastSV.success(
-        this.translateSV.instant('TOASTR.PARTS.ITEM.DELETE.LABEL'),
-        this.translateSV.instant('TOASTR.PARTS.ITEM.DELETE.MESSAGE')
-      );
-
-      this.dtParts.refreshData(true);
-      this.mDeleteConfirm.close();
-
-    } catch (error) {
-
-      this.toastSV.error(
-        this.translateSV.instant('API.ERROR.TOASTR.PARTS.DELETE.LABEL'),
-        this.translateSV.instant('API.ERROR.TOASTR.PARTS.DELETE.MESSAGE')
-      );
-
-      this.mDeleteConfirm.close();
-
-    } 
-
-  }
-
   private async initbtnPlus() {
   this.dtColumnsActionButtons = []
 
