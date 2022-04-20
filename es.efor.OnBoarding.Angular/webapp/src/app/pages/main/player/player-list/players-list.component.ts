@@ -38,7 +38,7 @@ export class PlayersListComponent implements OnInit {
     name: "",
     number: 0,
     position: "",
-    teamId: 0
+    teamId: 0,
   }
   
   mostrarfiltros: boolean = false;
