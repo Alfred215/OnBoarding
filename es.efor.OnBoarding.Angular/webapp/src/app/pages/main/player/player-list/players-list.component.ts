@@ -118,13 +118,6 @@ export class PlayersListComponent implements OnInit {
         })
       ]
     }),
-    new DtColumnItem<PlayerGridDto, number>().setData({
-      columnName: this.translateSV.instant('PAGES.MAIN.PLAYERS.LIST.ID'),
-      field: 'id',
-      sort: true,
-      filter: true
-    }),
-    
     new DtColumnItem<PlayerGridDto, string>().setData({
       columnName: this.translateSV.instant('PAGES.MAIN.PLAYERS.LIST.NAME'),
       field: 'name',

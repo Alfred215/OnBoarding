@@ -56,6 +56,8 @@ namespace es.efor.OnBoarding.Business.Services.TeamServices
                 query = query.Where(u => u.Nombre.Contains(teamFilterDTO.Name));
             if (!string.IsNullOrWhiteSpace(teamFilterDTO.League))
                 query = query.Where(u => u.Liga.Contains(teamFilterDTO.League));
+            if (teamFilterDTO.Active)
+                query = query.Where(u => teamFilterDTO.Active);
 
             if (sortName != null)
             {

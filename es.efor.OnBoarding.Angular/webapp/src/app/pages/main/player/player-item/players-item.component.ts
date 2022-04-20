@@ -93,7 +93,8 @@ export class PlayersItemComponent implements OnInit {
         this.translateSV.instant('SUCCESS.USER.CREATE_EDIT_MESSAGE'),
         this.translateSV.instant('SUCCESS.USER.CREATE_EDIT_HEADER')
       );
-
+      this.goBack();
+      
     } catch (err) {
       if (err instanceof ServerSideError) {
         const propertyAndErrors: string[] = [];

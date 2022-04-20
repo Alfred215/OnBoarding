@@ -33,7 +33,7 @@ export class PartsListComponent implements OnInit {
     id: 0,
     name: "",
     league: "",
-    active: null
+    active: true
   }
   
   mostrarfiltros: boolean = false;
@@ -43,7 +43,7 @@ export class PartsListComponent implements OnInit {
   name: string;
   league: string;
   idDelete: number;
-  newId: number;
+  active: boolean;
   angular: any;
 
   _teamIdDelete: number;
@@ -134,7 +134,13 @@ export class PartsListComponent implements OnInit {
       field: 'league',
       sort: true,
       filter: true
-    })    
+    }),
+    new DtColumnItem<TeamGridDto, boolean>().setData({
+      columnName: this.translateSV.instant('PAGES.MAIN.TEAMS.LIST.ACTIVE'),
+      field: 'active',
+      sort: true,
+      filter: true
+    })        
   ];
   }
 
@@ -143,8 +149,9 @@ export class PartsListComponent implements OnInit {
     const request: TeamFilterDtoDatatableDto = {
       filters: {
         id: filters.find(f => f.field === nameof<TeamGridDto>('id'))?.value as number,
-        name:filters.find(f => f.field === nameof<TeamGridDto>('name'))?.value as string,
-        league:filters.find(f => f.field === nameof<TeamGridDto>('league'))?.value as string 
+        name: filters.find(f => f.field === nameof<TeamGridDto>('name'))?.value as string,
+        league: filters.find(f => f.field === nameof<TeamGridDto>('league'))?.value as string,
+        active: filters.find(f => f.field === nameof<TeamGridDto>('active'))?.value as boolean  
       },
       pageIndex: queryParams.pi,
       pageSize: queryParams.ps,

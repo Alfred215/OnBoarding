@@ -47,7 +47,8 @@ namespace es.efor.OnBoarding.Business
             CreateMap<Equipo, TeamGridDTO>()
                .ForMember(dst => dst.Id, src => src.MapFrom(usr => usr.Id))
                .ForMember(dst => dst.Name, src => src.MapFrom(usr => usr.Nombre))
-               .ForMember(dst => dst.League, src => src.MapFrom(usr => usr.Liga));
+               .ForMember(dst => dst.League, src => src.MapFrom(usr => usr.Liga))
+               .ForMember(dst => dst.Active, src => src.MapFrom(usr => usr.Activo));
             #endregion
         }
     }

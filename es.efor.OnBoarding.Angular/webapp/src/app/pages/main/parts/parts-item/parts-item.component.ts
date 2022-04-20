@@ -87,6 +87,7 @@ export class PartsItemComponent implements OnInit {
   //BotonSAVE
   async onBtnSave(): Promise<void> {
     try {
+      this.item.active = true;
        await this.teamSV.apiTeamPost$Json({ body: this.item })
         .pipe(first())
         .toPromise();
@@ -95,6 +96,7 @@ export class PartsItemComponent implements OnInit {
         this.translateSV.instant('SUCCESS.USER.CREATE_EDIT_MESSAGE'),
         this.translateSV.instant('SUCCESS.USER.CREATE_EDIT_HEADER')
       );
+        this.goBack();
 
     } catch (err) {
       if (err instanceof ServerSideError) {

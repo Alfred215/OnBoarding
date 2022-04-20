@@ -52,7 +52,7 @@ namespace es.efor.OnBoarding.Business.Services.PlayerServices
             int pageIndex, int pageSize, string sortName, bool sortDescending)
         {
             CollectionList<PlayerGridDTO> result = new CollectionList<PlayerGridDTO>();
-            IQueryable<Players> query = _dbContext.Players;
+            IQueryable<Players> query = _dbContext.Players.Include(u=> u.Equipo);
 
             if (playerFilterDTO.Id > 0)
                 query = query.Where(u => u.Id == playerFilterDTO.Id);

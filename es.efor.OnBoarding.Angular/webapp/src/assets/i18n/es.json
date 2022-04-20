@@ -197,7 +197,8 @@
 				"LIST": {
 					"ID": "ID",
 					"NAME": "Nombre",
-					"LEAGUE": "Liga"
+					"LEAGUE": "Liga",
+					"ACTIVE":"Activo"
 				}
 			},
 			"PLAYERS": {
