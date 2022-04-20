@@ -33,13 +33,18 @@ export class PlayersItemComponent implements OnInit {
   newItem: boolean;
   editItem: boolean;
   itemErrors = [];  
+  teamSelected: string;
+  selectedTeam: number;
+  
 
   public _serverSideError: any = {};
+  
 
   constructor(
     public router: Router,
     public aRoute: ActivatedRoute,
     public playerSV: PlayerService,
+    public teamSV: TeamService,
     private location: Location,
     private toastrSV: ToastrService,
     private translateSV: TranslateService,
@@ -72,6 +77,7 @@ export class PlayersItemComponent implements OnInit {
         }
       }
     });
+    this.getTeambyId();
   }
 
   async getPlayerByID(id: number): Promise<PlayerDto> {
@@ -82,7 +88,24 @@ export class PlayersItemComponent implements OnInit {
     }
   }
 
-  //BotonSAVE
+  async getTeambyId(): Promise<void>{
+    const resp = await this.teamSV.apiTeamGetGet$Json({id: this.item.teamId}).pipe(first()).toPromise();
+    this.teamSelected = resp.name;
+  }
+
+  async acTeamFn(filter?: string): Promise<LabelAndValueExtended<number, unknown>[]>{
+    const resp = await this.teamSV.apiTeamSelectPost$Json({nombre: filter}).pipe(first()).toPromise();
+    const result = resp.map(team =>{
+      const asLav = new LabelAndValueExtended<number>().setData({
+        label: team.name,
+        value: team.id,
+        extraData: team
+      });
+      return asLav;
+    });
+    return result;
+  }
+
   async onBtnSave(): Promise<void> {
     try {
        await this.playerSV.apiPlayerPost$Json({ body: this.item })
@@ -90,8 +113,8 @@ export class PlayersItemComponent implements OnInit {
         .toPromise();
         
       this.toastrSV.success(
-        this.translateSV.instant('SUCCESS.USER.CREATE_EDIT_MESSAGE'),
-        this.translateSV.instant('SUCCESS.USER.CREATE_EDIT_HEADER')
+        this.translateSV.instant('SUCCESS.PLAYER.MESSAGE'),
+        this.translateSV.instant('SUCCESS.PLAYER.HEADER')
       );
       this.goBack();
       
@@ -115,14 +138,19 @@ export class PlayersItemComponent implements OnInit {
             });
           this.itemErrors = propertyAndErrors;
           this.toastrSV.error(
-            this.translateSV.instant('API.ERROR.USER.MESSAGE_ERROR'),
-            this.translateSV.instant('API.ERROR.USER.TITLE_ERROR')
+            this.translateSV.instant('API.ERROR.PLAYER.MESSAGE_ERROR'),
+            this.translateSV.instant('API.ERROR.PLAYER.TITLE_ERROR')
           );
         }
       }
     }
   }
   
+  OnSelectTeam(event: number): void{
+    this.item.teamId = event;
+    this.selectedTeam = event;
+  }
+
   //Boton Volver
   public goBack() {
     this.location.back();

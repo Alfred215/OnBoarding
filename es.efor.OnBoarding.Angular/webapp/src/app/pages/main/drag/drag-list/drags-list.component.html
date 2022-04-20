@@ -2,35 +2,17 @@
     <div class="card-body">
 
         <div class="row">
-            <div class="col">
+            <div class="col-sm-6">
                 <ax-bs-datatable #dtPlayers [columns]="dtColumns" [actionButtonShowFilter]="true"
                     [dataGetterFn]="dtGetterFn.bind(this)" [newItemType]="_dummyNewItemType.inlineTop"
                     [actionButtons]="dtColumnsActionButtons">
                 </ax-bs-datatable>
             </div>
-            <div *ngIf="showModal" bsmodal="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false"
-                class="modal fade in show" aria-modal="true" style="display: block;">
-                <div role="document" class="modal-dialog modal-danger">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title">{{'PAGES.MODAL.DELETE.TITLE'| translate}}</h4>
-                            <button type="button" aria-label="Close" class="close" (click)="closeModal()">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            {{'PAGES.MODAL.DELETE.BODY.PLAYER' | translate}}
-                          </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" (click)="closeModal()">
-                                {{'PAGES.MODAL.DELETE.BTN.CANCEL'| translate}}
-                            </button>
-                            <button type="button" class="btn btn-danger" (click)="deletePlayer()">
-                                {{'PAGES.MODAL.DELETE.BTN.CONFIRM'| translate}}
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-sm-6">
+                <ax-bs-datatable #dtTeams [columns]="dtColumnsTeam" [actionButtonShowFilter]="true"
+                    [dataGetterFn]="dtGetterFnTeam.bind(this)" [newItemType]="_dummyNewItemType.inlineTop"
+                    [actionButtons]="dtColumnsActionButtons">
+                </ax-bs-datatable>
             </div>
         </div>
     </div>

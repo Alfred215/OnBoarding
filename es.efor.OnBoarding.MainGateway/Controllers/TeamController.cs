@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace es.efor.OnBoarding.MainGateway.Controllers
 {
@@ -23,7 +24,7 @@ namespace es.efor.OnBoarding.MainGateway.Controllers
             _TeamService = teamService;
         }
 
-        #region
+        #region Get
         /// <summary>
         /// Recoger
         /// </summary>
@@ -37,6 +38,20 @@ namespace es.efor.OnBoarding.MainGateway.Controllers
             TeamDTO resp = await _TeamService.Get(id);
 
             return Ok(resp);
+        }
+        #endregion
+
+        #region Seleccionar equipo
+        ///<sumary>
+        ///Obtine el listado de equipos para poder seleccionar
+        /// </sumary>
+        [HttpPost("select")]
+        [ProducesResponseType(typeof(List<TeamGridDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> selectTeam(string nombre)
+        {
+            List<TeamGridDTO> teams = await _TeamService.TeamSelect(nombre);
+            return Ok(teams);
         }
         #endregion
 

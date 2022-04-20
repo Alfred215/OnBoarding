@@ -6,80 +6,19 @@
 					"FAIL": "Datos incorrectos"
 				}
 			},
-			"USER": {
-				"USERNAME": {
-					"REQUIRED": "Es necesario introducir un nombre de usuario",
-					"MINLENGTH": "El nombre de usuario debe tener al menos 6 carácteres",
-					"MAXLENGTH": "El nombre de usuario no puede tener más de 50 carácteres"
-				},
-				"PASSWORD": {
-					"REQUIRED": "Es necesario introducir una contraseña al usuario",
-					"MINLENGTH": "La contraseña debe tener al menos 6 carácteres",
-					"MAXLENGTH": "La contraseña no puede tener más de 50 carácteres"
-				},
-				"NAME": {
-					"REQUIRED": "Es necesario introducir un nombre ",
-					"MINLENGTH": "El nombre debe tener al menos 3 carácteres",
-					"MAXLENGTH": "El nombre no puede tener más de 50 carácteres"
-				},
-				"SURNAME": {
-					"REQUIRED": "Es necesario introducir un apellido",
-					"MINLENGTH": "El apellido debe tener al menos 3 carácteres",
-					"MAXLENGTH": "El apellido no puede tener más de 50 carácteres"
-				},
-				"EMAIL": {
-					"REQUIRED": "Es necesario introducir un email",
-					"MINLENGTH": "El email debe tener al menos 6 carácteres",
-					"MAXLENGTH": "El email no puede tener más de 50 carácteres"
-				},
-				"DNI": {
-					"REQUIRED": "Es necesario introducir un dni",
-					"MINLENGTH": "El dni debe tener al menos 6 carácteres",
-					"MAXLENGTH": "El dni no puede tener más de 12 carácteres"
-				},
-				"ROLEID": {
-					"REQUIRED": "Es necesario introducir un rol al usuario",
-					"INVALID": "El rol debe ser valido (1-3)"
-				}
+			"PLAYER": {
+				"MESSAGE_ERROR": "Ha ocurrido un problema al intentar crear un jugador",
+				"TITLE_ERROR": "WARNING",
+				"NAME": {"REQUIRED": "Es necesario introducir el nombre"},
+				"NUMBER": {"REQUIRED": "Es necesario introducir el número"},
+				"POSITION": {"REQUIRED":"ES necesario introducir la posición"},
+				"TEAMID": {"REQUIRED":"Es necesario introducir el equipo"}
 			},
-			"TASK": {
-				"ID": {
-					"REQUIRED": "Es necesario introducir un id de tarea"
-				},
-				"NAME": {
-					"REQUIRED": "Es necesario introducir un nombre ",
-					"MINLENGTH": "El nombre debe tener al menos 6 carácteres",
-					"MAXLENGTH": "El nombre no puede tener más de 50 carácteres"
-				},
-				"ESTIMATEDHOURS": {
-					"REQUIRED": "Es necesario introducir unas horas estimadas"
-				},
-				"COMMENT": {
-					"MINLENGTH": "El comentario debe tener al menos 6 carácteres",
-					"MAXLENGTH": "El comentario no puede tener más de 500 carácteres"
-				}
-			},
-			"PART": {
-				"ID":{
-					"REQUIRED": "Es necesario introducir un id de Parte"
-				},
-				"DATE":{
-					"REQUIRED": "Es necesario poner un formato de fecha correcto",
-					"REGULAREXPRESION": "Formato de fecha incorrecto"
-				},
-				"INVERTEDHOURS":{
-					"REQUIRED": "El número de horas debe ser superior a 1"
-				},
-				"COMMENTS": {
-					"MAXLENGTH": "El máximo permitido es de 500 carácteres",
-					"REQUIRED": "Es necesario rellenar este campo"
-				},
-				"TASKID":{
-					"REQUIRED": "Es necesario introducir un id de tarea"
-				},
-				"USERID": {
-					"REQUIRED": "Es necesario introducir un id de usuario"
-				}
+			"TEAM": {
+				"MESSAGE_ERROR": "Ha ocurrido un problema al intentar crear un equipo",
+				"TITLE_ERROR": "WARNING",
+				"NAME": {"REQUIRED":"Es necesario introducir el nombre"},
+				"LEAGUE": {"REQUIRED":"Es necesario introducir la liga"}
 			}
 		}
 	},
@@ -120,6 +59,12 @@
 		"DATETIME": "dd/MM/yyyy HH:mm",
 		"TIME": "HH:mm",
 		"TIMESECONDS": "HH:mm:ss"
+	},
+	"SUCCESS":{
+		"PLAYER":{
+			"HEADER":"Success",
+			"MESSAGE":"Todo correcto"
+		}
 	},
 	"GENERIC": {
 		"BTN": {
@@ -166,7 +111,7 @@
 			"HOME": "Home",
 			"EQUIPOS": "Equipo",
 			"JUGADOR": "Jugador",
-			"USERS": "Usuarios"
+			"ARRASTRAR": "Cambiar"
 		},
 		"BTN": {
 			"LOGOUT": "Cerrar sesión"

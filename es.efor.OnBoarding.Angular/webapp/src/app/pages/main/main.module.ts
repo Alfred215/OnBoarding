@@ -64,6 +64,13 @@ const routes: Routes = [
       title: 'Jugadores'
     }
   },
+  {
+    path: 'drag',
+    loadChildren: () => import('./drag/drag.module').then(m => m.DragsModule),
+    data: {
+      title: 'Cambiar'
+    }
+  }
 ];
 
 @NgModule({

@@ -26,6 +26,8 @@ namespace es.efor.OnBoarding.Business.Services.TeamServices
         /// <returns></returns>
         Task<TeamDTO> Get(string Team);
 
+        Task<List<TeamGridDTO>> TeamSelect(string Team);
+
         /// <summary>
         /// Obtiene un listado de equipos para la datatable
         /// </summary>

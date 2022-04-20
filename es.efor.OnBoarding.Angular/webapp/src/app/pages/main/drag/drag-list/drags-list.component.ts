@@ -4,7 +4,7 @@ import { faCar, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { TranslateService } from '@ngx-translate/core';
 import { AxBsDatatableNewItemType, BsDatatableComponent, BsModalConfirmationMessageComponent, DtActionButton, DtActionColumnButton, DtColumnItem, FilterItem, LabelAndValueExtended, nameof } from 'ax-toolbox';
 import { first } from 'rxjs/operators';
-import { PlayerGridDto, PlayerGridDtoCollectionList, PlayerFilterDtoDatatableDto, PlayerDto } from 'src/app/shared/api/models';
+import { PlayerGridDto, PlayerGridDtoCollectionList, PlayerFilterDtoDatatableDto, PlayerDto, TeamDto,  TeamGridDto,TeamGridDtoCollectionList,TeamFilterDtoDatatableDto } from 'src/app/shared/api/models';
 import { Location } from '@angular/common';
 import { Roles } from 'src/app/shared/models/enums/role.enum';
 import { ToastrService } from 'ngx-toastr';
@@ -20,6 +20,7 @@ import { PlayerService, TeamService } from 'src/app/shared/api/services';
 export class DragsListComponent implements OnInit {
 
   dtColumns: DtColumnItem[] = [];
+  dtColumnsTeam : DtColumnItem[] =[];
   dtColumnsActionButtons = [];
   public _serverSideError: any = {};
   parentUrl = this.router.url;
@@ -40,12 +41,21 @@ export class DragsListComponent implements OnInit {
     position: "",
     teamId: 0
   }
+
+  item: TeamDto = {
+    id: 0,
+    name: "",
+    league:"",
+    active: null
+  }
   
   mostrarfiltros: boolean = false;
   esNuevoItem: boolean = false;
   _isLoading: boolean = false;
 
-  name: string;
+  name:string;
+  nameTeam:string;
+  league:string;
   number: number;
   teamId: number;
   position: string;
@@ -60,6 +70,7 @@ export class DragsListComponent implements OnInit {
     private translateSV: TranslateService,
     private router: Router,
     private playerSV: PlayerService,
+    private teamSV: TeamService,
     public aRoute: ActivatedRoute,
     private location: Location,
     private toastSV: ToastrService
@@ -76,63 +87,14 @@ export class DragsListComponent implements OnInit {
   }
 
   private async initbtnPlus() {
-    this.dtColumnsActionButtons = [
-      new DtActionButton().setData({
-        tooltip: this.translateSV.instant('ADD'),
-        iconPreffix: faPlus.prefix,
-        iconName: faPlus.iconName,
-        btnClass: 'btn btn-sm btn-outline-secondary',
-        onClick: () => {
-          this.router.navigate(['player/new']);
-        }
-      })
-    ];
+    
   }
 
   private async initcolumns() {
   this.dtColumns = [
     new DtColumnItem<PlayerGridDto, string>().setData({
-      thTHeadClass: 'cell-narrow',
-      buttons: [
-        new DtActionColumnButton<PlayerGridDto, string>().setData({
-          onClick: (ev: Event, dt: BsDatatableComponent<any>, item: PlayerGridDto) => {
-            this.router.navigate(['player/edit', item.id]);
-          },
-          iconPreffix: 'fas',
-          iconName: 'edit',
-          //disabledItemProperty: "canWEdit" 
-          tooltip: this.translateSV.instant('EDIT'),
-          btnClass: 'btn btn-sm btn-warning text-white',
-        }),
-        new DtActionColumnButton<PlayerGridDto, string>().setData({
-          onClick: (ev: Event, dt: BsDatatableComponent<any>, item: PlayerGridDto) => {
-
-            this.showModal = true;
-            this._playerIdDelete = item.id;
-
-          },
-          iconName: 'trash',
-          iconPreffix: 'fas',
-          tooltip: this.translateSV.instant('DELETE'),
-          btnClass: 'btn btn-sm btn-danger text-white'
-        })
-      ]
-    }),
-    new DtColumnItem<PlayerGridDto, string>().setData({
       columnName: this.translateSV.instant('PAGES.MAIN.PLAYERS.LIST.NAME'),
       field: 'name',
-      sort: true,
-      filter: true
-    }),
-    new DtColumnItem<PlayerGridDto, number>().setData({
-      columnName: this.translateSV.instant('PAGES.MAIN.PLAYERS.LIST.NUMBER'),
-      field: 'number',
-      sort: true,
-      filter: true
-    }),
-    new DtColumnItem<PlayerGridDto, string>().setData({
-      columnName: this.translateSV.instant('PAGES.MAIN.PLAYERS.LIST.POSITION'),
-      field: 'position',
       sort: true,
       filter: true
     }),
@@ -143,6 +105,22 @@ export class DragsListComponent implements OnInit {
       filter: true
     }),    
   ];
+
+  this.dtColumnsTeam = [
+  new DtColumnItem<TeamGridDto, number>().setData({
+    columnName: this.translateSV.instant('PAGES.MAIN.TEAMS.LIST.ID'),
+    field: 'id',
+    sort: true,
+    filter: true
+  }),
+  
+  new DtColumnItem<TeamGridDto, string>().setData({
+    columnName: this.translateSV.instant('PAGES.MAIN.TEAMS.LIST.NAME'),
+    field: 'name',
+    sort: true,
+    filter: true
+  })
+];
   }
 
   async dtGetterFn(queryParams: { [param: string]: any }, filters: FilterItem[]): Promise<PlayerGridDtoCollectionList> {
@@ -161,6 +139,25 @@ export class DragsListComponent implements OnInit {
       sortName: queryParams.sn,
     };
     const parts = await this.playerSV.apiPlayerDatatablePost$Json({ body: request })
+      .pipe(first())
+      .toPromise();
+    return parts;
+  }
+
+  async dtGetterFnTeam(queryParams: { [param: string]: any }, filters: FilterItem[]): Promise<TeamGridDtoCollectionList> {
+
+    const request: TeamFilterDtoDatatableDto = {
+      filters: {
+        id: filters.find(f => f.field === nameof<TeamGridDto>('id'))?.value as number,
+        name:filters.find(f => f.field === nameof<TeamGridDto>('name'))?.value as string,
+        league:filters.find(f => f.field === nameof<TeamGridDto>('league'))?.value as string,
+      },
+      pageIndex: queryParams.pi,
+      pageSize: queryParams.ps,
+      sortDescending: queryParams.sd,
+      sortName: queryParams.sn,
+    };
+    const parts = await this.teamSV.apiTeamDatatablePost$Json({ body: request })
       .pipe(first())
       .toPromise();
     return parts;

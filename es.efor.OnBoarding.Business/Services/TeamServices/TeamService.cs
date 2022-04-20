@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using es.efor.OnBoarding.Business.DTO.AuthDTOs;
 using es.efor.OnBoarding.Business.DTO.TeamsDTOs;
 using es.efor.OnBoarding.Business.Services.TeamServices;
@@ -41,6 +42,17 @@ namespace es.efor.OnBoarding.Business.Services.TeamServices
         {
             Equipo teamDb = await this._dbContext.Equipo.AsNoTracking().FirstOrDefaultAsync(x => x.Nombre.Equals(team));
             return this._mapper.Map<TeamDTO>(teamDb);
+        }
+        #endregion
+
+        #region Select
+        public async Task<List<TeamGridDTO>> TeamSelect(string nombre)
+        {
+            IQueryable<Equipo> query = _dbContext.Equipo;
+            if(!string.IsNullOrWhiteSpace(nombre))
+                query = query.Where(x => x.Nombre.Contains(nombre));
+
+            return await query.ProjectTo<TeamGridDTO>(_mapper.ConfigurationProvider).ToListAsync();
         }
         #endregion
 

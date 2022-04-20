@@ -44,12 +44,6 @@ export class PlayersListComponent implements OnInit {
   mostrarfiltros: boolean = false;
   esNuevoItem: boolean = false;
   _isLoading: boolean = false;
-
-  name: string;
-  number: number;
-  teamId: number;
-  position: string;
-  newId: number;
   angular: any;
 
   _playerIdDelete: number;

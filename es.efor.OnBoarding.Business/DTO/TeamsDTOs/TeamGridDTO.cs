@@ -28,7 +28,7 @@ namespace es.efor.OnBoarding.Business.DTO.TeamsDTOs
         /// <summary>
         /// Activo
         /// </summary>
-        public bool Active { get; set; }
+        public string Active { get; set; }
 
         /// <summary>
         /// Listado de jugadores

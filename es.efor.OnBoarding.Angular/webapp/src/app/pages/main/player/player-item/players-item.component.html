@@ -51,9 +51,10 @@
                             <span class="h5 text-danger">*</span>
                         </label>
                         <div class="col-sm-12 col-md-7 col-lg-7">
-                            <input type="number" class="form-control" [id]="lblTeamid.getAttribute('for')"
-                                [name]="lblTeamid.getAttribute('for')" [required]="true"
-                                [value]="item.teamId" [(ngModel)]="item.teamId">
+                            <ax-bs-form-autocomplete #acTeam placeholder="Team" [(selected)]="item.teamId" [filter]="selectedTeam"
+                                [cssClassContainer]="'pl-0 pr-0 input-group'" [getterFn]="acTeamFn.bind(this)"
+                                [pSize]="20" (selectedChange)="OnSelectTeam($event)">
+                            </ax-bs-form-autocomplete>
                             <ax-array-translator class="invalid-feedback d-block"
                                 [labels]="itemErrors[lblTeamid.getAttribute('for')]">
                             </ax-array-translator>

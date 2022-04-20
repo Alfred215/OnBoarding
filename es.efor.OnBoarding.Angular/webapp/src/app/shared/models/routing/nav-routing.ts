@@ -11,31 +11,31 @@ export const navByRoles: NavByRole[] = [
     {
         name: 'MENU.NAV.HOME',
         url: '/home',
-        icon: 'icon-fire',
+        icon: 'icon-home',
         roles: [],
         order: 1
     },
     {
         name: 'MENU.NAV.EQUIPOS',
         url: '/team',
-        icon: 'icon-paypal',
+        icon: 'icon-fire',
         roles: [],
         order: 2
     },
     {
         name: 'MENU.NAV.JUGADOR',
         url: '/player',
-        icon: 'icon-social-tumblr',
+        icon: 'icon-fire',
         roles: [],
         order: 3
     },
-    /*{
-        name: 'MENU.NAV.USERS',
-        url: '/users',
-        icon: 'cil-child',
-        roles: [Roles.Tutor, Roles.Admin],
+    {
+        name: 'MENU.NAV.ARRASTRAR',
+        url: '/drag',
+        icon: 'icon-fire',
+        roles: [],
         order: 4
-    }*/
+    }
 ];
 
 interface NavByRole extends INavData {
