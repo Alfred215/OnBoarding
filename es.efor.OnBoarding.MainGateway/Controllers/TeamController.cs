@@ -30,7 +30,7 @@ namespace es.efor.OnBoarding.MainGateway.Controllers
         /// <returns>Rexoger equipo</returns>
         /// <response code="200">La solicitud ha ido correctamente</response>
         [HttpGet("get")]
-        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(TeamDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Get(int id)
         {

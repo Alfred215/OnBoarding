@@ -17,14 +17,14 @@ const routes: Routes = [
     path: 'new',
     loadChildren: () => import('./player-item/players-item.module').then(m => m.PlayersItemModule),
     data: {
-      title: 'Nuevo Parte'
+      title: 'Nuevo jugador'
     }
   },
   {
     path: 'edit',
     loadChildren: () => import('./player-item/players-item.module').then(m => m.PlayersItemModule),
     data: {
-      title: 'Editar Parte'
+      title: 'Editar jugador'
     }
   },
   {

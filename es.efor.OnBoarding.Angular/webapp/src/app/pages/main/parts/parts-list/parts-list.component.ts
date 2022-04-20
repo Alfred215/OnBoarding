@@ -80,7 +80,7 @@ export class PartsListComponent implements OnInit {
       iconName: faPlus.iconName,
       btnClass: 'btn btn-sm btn-outline-secondary',
       onClick: () => {
-        this.router.navigate(['parts/new']);
+        this.router.navigate(['team/new']);
       }
     })
   ];
@@ -94,7 +94,7 @@ export class PartsListComponent implements OnInit {
       buttons: [
         new DtActionColumnButton<TeamGridDto, string>().setData({
           onClick: (ev: Event, dt: BsDatatableComponent<any>, item: TeamGridDto) => {
-            this.router.navigate(['parts/edit', item.id]);
+            this.router.navigate(['team/edit', item.id]);
           },
           iconPreffix: 'fas',
           iconName: 'edit',
@@ -117,20 +117,20 @@ export class PartsListComponent implements OnInit {
       ]
     }),
     new DtColumnItem<TeamGridDto, number>().setData({
-      columnName: this.translateSV.instant('PAGES.MAIN.TEAMS.LIST.COLUMN.ID'),
+      columnName: this.translateSV.instant('PAGES.MAIN.TEAMS.LIST.ID'),
       field: 'id',
       sort: true,
       filter: true
     }),
     
     new DtColumnItem<TeamGridDto, string>().setData({
-      columnName: this.translateSV.instant('PAGES.MAIN.TEAMS.LIST.COLUMN.NAME'),
+      columnName: this.translateSV.instant('PAGES.MAIN.TEAMS.LIST.NAME'),
       field: 'name',
       sort: true,
       filter: true
     }),
     new DtColumnItem<TeamGridDto, string>().setData({
-      columnName: this.translateSV.instant('PAGES.MAIN.TEAMS.LIST.COLUMN.LEAGUE'),
+      columnName: this.translateSV.instant('PAGES.MAIN.TEAMS.LIST.LEAGUE'),
       field: 'league',
       sort: true,
       filter: true

@@ -24,6 +24,99 @@ export class PlayerService extends BaseService {
   }
 
   /**
+   * Path part for operation apiPlayerGetGet
+   */
+  static readonly ApiPlayerGetGetPath = '/api/Player/get';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiPlayerGetGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiPlayerGetGet$Plain$Response(params?: {
+    id?: number;
+
+  }): Observable<StrictHttpResponse<PlayerDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, PlayerService.ApiPlayerGetGetPath, 'get');
+    if (params) {
+
+      rb.query('id', params.id, {});
+
+    }
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<PlayerDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `apiPlayerGetGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiPlayerGetGet$Plain(params?: {
+    id?: number;
+
+  }): Observable<PlayerDto> {
+
+    return this.apiPlayerGetGet$Plain$Response(params).pipe(
+      map((r: StrictHttpResponse<PlayerDto>) => r.body as PlayerDto)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiPlayerGetGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiPlayerGetGet$Json$Response(params?: {
+    id?: number;
+
+  }): Observable<StrictHttpResponse<PlayerDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, PlayerService.ApiPlayerGetGetPath, 'get');
+    if (params) {
+
+      rb.query('id', params.id, {});
+
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<PlayerDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `apiPlayerGetGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiPlayerGetGet$Json(params?: {
+    id?: number;
+
+  }): Observable<PlayerDto> {
+
+    return this.apiPlayerGetGet$Json$Response(params).pipe(
+      map((r: StrictHttpResponse<PlayerDto>) => r.body as PlayerDto)
+    );
+  }
+
+  /**
    * Path part for operation apiPlayerCreatePost
    */
   static readonly ApiPlayerCreatePostPath = '/api/Player/create';

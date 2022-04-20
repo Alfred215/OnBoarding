@@ -64,7 +64,7 @@ export class PlayersItemComponent implements OnInit {
             this.goBack();
             return;
           }
-          //this.item = await this.getPlayerByID(id);
+          this.item = await this.getPlayerByID(id);
           if (router.match('edit')) {
             this.newItem = false;
             this.editItem = true;
@@ -74,29 +74,13 @@ export class PlayersItemComponent implements OnInit {
     });
   }
 
-  
   async getPlayerByID(id: number): Promise<PlayerDto> {
     try {
-      return await this.playerSV.apiPlayerGet$Json({ body: id }).pipe(first()).toPromise();
+      return await this.playerSV.apiPlayerGetGet$Json({ id }).pipe(first()).toPromise();
     } catch (error) {
       return error;
     }
   }
-
-  /*Lista con filtros TAREA
-  async acTaskGetterFn(filter?: string, pSize: number = 20) {
-    const resp = await this.taskSV.apiTaskSelecttaskGet$Json({ name: filter }).pipe(first()).toPromise();
-
-    const result = resp.items.map(task => {
-      const asLav = new LabelAndValueExtended<number>().setData({
-        label: task.name,
-        value: task.id,
-        extraData: task
-      });
-      return asLav;
-    });
-    return result;
-  }*/
 
   //BotonSAVE
   async onBtnSave(): Promise<void> {
@@ -133,16 +117,13 @@ export class PlayersItemComponent implements OnInit {
             this.translateSV.instant('API.ERROR.USER.MESSAGE_ERROR'),
             this.translateSV.instant('API.ERROR.USER.TITLE_ERROR')
           );
-         
         }
       }
     }
   }
+  
   //Boton Volver
   public goBack() {
     this.location.back();
   }
-
- 
-  //Seleccion de objetos
 }

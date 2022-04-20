@@ -234,6 +234,12 @@
 					"CONFIRM": "Aceptar"
 				},
 				"TITLE": "AVISO"
+			},
+			"SAVE":{
+				"BTN": {
+					"RETURN": "Volver",
+					"SAVE": "Guardar"
+				}
 			}
 		}
 	},

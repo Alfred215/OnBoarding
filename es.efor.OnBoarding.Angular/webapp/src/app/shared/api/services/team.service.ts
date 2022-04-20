@@ -24,6 +24,99 @@ export class TeamService extends BaseService {
   }
 
   /**
+   * Path part for operation apiTeamGetGet
+   */
+  static readonly ApiTeamGetGetPath = '/api/Team/get';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiTeamGetGet$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiTeamGetGet$Plain$Response(params?: {
+    id?: number;
+
+  }): Observable<StrictHttpResponse<TeamDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, TeamService.ApiTeamGetGetPath, 'get');
+    if (params) {
+
+      rb.query('id', params.id, {});
+
+    }
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<TeamDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `apiTeamGetGet$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiTeamGetGet$Plain(params?: {
+    id?: number;
+
+  }): Observable<TeamDto> {
+
+    return this.apiTeamGetGet$Plain$Response(params).pipe(
+      map((r: StrictHttpResponse<TeamDto>) => r.body as TeamDto)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiTeamGetGet$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiTeamGetGet$Json$Response(params?: {
+    id?: number;
+
+  }): Observable<StrictHttpResponse<TeamDto>> {
+
+    const rb = new RequestBuilder(this.rootUrl, TeamService.ApiTeamGetGetPath, 'get');
+    if (params) {
+
+      rb.query('id', params.id, {});
+
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<TeamDto>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `apiTeamGetGet$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiTeamGetGet$Json(params?: {
+    id?: number;
+
+  }): Observable<TeamDto> {
+
+    return this.apiTeamGetGet$Json$Response(params).pipe(
+      map((r: StrictHttpResponse<TeamDto>) => r.body as TeamDto)
+    );
+  }
+
+  /**
    * Path part for operation apiTeamCreatePost
    */
   static readonly ApiTeamCreatePostPath = '/api/Team/create';
@@ -332,7 +425,7 @@ export class TeamService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiTeamDelete$Json(params?: {
-    Id: number;
+    Id?: number;
 
   }): Observable<boolean> {
 

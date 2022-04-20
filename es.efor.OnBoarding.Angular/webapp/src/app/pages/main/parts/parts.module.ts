@@ -17,14 +17,14 @@ const routes: Routes = [
     path: 'new',
     loadChildren: () => import('./parts-item/parts-item.module').then(m => m.PartsItemModule),
     data: {
-      title: 'Nuevo Parte'
+      title: 'Nuevo equipo'
     }
   },
   {
     path: 'edit',
     loadChildren: () => import('./parts-item/parts-item.module').then(m => m.PartsItemModule),
     data: {
-      title: 'Editar Parte'
+      title: 'Editar equipo'
     }
   },
   {
