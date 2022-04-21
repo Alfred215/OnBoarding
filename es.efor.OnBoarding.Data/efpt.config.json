@@ -14,10 +14,6 @@
    "SelectedToBeGenerated": 0,
    "Tables": [
       {
-         "Name": "[dbo].[Arbitro]",
-         "ObjectType": 0
-      },
-      {
          "Name": "[dbo].[Equipo]",
          "ObjectType": 0
       },

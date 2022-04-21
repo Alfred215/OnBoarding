@@ -20,18 +20,12 @@ namespace es.efor.OnBoarding.Data.Context
         {
         }
 
-        public virtual DbSet<Arbitro> Arbitro { get; set; }
         public virtual DbSet<Equipo> Equipo { get; set; }
         public virtual DbSet<Players> Players { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Modern_Spanish_CI_AS");
-
-            modelBuilder.Entity<Arbitro>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedNever();
-            });
 
             modelBuilder.Entity<Players>(entity =>
             {

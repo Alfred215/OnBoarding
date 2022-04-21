@@ -6,7 +6,6 @@ using es.efor.OnBoarding.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using es.efor.OnBoarding.Business.DTO.RefereesDTOs;
 
 namespace es.efor.OnBoarding.Business
 {
@@ -53,16 +52,6 @@ namespace es.efor.OnBoarding.Business
                .ForMember(dst => dst.Active, src => src.MapFrom(usr => usr.Activo));
             #endregion
 
-            #region Arbitro
-            CreateMap<Arbitro, RefereeDTO>()
-                .ForMember(dst => dst.Id, src => src.MapFrom(usr => usr.Id))
-                .ForMember(dst => dst.Name, src => src.MapFrom(usr => usr.Nombre))
-                .ReverseMap();
-
-            CreateMap<Arbitro, RefereeGridDTO>()
-               .ForMember(dst => dst.Id, src => src.MapFrom(usr => usr.Id))
-               .ForMember(dst => dst.Name, src => src.MapFrom(usr => usr.Nombre));
-            #endregion
         }
     }
 }
