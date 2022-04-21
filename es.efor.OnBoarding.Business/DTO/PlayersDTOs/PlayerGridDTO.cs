@@ -30,5 +30,7 @@ namespace es.efor.OnBoarding.Business.DTO.PlayersDTOs
         /// Id del equipo
         /// </summary>
         public int TeamId { get; set; }
+
+        public string TeamName { get; set; }
     }
 }

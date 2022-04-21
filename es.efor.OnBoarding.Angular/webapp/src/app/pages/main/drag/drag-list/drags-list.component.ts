@@ -10,13 +10,14 @@ import { Roles } from 'src/app/shared/models/enums/role.enum';
 import { ToastrService } from 'ngx-toastr';
 import { saveAs } from 'file-saver';
 import { PlayerService, TeamService } from 'src/app/shared/api/services';
-
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-drags-list',
   templateUrl: './drags-list.component.html',
   styleUrls: ['./drags-list.component.scss']
 })
+
 export class DragsListComponent implements OnInit {
 
   dtColumns: DtColumnItem[] = [];
@@ -28,11 +29,7 @@ export class DragsListComponent implements OnInit {
 
   @ViewChild('dtPlayers') dtPlayers: BsDatatableComponent;
   @ViewChild('mDeleteConfirm') mDeleteConfirm: BsModalConfirmationMessageComponent;
-  @ViewChild('mDownloadConfirm') mDownloadConfirm: BsModalConfirmationMessageComponent
-  
-  ///4149380511265175
-
-  
+  @ViewChild('mDownloadConfirm') mDownloadConfirm: BsModalConfirmationMessageComponent;
 
   _item: PlayerDto = {
     id: 0,
@@ -99,21 +96,14 @@ export class DragsListComponent implements OnInit {
       filter: true
     }),
     new DtColumnItem<PlayerGridDto, number>().setData({
-      columnName: this.translateSV.instant('PAGES.MAIN.PLAYERS.LIST.TEAMID'),
-      field: 'teamId',
+      columnName: this.translateSV.instant('PAGES.MAIN.PLAYERS.LIST.TEAMNAME'),
+      field: 'teamName',
       sort: true,
       filter: true
     }),    
   ];
 
-  this.dtColumnsTeam = [
-  new DtColumnItem<TeamGridDto, number>().setData({
-    columnName: this.translateSV.instant('PAGES.MAIN.TEAMS.LIST.ID'),
-    field: 'id',
-    sort: true,
-    filter: true
-  }),
-  
+  this.dtColumnsTeam = [  
   new DtColumnItem<TeamGridDto, string>().setData({
     columnName: this.translateSV.instant('PAGES.MAIN.TEAMS.LIST.NAME'),
     field: 'name',
@@ -163,22 +153,29 @@ export class DragsListComponent implements OnInit {
     return parts;
   }
 
-  deletePlayer(): void {
-    this.playerSV.apiPlayerDelete$Json({ Id: this._playerIdDelete })
-      .subscribe(() => {
-        this.toastSV.success(
-          this.translateSV.instant('SUCCESS.USER.DELETE_MESSAGE'),
-          this.translateSV.instant('SUCCESS.USER.DELETE_HEADER'),
-        )
-        this.showModal = false;
-        this.dtPlayers.refreshData();
-      }, () => {
-        this.toastSV.error(
-          this.translateSV.instant('API.ERROR.GENERIC.MESSAGE'),
-          this.translateSV.instant('API.ERROR.GENERIC.TITLE'),
-        );
-      })
-  }
+  MoviesList = [
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8'
+  ];
+
+  MoviesWatched = [
+  ];
+  onDrop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+    }
+  }  
 
   closeModal(): void {
     this.showModal = !this.showModal;
@@ -189,3 +186,4 @@ export class DragsListComponent implements OnInit {
   }
 
 }
+

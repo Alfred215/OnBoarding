@@ -7,6 +7,7 @@ import {
 } from 'ax-toolbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 const routes: Routes = [
   {path: '', component: DragsListComponent}
@@ -23,6 +24,7 @@ const routes: Routes = [
     BsDatatableModule,
     BsModalConfirmationMessageModule,
     TranslateModule,
+    DragDropModule
   ],
   providers:[DatePipe]
 })

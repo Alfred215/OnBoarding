@@ -2,17 +2,29 @@
     <div class="card-body">
 
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-6" cdkDrag>
                 <ax-bs-datatable #dtPlayers [columns]="dtColumns" [actionButtonShowFilter]="true"
                     [dataGetterFn]="dtGetterFn.bind(this)" [newItemType]="_dummyNewItemType.inlineTop"
                     [actionButtons]="dtColumnsActionButtons">
                 </ax-bs-datatable>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6" cdkDrag>
                 <ax-bs-datatable #dtTeams [columns]="dtColumnsTeam" [actionButtonShowFilter]="true"
                     [dataGetterFn]="dtGetterFnTeam.bind(this)" [newItemType]="_dummyNewItemType.inlineTop"
                     [actionButtons]="dtColumnsActionButtons">
                 </ax-bs-datatable>
+            </div>
+
+            <h2 class="col-sm-6">List</h2>
+            <h2 class="col-sm-6">Drop</h2>
+            <div cdkDropList #moviesList="cdkDropList" [cdkDropListData]="MoviesList"
+                [cdkDropListConnectedTo]="[doneMovieList]" class="movie-list col-sm-6" (cdkDropListDropped)="onDrop($event)">
+                <div class="movie-block" *ngFor="let moviesList of MoviesList" cdkDrag>{{moviesList}}</div>
+            </div>
+
+            <div cdkDropList #doneMovieList="cdkDropList" [cdkDropListData]="MoviesWatched"
+                [cdkDropListConnectedTo]="[moviesList]" class="movie-list col-sm-6" (cdkDropListDropped)="onDrop($event)">
+                <div class="movie-block" *ngFor="let moviesWatched of MoviesWatched" cdkDrag>{{moviesWatched}}</div>
             </div>
         </div>
     </div>

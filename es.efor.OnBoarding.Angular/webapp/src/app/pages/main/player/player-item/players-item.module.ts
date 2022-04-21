@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ArrayTranslatorModule, BsDatatableModule, BsFormAutocompleteModule } from 'ax-toolbox';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateModule } from '@ngx-translate/core';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 const routes: Routes = [
   {path: '', component: PlayersItemComponent},
@@ -28,7 +29,8 @@ const routes: Routes = [
     BsFormAutocompleteModule,
     ArrayTranslatorModule,
     ToastrModule,
-    TranslateModule   
+    TranslateModule,
+    DragDropModule   
   ],
   providers:[DatePipe]
 })

@@ -4,7 +4,7 @@ import { faCar, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { TranslateService } from '@ngx-translate/core';
 import { AxBsDatatableNewItemType, BsDatatableComponent, BsModalConfirmationMessageComponent, DtActionButton, DtActionColumnButton, DtColumnItem, FilterItem, LabelAndValueExtended, nameof } from 'ax-toolbox';
 import { first } from 'rxjs/operators';
-import { PlayerGridDto, PlayerGridDtoCollectionList, PlayerFilterDtoDatatableDto, PlayerDto } from 'src/app/shared/api/models';
+import { PlayerGridDto, PlayerGridDtoCollectionList, PlayerFilterDtoDatatableDto, PlayerDto, PlayerFilterDto } from 'src/app/shared/api/models';
 import { Location } from '@angular/common';
 import { Roles } from 'src/app/shared/models/enums/role.enum';
 import { ToastrService } from 'ngx-toastr';
@@ -38,7 +38,7 @@ export class PlayersListComponent implements OnInit {
     name: "",
     number: 0,
     position: "",
-    teamId: 0,
+    teamId: 0
   }
   
   mostrarfiltros: boolean = false;
@@ -131,8 +131,8 @@ export class PlayersListComponent implements OnInit {
       filter: true
     }),
     new DtColumnItem<PlayerGridDto, number>().setData({
-      columnName: this.translateSV.instant('PAGES.MAIN.PLAYERS.LIST.TEAMID'),
-      field: 'teamId',
+      columnName: this.translateSV.instant('PAGES.MAIN.PLAYERS.LIST.TEAMNAME'),
+      field: 'teamName',
       sort: true,
       filter: true
     }),    
@@ -143,11 +143,12 @@ export class PlayersListComponent implements OnInit {
 
     const request: PlayerFilterDtoDatatableDto = {
       filters: {
-        id: filters.find(f => f.field === nameof<PlayerGridDto>('id'))?.value as number,
-        name:filters.find(f => f.field === nameof<PlayerGridDto>('name'))?.value as string,
-        number:filters.find(f => f.field === nameof<PlayerGridDto>('number'))?.value as number,
-        position:filters.find(f => f.field === nameof<PlayerGridDto>('position'))?.value as string,
-        teamId:filters.find(f => f.field === nameof<PlayerGridDto>('teamId'))?.value as number 
+        id: filters.find(f => f.field === nameof<PlayerFilterDto>('id'))?.value as number,
+        name:filters.find(f => f.field === nameof<PlayerFilterDto>('name'))?.value as string,
+        number:filters.find(f => f.field === nameof<PlayerFilterDto>('number'))?.value as number,
+        position:filters.find(f => f.field === nameof<PlayerFilterDto>('position'))?.value as string,
+        teamId:filters.find(f => f.field === nameof<PlayerFilterDto>('teamId'))?.value as number,
+        teamName:filters.find(f => f.field === nameof<PlayerFilterDto>('teamName'))?.value as string 
       },
       pageIndex: queryParams.pi,
       pageSize: queryParams.ps,

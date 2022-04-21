@@ -18,21 +18,21 @@ export const navByRoles: NavByRole[] = [
     {
         name: 'MENU.NAV.EQUIPOS',
         url: '/team',
-        icon: 'icon-fire',
+        icon: 'icon-people',
         roles: [],
         order: 2
     },
     {
         name: 'MENU.NAV.JUGADOR',
         url: '/player',
-        icon: 'icon-fire',
+        icon: 'icon-user',
         roles: [],
         order: 3
     },
     {
         name: 'MENU.NAV.ARRASTRAR',
         url: '/drag',
-        icon: 'icon-fire',
+        icon: 'icon-action-redo',
         roles: [],
         order: 4
     }

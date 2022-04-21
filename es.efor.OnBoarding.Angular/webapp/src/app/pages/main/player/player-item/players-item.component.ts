@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ServerSideError } from 'src/app/shared/interceptors/api-error/api-error.interceptor';
 import { DatePipe } from '@angular/common';
 
+
 @Component({
   selector: 'app-players-item',
   templateUrl: './players-item.component.html',
@@ -73,11 +74,12 @@ export class PlayersItemComponent implements OnInit {
           if (router.match('edit')) {
             this.newItem = false;
             this.editItem = true;
+            this.getTeambyId();
           } 
         }
       }
     });
-    this.getTeambyId();
+    
   }
 
   async getPlayerByID(id: number): Promise<PlayerDto> {

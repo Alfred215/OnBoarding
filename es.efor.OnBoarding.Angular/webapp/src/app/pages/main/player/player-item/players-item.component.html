@@ -47,11 +47,11 @@
                     </div>
                     <div class="form-group row">
                         <label #lblTeamid for="TEAMID" class="col-form-label col-sm-12 col-md-2 col-lg-2">
-                            {{'PAGES.MAIN.PLAYERS.LIST.TEAMID' | translate}}
+                            {{'PAGES.MAIN.PLAYERS.LIST.TEAMNAME' | translate}}
                             <span class="h5 text-danger">*</span>
                         </label>
-                        <div class="col-sm-12 col-md-7 col-lg-7">
-                            <ax-bs-form-autocomplete #acTeam placeholder="Team" [(selected)]="item.teamId" [filter]="selectedTeam"
+                        <div class="col-sm-12 col-md-7 col-lg-7" cdkDropList>
+                            <ax-bs-form-autocomplete cdkDrag #acTeam placeholder="Team" [(selected)]="item.teamId" [filter]="teamSelected"
                                 [cssClassContainer]="'pl-0 pr-0 input-group'" [getterFn]="acTeamFn.bind(this)"
                                 [pSize]="20" (selectedChange)="OnSelectTeam($event)">
                             </ax-bs-form-autocomplete>

@@ -115,14 +115,7 @@ export class PartsListComponent implements OnInit {
           btnClass: 'btn btn-sm btn-danger text-white'
         })
       ]
-    }),
-    new DtColumnItem<TeamGridDto, number>().setData({
-      columnName: this.translateSV.instant('PAGES.MAIN.TEAMS.LIST.ID'),
-      field: 'id',
-      sort: true,
-      filter: true
-    }),
-    
+    }), 
     new DtColumnItem<TeamGridDto, string>().setData({
       columnName: this.translateSV.instant('PAGES.MAIN.TEAMS.LIST.NAME'),
       field: 'name',
