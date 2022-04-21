@@ -163,6 +163,7 @@ export class DragsListComponent implements OnInit {
     '7',
     '8'
   ];
+  
 
   MoviesWatched = [
   ];

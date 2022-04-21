@@ -21,11 +21,11 @@
                 [cdkDropListConnectedTo]="[doneMovieList]" class="movie-list col-sm-6" (cdkDropListDropped)="onDrop($event)">
                 <div class="movie-block" *ngFor="let moviesList of MoviesList" cdkDrag>{{moviesList}}</div>
             </div>
-
+ 
             <div cdkDropList #doneMovieList="cdkDropList" [cdkDropListData]="MoviesWatched"
                 [cdkDropListConnectedTo]="[moviesList]" class="movie-list col-sm-6" (cdkDropListDropped)="onDrop($event)">
                 <div class="movie-block" *ngFor="let moviesWatched of MoviesWatched" cdkDrag>{{moviesWatched}}</div>
             </div>
         </div>
     </div>
-</div>
+</div> 
