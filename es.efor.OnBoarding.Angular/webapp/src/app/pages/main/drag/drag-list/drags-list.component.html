@@ -3,6 +3,23 @@
 
         <div class="row">
             <h2 class="col-sm-12">Cambiar de equipo</h2>
+
+            <div class="col-sm-6" cdkDrag>
+                <ax-bs-datatable #dtPlayers [columns]="dtColumns" [actionButtonShowFilter]="true"
+                    [dataGetterFn]="dtGetterFn.bind(this)" [newItemType]="_dummyNewItemType.inlineTop"
+                    [actionButtons]="dtColumnsActionButtons">
+                </ax-bs-datatable>
+            </div>
+            <div class="col-sm-6" cdkDrag>
+                <ax-bs-datatable #dtTeams [columns]="dtColumnsTeam" [actionButtonShowFilter]="true"
+                    [dataGetterFn]="dtGetterFnTeam.bind(this)" [newItemType]="_dummyNewItemType.inlineTop"
+                    [actionButtons]="dtColumnsActionButtons">
+                </ax-bs-datatable>
+            </div>
+
+            <div style="height: 50px;" class="col-sm-12"></div>
+
+
             <div class="col-sm-12">
                 <label #lblTeamid for="TEAMID" class="col-form-label col-sm-12 col-md-2 col-lg-2">
                     {{'PAGES.MAIN.TEAMS.LIST.NAME' | translate}}
@@ -14,8 +31,6 @@
                         [getterFn]="acTeamFn.bind(this)" [pSize]="20" (selectedChange)="OnSelectTeam($event)">
                     </ax-bs-form-autocomplete>
                 </div>
-            </div>
-            <div class="col-sm-12">
                 <label #lblName for="NAME" class="col-form-label col-sm-12 col-md-2 col-lg-2">
                     {{'PAGES.MAIN.PLAYERS.LIST.NAME' | translate}}
                     <span class="h5 text-danger">*</span>
@@ -32,21 +47,6 @@
                     <i class="fa fa-floppy-o"></i>
                     <span class="p-2">{{'PAGES.MODAL.SAVE.BTN.SAVE' | translate}}</span>
                 </button>
-            </div>
-
-            <div style="height: 50px;" class="col-sm-12"></div>
-
-            <div class="col-sm-6" cdkDrag>
-                <ax-bs-datatable #dtPlayers [columns]="dtColumns" [actionButtonShowFilter]="true"
-                    [dataGetterFn]="dtGetterFn.bind(this)" [newItemType]="_dummyNewItemType.inlineTop"
-                    [actionButtons]="dtColumnsActionButtons">
-                </ax-bs-datatable>
-            </div>
-            <div class="col-sm-6" cdkDrag>
-                <ax-bs-datatable #dtTeams [columns]="dtColumnsTeam" [actionButtonShowFilter]="true"
-                    [dataGetterFn]="dtGetterFnTeam.bind(this)" [newItemType]="_dummyNewItemType.inlineTop"
-                    [actionButtons]="dtColumnsActionButtons">
-                </ax-bs-datatable>
             </div>
 
             <div style="height: 50px;" class="col-sm-12"></div>
