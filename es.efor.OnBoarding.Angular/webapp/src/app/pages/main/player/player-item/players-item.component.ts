@@ -56,7 +56,7 @@ export class PlayersItemComponent implements OnInit {
   }
 
    //Metodo de inicio de la pagina
-   public ngListener(){
+  public ngListener(){
     this.aRoute.paramMap.subscribe(async (data) => {
       const router = this.router.url;
       const id = Number(data.get('id'));

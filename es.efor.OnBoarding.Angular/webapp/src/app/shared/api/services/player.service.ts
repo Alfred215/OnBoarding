@@ -10,6 +10,7 @@ import { map, filter } from 'rxjs/operators';
 
 import { PlayerDto } from '../models/player-dto';
 import { PlayerFilterDtoDatatableDto } from '../models/player-filter-dto-datatable-dto';
+import { PlayerGridDto } from '../models/player-grid-dto';
 import { PlayerGridDtoCollectionList } from '../models/player-grid-dto-collection-list';
 
 @Injectable({
@@ -113,6 +114,99 @@ export class PlayerService extends BaseService {
 
     return this.apiPlayerGetGet$Json$Response(params).pipe(
       map((r: StrictHttpResponse<PlayerDto>) => r.body as PlayerDto)
+    );
+  }
+
+  /**
+   * Path part for operation apiPlayerSelectPost
+   */
+  static readonly ApiPlayerSelectPostPath = '/api/Player/select';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiPlayerSelectPost$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiPlayerSelectPost$Plain$Response(params?: {
+    nombre?: null | string;
+
+  }): Observable<StrictHttpResponse<Array<PlayerGridDto>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, PlayerService.ApiPlayerSelectPostPath, 'post');
+    if (params) {
+
+      rb.query('nombre', params.nombre, {});
+
+    }
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<PlayerGridDto>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `apiPlayerSelectPost$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiPlayerSelectPost$Plain(params?: {
+    nombre?: null | string;
+
+  }): Observable<Array<PlayerGridDto>> {
+
+    return this.apiPlayerSelectPost$Plain$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<PlayerGridDto>>) => r.body as Array<PlayerGridDto>)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiPlayerSelectPost$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiPlayerSelectPost$Json$Response(params?: {
+    nombre?: null | string;
+
+  }): Observable<StrictHttpResponse<Array<PlayerGridDto>>> {
+
+    const rb = new RequestBuilder(this.rootUrl, PlayerService.ApiPlayerSelectPostPath, 'post');
+    if (params) {
+
+      rb.query('nombre', params.nombre, {});
+
+    }
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json'
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<Array<PlayerGridDto>>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access to only to the response body.
+   * To access the full response (for headers, for example), `apiPlayerSelectPost$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiPlayerSelectPost$Json(params?: {
+    nombre?: null | string;
+
+  }): Observable<Array<PlayerGridDto>> {
+
+    return this.apiPlayerSelectPost$Json$Response(params).pipe(
+      map((r: StrictHttpResponse<Array<PlayerGridDto>>) => r.body as Array<PlayerGridDto>)
     );
   }
 

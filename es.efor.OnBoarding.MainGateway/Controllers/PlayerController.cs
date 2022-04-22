@@ -42,6 +42,20 @@ namespace es.efor.OnBoarding.MainGateway.Controllers
         }
         #endregion
 
+        #region Seleccionar player
+        ///<sumary>
+        ///Obtine el listado de equipos para poder seleccionar
+        /// </sumary>
+        [HttpPost("select")]
+        [ProducesResponseType(typeof(List<PlayerGridDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> selectTeam(string nombre)
+        {
+            List<PlayerGridDTO> teams = await _PlayerService.PlayerSelect(nombre);
+            return Ok(teams);
+        }
+        #endregion
+
         #region Create  
         /// <summary>
         /// Crear 

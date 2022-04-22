@@ -141,7 +141,7 @@
 				},
 				"LIST": {
 					"ID": "ID",
-					"NAME": "Nombre",
+					"NAME": "Nombre del equipo",
 					"LEAGUE": "Liga",
 					"ACTIVE":"Activo"
 				}

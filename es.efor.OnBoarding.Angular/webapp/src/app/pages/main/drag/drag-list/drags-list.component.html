@@ -2,6 +2,45 @@
     <div class="card-body">
 
         <div class="row">
+            <h2 class="col-sm-12">Cambiar de equipo</h2>
+            <div class="col-sm-12">
+                <label #lblTeamid for="TEAMID" class="col-form-label col-sm-12 col-md-2 col-lg-2">
+                    {{'PAGES.MAIN.TEAMS.LIST.NAME' | translate}}
+                    <span class="h5 text-danger">*</span>
+                </label>
+                <div class="col-sm-12 col-md-7 col-lg-7" cdkDropList>
+                    <ax-bs-form-autocomplete cdkDrag #acTeam placeholder="Team" [(selected)]="_item.teamId"
+                        [filter]="teamSelected" [cssClassContainer]="'pl-0 pr-0 input-group'"
+                        [getterFn]="acTeamFn.bind(this)" [pSize]="20" (selectedChange)="OnSelectTeam($event)">
+                    </ax-bs-form-autocomplete>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <label #lblName for="NAME" class="col-form-label col-sm-12 col-md-2 col-lg-2">
+                    {{'PAGES.MAIN.PLAYERS.LIST.NAME' | translate}}
+                    <span class="h5 text-danger">*</span>
+                </label>
+                <div class="col-sm-12 col-md-7 col-lg-7" cdkDropList>
+                    <ax-bs-form-autocomplete cdkDrag #acName placeholder="Name" [(selected)]="_item.name"
+                        [filter]="nameSelected" [cssClassContainer]="'pl-0 pr-0 input-group'"
+                        [getterFn]="acPlayerFn.bind(this)" [pSize]="20" (selectedChange)="OnSelectPlayer($event)">
+                    </ax-bs-form-autocomplete>
+                </div>
+            </div>
+            <div>
+                <input type="hidden" value="{{_item.number}}">
+                <input type="hidden" value="{{_item.id}}">
+                <input type="hidden" value="{{_item.position}}">
+            </div>
+            <div class="col clearfix">
+                <button type="button" class="btn btn-primary m-1 float-left" (click)="onBtnSave()">
+                    <i class="fa fa-floppy-o"></i>
+                    <span class="p-2">{{'PAGES.MODAL.SAVE.BTN.SAVE' | translate}}</span>
+                </button>
+            </div>
+
+            <div style="height: 50px;" class="col-sm-12"></div>
+
             <div class="col-sm-6" cdkDrag>
                 <ax-bs-datatable #dtPlayers [columns]="dtColumns" [actionButtonShowFilter]="true"
                     [dataGetterFn]="dtGetterFn.bind(this)" [newItemType]="_dummyNewItemType.inlineTop"
@@ -15,17 +54,21 @@
                 </ax-bs-datatable>
             </div>
 
+            <div style="height: 50px;" class="col-sm-12"></div>
+
             <h2 class="col-sm-6">List</h2>
             <h2 class="col-sm-6">Drop</h2>
             <div cdkDropList #moviesList="cdkDropList" [cdkDropListData]="MoviesList"
-                [cdkDropListConnectedTo]="[doneMovieList]" class="movie-list col-sm-6" (cdkDropListDropped)="onDrop($event)">
+                [cdkDropListConnectedTo]="[doneMovieList]" class="movie-list col-sm-6"
+                (cdkDropListDropped)="onDrop($event)">
                 <div class="movie-block" *ngFor="let moviesList of MoviesList" cdkDrag>{{moviesList}}</div>
             </div>
- 
+
             <div cdkDropList #doneMovieList="cdkDropList" [cdkDropListData]="MoviesWatched"
-                [cdkDropListConnectedTo]="[moviesList]" class="movie-list col-sm-6" (cdkDropListDropped)="onDrop($event)">
+                [cdkDropListConnectedTo]="[moviesList]" class="movie-list col-sm-6"
+                (cdkDropListDropped)="onDrop($event)">
                 <div class="movie-block" *ngFor="let moviesWatched of MoviesWatched" cdkDrag>{{moviesWatched}}</div>
             </div>
         </div>
     </div>
-</div> 
+</div>

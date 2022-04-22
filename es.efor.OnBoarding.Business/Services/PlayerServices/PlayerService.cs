@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using es.efor.OnBoarding.Business.DTO.AuthDTOs;
 using es.efor.OnBoarding.Business.DTO.PlayersDTOs;
 using es.efor.OnBoarding.Business.Services.PlayerServices;
@@ -44,6 +45,17 @@ namespace es.efor.OnBoarding.Business.Services.PlayerServices
         {
             Players PlayerDb = await this._dbContext.Players.AsNoTracking().FirstOrDefaultAsync(x => x.Nombre.Equals(Player));
             return this._mapper.Map<PlayerDTO>(PlayerDb);
+        }
+        #endregion
+
+        #region Select
+        public async Task<List<PlayerGridDTO>> PlayerSelect(string nombre)
+        {
+            IQueryable<Players> query = _dbContext.Players;
+            if (!string.IsNullOrWhiteSpace(nombre))
+                query = query.Where(x => x.Nombre.Contains(nombre));
+
+            return await query.ProjectTo<PlayerGridDTO>(_mapper.ConfigurationProvider).ToListAsync();
         }
         #endregion
 
