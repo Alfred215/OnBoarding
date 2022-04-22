@@ -159,7 +159,10 @@ export class DragsListComponent implements OnInit {
   }
 
   async getNamebyId(): Promise<void> {
-    this._item = await this.playerSV.apiPlayerGetGet$Json({ id: this._item.id }).pipe(first()).toPromise();
+    const resp = await this.playerSV.apiPlayerGetGet$Json({ id: this._item.id }).pipe(first()).toPromise();
+    this.nameSelected = resp.name;
+    this.numberSelected = resp.number;
+    this.positionSelected = resp.position;
   }
 
   async acTeamFn(filter?: string): Promise<LabelAndValueExtended<number, unknown>[]> {
@@ -280,44 +283,23 @@ export class DragsListComponent implements OnInit {
   }
 
   async onBtnSave(): Promise<void> {
-    try {
+      this._item.name = this.nameSelected;
+      this._item.position = this.positionSelected;
+      this._item.number = this.numberSelected;
       console.log(this._item);
-       await this.playerSV.apiPlayerPost$Json({ body: this._item })
-        .pipe(first())
-        .toPromise();
-        
-      this.toastrSV.success(
-        this.translateSV.instant('SUCCESS.PLAYER.MESSAGE'),
-        this.translateSV.instant('SUCCESS.PLAYER.HEADER')
-      );
-      this.dtPlayers.refreshData();
-      
-    } catch (err) {
-      if (err instanceof ServerSideError) {
-        const propertyAndErrors: string[] = [];
-        if (err.errorData.errors) {
-          Object.keys(err.errorData.errors)
-            .map((property) => {
-              propertyAndErrors[property.toUpperCase()] = err.errorData.errors[property];
-            });
-          this.itemErrors = propertyAndErrors;
-        }
 
-        if (err.errorData) {
-          Object.keys(err.errorData)
-            .map((property) => {
-              if (Array.isArray(err.errorData[property])) {
-                propertyAndErrors[property.toUpperCase()] = err.errorData[property];
-              }
-            });
-          this.itemErrors = propertyAndErrors;
-          this.toastrSV.error(
-            this.translateSV.instant('API.ERROR.PLAYER.MESSAGE_ERROR'),
-            this.translateSV.instant('API.ERROR.PLAYER.TITLE_ERROR')
-          );
-        }
-      }
-    }
+      await this.playerSV.apiPlayerPost$Json({ body: this._item }).subscribe(() => {
+        this.toastSV.success(
+          this.translateSV.instant('SUCCESS.PLAYER.MESSAGE'),
+          this.translateSV.instant('SUCCESS.PLAYER.HEADER')
+        );
+        this.dtPlayers.refreshData();
+      }, () => {
+        this.toastSV.error(
+          this.translateSV.instant('API.ERROR.PLAYER.MESSAGE_ERROR'),
+          this.translateSV.instant('API.ERROR.PLAYER.TITLE_ERROR'),
+        );
+      });
   }
 
   OnSelectTeam(event: number): void {
