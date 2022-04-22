@@ -11,7 +11,7 @@ const routes: Routes = [
     path: 'list',
     loadChildren: () => import('./drag-list/drags-list.module').then(m => m.DragsListModule),
     data: {
-      title: 'Listado '
+      title: 'Cambio'
     }
   }
 ];
