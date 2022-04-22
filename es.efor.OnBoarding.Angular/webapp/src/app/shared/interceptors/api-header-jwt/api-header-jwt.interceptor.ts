@@ -21,8 +21,8 @@ export class ApiHeaderJwtInterceptor implements HttpInterceptor {
 
 
   private async handleRequest(request: HttpRequest<unknown>, next: HttpHandler) {
-    const token = await this.tokenSV.getStoredToken();
-    if (token && token.token) {
+    const token = //await this.tokenSV.getStoredToken();
+    /*if (token && token.token) {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token.token}`,
@@ -30,13 +30,13 @@ export class ApiHeaderJwtInterceptor implements HttpInterceptor {
         },
         withCredentials: true,
       });
-    }else{
+    }else{*/
       request = request.clone({
         setHeaders: {
           'Access-Control-Allow-Origin': '*'
         }
       });
-    }
+    //}
     return next.handle(request).toPromise();
   }
 }
