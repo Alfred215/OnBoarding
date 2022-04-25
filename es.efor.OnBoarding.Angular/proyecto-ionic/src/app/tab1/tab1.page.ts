@@ -11,7 +11,7 @@ import { first } from 'rxjs/operators';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit{
-  
+
   item: TeamDto={
     id: 0,
     name: '',
@@ -25,12 +25,13 @@ export class Tab1Page implements OnInit{
   }
 
   async ngOnInit() {
-
+    this.getName();
   }
 
   private async getName(){
-    this.valor = await this.teamSV.apiTeamDatatablePost$Json({}).pipe(first())
+    const valor = await this.teamSV.apiTeamDatatablePost$Json({}).pipe(first())
     .toPromise();
+    return valor;
   }
 
 }
