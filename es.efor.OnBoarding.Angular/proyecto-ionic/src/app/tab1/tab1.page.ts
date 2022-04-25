@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
 import { TeamDto } from '../shared/api/models';
 import { TeamService } from '../shared/api/services';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tab1',
@@ -8,7 +11,7 @@ import { TeamService } from '../shared/api/services';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit{
-
+  
   item: TeamDto={
     id: 0,
     name: '',
@@ -16,10 +19,18 @@ export class Tab1Page implements OnInit{
     active: true
   };
 
-  constructor() {}
+  constructor(private http: HttpClient,
+    private teamSV: TeamService
+  ) {
+  }
 
   async ngOnInit() {
 
+  }
+
+  private async getName(){
+    this.valor = await this.teamSV.apiTeamDatatablePost$Json({}).pipe(first())
+    .toPromise();
   }
 
 }
