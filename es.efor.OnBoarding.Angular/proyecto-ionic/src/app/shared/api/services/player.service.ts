@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { BaseService } from '../base-service';
@@ -37,15 +38,13 @@ export class PlayerService extends BaseService {
    */
   apiPlayerGetGet$Plain$Response(params?: {
     id?: number;
-
   }): Observable<StrictHttpResponse<PlayerDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, PlayerService.ApiPlayerGetGetPath, 'get');
     if (params) {
-
       rb.query('id', params.id, {});
-
     }
+
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain'
@@ -65,7 +64,6 @@ export class PlayerService extends BaseService {
    */
   apiPlayerGetGet$Plain(params?: {
     id?: number;
-
   }): Observable<PlayerDto> {
 
     return this.apiPlayerGetGet$Plain$Response(params).pipe(
@@ -81,15 +79,13 @@ export class PlayerService extends BaseService {
    */
   apiPlayerGetGet$Json$Response(params?: {
     id?: number;
-
   }): Observable<StrictHttpResponse<PlayerDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, PlayerService.ApiPlayerGetGetPath, 'get');
     if (params) {
-
       rb.query('id', params.id, {});
-
     }
+
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json'
@@ -109,7 +105,6 @@ export class PlayerService extends BaseService {
    */
   apiPlayerGetGet$Json(params?: {
     id?: number;
-
   }): Observable<PlayerDto> {
 
     return this.apiPlayerGetGet$Json$Response(params).pipe(
@@ -129,16 +124,14 @@ export class PlayerService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiPlayerSelectPost$Plain$Response(params?: {
-    nombre?: null | string;
-
+    nombre?: string;
   }): Observable<StrictHttpResponse<Array<PlayerGridDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, PlayerService.ApiPlayerSelectPostPath, 'post');
     if (params) {
-
       rb.query('nombre', params.nombre, {});
-
     }
+
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain'
@@ -157,8 +150,7 @@ export class PlayerService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiPlayerSelectPost$Plain(params?: {
-    nombre?: null | string;
-
+    nombre?: string;
   }): Observable<Array<PlayerGridDto>> {
 
     return this.apiPlayerSelectPost$Plain$Response(params).pipe(
@@ -173,16 +165,14 @@ export class PlayerService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiPlayerSelectPost$Json$Response(params?: {
-    nombre?: null | string;
-
+    nombre?: string;
   }): Observable<StrictHttpResponse<Array<PlayerGridDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, PlayerService.ApiPlayerSelectPostPath, 'post');
     if (params) {
-
       rb.query('nombre', params.nombre, {});
-
     }
+
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json'
@@ -201,8 +191,7 @@ export class PlayerService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiPlayerSelectPost$Json(params?: {
-    nombre?: null | string;
-
+    nombre?: string;
   }): Observable<Array<PlayerGridDto>> {
 
     return this.apiPlayerSelectPost$Json$Response(params).pipe(
@@ -222,15 +211,14 @@ export class PlayerService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiPlayerCreatePost$Plain$Response(params?: {
-      body?: PlayerDto
+    body?: PlayerDto
   }): Observable<StrictHttpResponse<boolean>> {
 
     const rb = new RequestBuilder(this.rootUrl, PlayerService.ApiPlayerCreatePostPath, 'post');
     if (params) {
-
-
       rb.body(params.body, 'application/*+json');
     }
+
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain'
@@ -249,7 +237,7 @@ export class PlayerService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiPlayerCreatePost$Plain(params?: {
-      body?: PlayerDto
+    body?: PlayerDto
   }): Observable<boolean> {
 
     return this.apiPlayerCreatePost$Plain$Response(params).pipe(
@@ -264,15 +252,14 @@ export class PlayerService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiPlayerCreatePost$Json$Response(params?: {
-      body?: PlayerDto
+    body?: PlayerDto
   }): Observable<StrictHttpResponse<boolean>> {
 
     const rb = new RequestBuilder(this.rootUrl, PlayerService.ApiPlayerCreatePostPath, 'post');
     if (params) {
-
-
       rb.body(params.body, 'application/*+json');
     }
+
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json'
@@ -291,7 +278,7 @@ export class PlayerService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiPlayerCreatePost$Json(params?: {
-      body?: PlayerDto
+    body?: PlayerDto
   }): Observable<boolean> {
 
     return this.apiPlayerCreatePost$Json$Response(params).pipe(
@@ -311,15 +298,14 @@ export class PlayerService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiPlayerDatatablePost$Plain$Response(params?: {
-      body?: PlayerFilterDtoDatatableDto
+    body?: PlayerFilterDtoDatatableDto
   }): Observable<StrictHttpResponse<PlayerGridDtoCollectionList>> {
 
     const rb = new RequestBuilder(this.rootUrl, PlayerService.ApiPlayerDatatablePostPath, 'post');
     if (params) {
-
-
       rb.body(params.body, 'application/*+json');
     }
+
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain'
@@ -338,7 +324,7 @@ export class PlayerService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiPlayerDatatablePost$Plain(params?: {
-      body?: PlayerFilterDtoDatatableDto
+    body?: PlayerFilterDtoDatatableDto
   }): Observable<PlayerGridDtoCollectionList> {
 
     return this.apiPlayerDatatablePost$Plain$Response(params).pipe(
@@ -353,15 +339,14 @@ export class PlayerService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiPlayerDatatablePost$Json$Response(params?: {
-      body?: PlayerFilterDtoDatatableDto
+    body?: PlayerFilterDtoDatatableDto
   }): Observable<StrictHttpResponse<PlayerGridDtoCollectionList>> {
 
     const rb = new RequestBuilder(this.rootUrl, PlayerService.ApiPlayerDatatablePostPath, 'post');
     if (params) {
-
-
       rb.body(params.body, 'application/*+json');
     }
+
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json'
@@ -380,7 +365,7 @@ export class PlayerService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiPlayerDatatablePost$Json(params?: {
-      body?: PlayerFilterDtoDatatableDto
+    body?: PlayerFilterDtoDatatableDto
   }): Observable<PlayerGridDtoCollectionList> {
 
     return this.apiPlayerDatatablePost$Json$Response(params).pipe(
@@ -400,15 +385,14 @@ export class PlayerService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiPlayerPost$Plain$Response(params?: {
-      body?: PlayerDto
+    body?: PlayerDto
   }): Observable<StrictHttpResponse<boolean>> {
 
     const rb = new RequestBuilder(this.rootUrl, PlayerService.ApiPlayerPostPath, 'post');
     if (params) {
-
-
       rb.body(params.body, 'application/*+json');
     }
+
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain'
@@ -427,7 +411,7 @@ export class PlayerService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiPlayerPost$Plain(params?: {
-      body?: PlayerDto
+    body?: PlayerDto
   }): Observable<boolean> {
 
     return this.apiPlayerPost$Plain$Response(params).pipe(
@@ -442,15 +426,14 @@ export class PlayerService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiPlayerPost$Json$Response(params?: {
-      body?: PlayerDto
+    body?: PlayerDto
   }): Observable<StrictHttpResponse<boolean>> {
 
     const rb = new RequestBuilder(this.rootUrl, PlayerService.ApiPlayerPostPath, 'post');
     if (params) {
-
-
       rb.body(params.body, 'application/*+json');
     }
+
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json'
@@ -469,7 +452,7 @@ export class PlayerService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiPlayerPost$Json(params?: {
-      body?: PlayerDto
+    body?: PlayerDto
   }): Observable<boolean> {
 
     return this.apiPlayerPost$Json$Response(params).pipe(
@@ -490,15 +473,13 @@ export class PlayerService extends BaseService {
    */
   apiPlayerDelete$Plain$Response(params?: {
     Id?: number;
-
   }): Observable<StrictHttpResponse<boolean>> {
 
     const rb = new RequestBuilder(this.rootUrl, PlayerService.ApiPlayerDeletePath, 'delete');
     if (params) {
-
       rb.query('Id', params.Id, {});
-
     }
+
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain'
@@ -518,7 +499,6 @@ export class PlayerService extends BaseService {
    */
   apiPlayerDelete$Plain(params?: {
     Id?: number;
-
   }): Observable<boolean> {
 
     return this.apiPlayerDelete$Plain$Response(params).pipe(
@@ -534,15 +514,13 @@ export class PlayerService extends BaseService {
    */
   apiPlayerDelete$Json$Response(params?: {
     Id?: number;
-
   }): Observable<StrictHttpResponse<boolean>> {
 
     const rb = new RequestBuilder(this.rootUrl, PlayerService.ApiPlayerDeletePath, 'delete');
     if (params) {
-
       rb.query('Id', params.Id, {});
-
     }
+
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json'
@@ -562,7 +540,6 @@ export class PlayerService extends BaseService {
    */
   apiPlayerDelete$Json(params?: {
     Id?: number;
-
   }): Observable<boolean> {
 
     return this.apiPlayerDelete$Json$Response(params).pipe(

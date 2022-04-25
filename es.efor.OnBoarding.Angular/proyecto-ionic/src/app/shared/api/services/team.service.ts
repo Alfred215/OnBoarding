@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { BaseService } from '../base-service';
@@ -37,15 +38,13 @@ export class TeamService extends BaseService {
    */
   apiTeamGetGet$Plain$Response(params?: {
     id?: number;
-
   }): Observable<StrictHttpResponse<TeamDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, TeamService.ApiTeamGetGetPath, 'get');
     if (params) {
-
       rb.query('id', params.id, {});
-
     }
+
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain'
@@ -65,7 +64,6 @@ export class TeamService extends BaseService {
    */
   apiTeamGetGet$Plain(params?: {
     id?: number;
-
   }): Observable<TeamDto> {
 
     return this.apiTeamGetGet$Plain$Response(params).pipe(
@@ -81,15 +79,13 @@ export class TeamService extends BaseService {
    */
   apiTeamGetGet$Json$Response(params?: {
     id?: number;
-
   }): Observable<StrictHttpResponse<TeamDto>> {
 
     const rb = new RequestBuilder(this.rootUrl, TeamService.ApiTeamGetGetPath, 'get');
     if (params) {
-
       rb.query('id', params.id, {});
-
     }
+
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json'
@@ -109,7 +105,6 @@ export class TeamService extends BaseService {
    */
   apiTeamGetGet$Json(params?: {
     id?: number;
-
   }): Observable<TeamDto> {
 
     return this.apiTeamGetGet$Json$Response(params).pipe(
@@ -129,16 +124,14 @@ export class TeamService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiTeamSelectPost$Plain$Response(params?: {
-    nombre?: null | string;
-
+    nombre?: string;
   }): Observable<StrictHttpResponse<Array<TeamGridDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, TeamService.ApiTeamSelectPostPath, 'post');
     if (params) {
-
       rb.query('nombre', params.nombre, {});
-
     }
+
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain'
@@ -157,8 +150,7 @@ export class TeamService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiTeamSelectPost$Plain(params?: {
-    nombre?: null | string;
-
+    nombre?: string;
   }): Observable<Array<TeamGridDto>> {
 
     return this.apiTeamSelectPost$Plain$Response(params).pipe(
@@ -173,16 +165,14 @@ export class TeamService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiTeamSelectPost$Json$Response(params?: {
-    nombre?: null | string;
-
+    nombre?: string;
   }): Observable<StrictHttpResponse<Array<TeamGridDto>>> {
 
     const rb = new RequestBuilder(this.rootUrl, TeamService.ApiTeamSelectPostPath, 'post');
     if (params) {
-
       rb.query('nombre', params.nombre, {});
-
     }
+
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json'
@@ -201,8 +191,7 @@ export class TeamService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiTeamSelectPost$Json(params?: {
-    nombre?: null | string;
-
+    nombre?: string;
   }): Observable<Array<TeamGridDto>> {
 
     return this.apiTeamSelectPost$Json$Response(params).pipe(
@@ -222,15 +211,14 @@ export class TeamService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiTeamCreatePost$Response(params?: {
-      body?: TeamDto
+    body?: TeamDto
   }): Observable<StrictHttpResponse<void>> {
 
     const rb = new RequestBuilder(this.rootUrl, TeamService.ApiTeamCreatePostPath, 'post');
     if (params) {
-
-
       rb.body(params.body, 'application/*+json');
     }
+
     return this.http.request(rb.build({
       responseType: 'text',
       accept: '*/*'
@@ -249,7 +237,7 @@ export class TeamService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiTeamCreatePost(params?: {
-      body?: TeamDto
+    body?: TeamDto
   }): Observable<void> {
 
     return this.apiTeamCreatePost$Response(params).pipe(
@@ -269,15 +257,14 @@ export class TeamService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiTeamDatatablePost$Plain$Response(params?: {
-      body?: TeamFilterDtoDatatableDto
+    body?: TeamFilterDtoDatatableDto
   }): Observable<StrictHttpResponse<TeamGridDtoCollectionList>> {
 
     const rb = new RequestBuilder(this.rootUrl, TeamService.ApiTeamDatatablePostPath, 'post');
     if (params) {
-
-
       rb.body(params.body, 'application/*+json');
     }
+
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain'
@@ -296,7 +283,7 @@ export class TeamService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiTeamDatatablePost$Plain(params?: {
-      body?: TeamFilterDtoDatatableDto
+    body?: TeamFilterDtoDatatableDto
   }): Observable<TeamGridDtoCollectionList> {
 
     return this.apiTeamDatatablePost$Plain$Response(params).pipe(
@@ -311,15 +298,14 @@ export class TeamService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiTeamDatatablePost$Json$Response(params?: {
-      body?: TeamFilterDtoDatatableDto
+    body?: TeamFilterDtoDatatableDto
   }): Observable<StrictHttpResponse<TeamGridDtoCollectionList>> {
 
     const rb = new RequestBuilder(this.rootUrl, TeamService.ApiTeamDatatablePostPath, 'post');
     if (params) {
-
-
       rb.body(params.body, 'application/*+json');
     }
+
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json'
@@ -338,7 +324,7 @@ export class TeamService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiTeamDatatablePost$Json(params?: {
-      body?: TeamFilterDtoDatatableDto
+    body?: TeamFilterDtoDatatableDto
   }): Observable<TeamGridDtoCollectionList> {
 
     return this.apiTeamDatatablePost$Json$Response(params).pipe(
@@ -358,15 +344,14 @@ export class TeamService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiTeamPost$Plain$Response(params?: {
-      body?: TeamDto
+    body?: TeamDto
   }): Observable<StrictHttpResponse<boolean>> {
 
     const rb = new RequestBuilder(this.rootUrl, TeamService.ApiTeamPostPath, 'post');
     if (params) {
-
-
       rb.body(params.body, 'application/*+json');
     }
+
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain'
@@ -385,7 +370,7 @@ export class TeamService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiTeamPost$Plain(params?: {
-      body?: TeamDto
+    body?: TeamDto
   }): Observable<boolean> {
 
     return this.apiTeamPost$Plain$Response(params).pipe(
@@ -400,15 +385,14 @@ export class TeamService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiTeamPost$Json$Response(params?: {
-      body?: TeamDto
+    body?: TeamDto
   }): Observable<StrictHttpResponse<boolean>> {
 
     const rb = new RequestBuilder(this.rootUrl, TeamService.ApiTeamPostPath, 'post');
     if (params) {
-
-
       rb.body(params.body, 'application/*+json');
     }
+
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json'
@@ -427,7 +411,7 @@ export class TeamService extends BaseService {
    * This method sends `application/*+json` and handles request body of type `application/*+json`.
    */
   apiTeamPost$Json(params?: {
-      body?: TeamDto
+    body?: TeamDto
   }): Observable<boolean> {
 
     return this.apiTeamPost$Json$Response(params).pipe(
@@ -448,15 +432,13 @@ export class TeamService extends BaseService {
    */
   apiTeamDelete$Plain$Response(params?: {
     Id?: number;
-
   }): Observable<StrictHttpResponse<boolean>> {
 
     const rb = new RequestBuilder(this.rootUrl, TeamService.ApiTeamDeletePath, 'delete');
     if (params) {
-
       rb.query('Id', params.Id, {});
-
     }
+
     return this.http.request(rb.build({
       responseType: 'text',
       accept: 'text/plain'
@@ -476,7 +458,6 @@ export class TeamService extends BaseService {
    */
   apiTeamDelete$Plain(params?: {
     Id?: number;
-
   }): Observable<boolean> {
 
     return this.apiTeamDelete$Plain$Response(params).pipe(
@@ -492,15 +473,13 @@ export class TeamService extends BaseService {
    */
   apiTeamDelete$Json$Response(params?: {
     Id?: number;
-
   }): Observable<StrictHttpResponse<boolean>> {
 
     const rb = new RequestBuilder(this.rootUrl, TeamService.ApiTeamDeletePath, 'delete');
     if (params) {
-
       rb.query('Id', params.Id, {});
-
     }
+
     return this.http.request(rb.build({
       responseType: 'json',
       accept: 'text/json'
@@ -520,7 +499,6 @@ export class TeamService extends BaseService {
    */
   apiTeamDelete$Json(params?: {
     Id?: number;
-
   }): Observable<boolean> {
 
     return this.apiTeamDelete$Json$Response(params).pipe(

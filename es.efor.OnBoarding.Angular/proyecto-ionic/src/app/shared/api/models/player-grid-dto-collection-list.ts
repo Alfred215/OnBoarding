@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 import { PlayerGridDto } from './player-grid-dto';
 export interface PlayerGridDtoCollectionList {
   items: Array<PlayerGridDto>;

@@ -1,5 +1,6 @@
 /* tslint:disable */
-export interface PlayerFilterDto {
+/* eslint-disable */
+export interface PlayerGridDto {
   id?: number;
   name?: null | string;
   number?: number;

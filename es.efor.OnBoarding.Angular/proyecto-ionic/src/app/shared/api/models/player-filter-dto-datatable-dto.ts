@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 import { PlayerFilterDto } from './player-filter-dto';
 export interface PlayerFilterDtoDatatableDto {
   filters?: PlayerFilterDto;

@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
-import { TeamGridDto, TeamGridDtoCollectionList, TeamFilterDtoDatatableDto, TeamDto } from 'src/app/api/models';
 
 @Component({
   selector: 'app-tab1',
@@ -8,8 +7,7 @@ import { TeamGridDto, TeamGridDtoCollectionList, TeamFilterDtoDatatableDto, Team
 })
 export class Tab1Page implements OnInit{
 
-  constructor() {
-  }
+  constructor() {}
 
   async ngOnInit() {
 

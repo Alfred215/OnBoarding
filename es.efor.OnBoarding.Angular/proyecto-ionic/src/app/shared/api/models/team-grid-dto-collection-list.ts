@@ -1,4 +1,5 @@
 /* tslint:disable */
+/* eslint-disable */
 import { TeamGridDto } from './team-grid-dto';
 export interface TeamGridDtoCollectionList {
   items: Array<TeamGridDto>;

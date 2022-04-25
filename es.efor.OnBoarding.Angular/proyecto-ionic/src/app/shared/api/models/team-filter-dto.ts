@@ -1,7 +1,8 @@
 /* tslint:disable */
+/* eslint-disable */
 import { PlayerDto } from './player-dto';
-export interface TeamGridDto {
-  active?: null | string;
+export interface TeamFilterDto {
+  active?: boolean;
   id?: number;
   league?: null | string;
   name?: null | string;
