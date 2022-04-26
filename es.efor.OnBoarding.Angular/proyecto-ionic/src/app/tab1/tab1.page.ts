@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { TeamDto } from '../shared/api/models';
+import { TeamDto, TeamGridDto } from '../shared/api/models';
 import { TeamService } from '../shared/api/services';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -28,7 +28,7 @@ export class Tab1Page {
     league: '',
     active: true
   };
-  teamCollection: TeamDto;
+  teamCollection: TeamGridDto[];
 
   constructor(private http: HttpClient,
     private teamSV: TeamService, public loadingController: LoadingController
@@ -39,38 +39,13 @@ export class Tab1Page {
 
   async ionViewWillEnter() {
     this.getName();
-    // await this.presentLoading();
-    // (await this.prepareDataRequest())
-    //   .pipe(
-    //     finalize(async () => {
-    //       await this.loading.dismiss();
-    //     })
-    //   )
-    //   .subscribe(data => {
-    //     this.data = JSON.stringify(data);
-    //   },
-    //     err => {
-    //       this.error = 'Error';
-    //     });
   }
-
-  // async presentLoading() {
-  //   this.loading = await this.loadingController.create({
-  //     message: 'Loading...'
-  //   });
-  //   await this.loading.present();
-  // }
 
   private getName(){
-    this.teamSV.apiTeamDatatablePost$Json$Response().subscribe(result =>{
+    this.teamSV.apiTeamSelectGet$Json().subscribe(result =>{
       console.log(result);
+      this.teamCollection = result;
     });
   }
-
-  // private async prepareDataRequest(): Promise<Observable<object>> {
-  //   const dataUrl = 'https://localhost:5001';
-  //   return this.http.get(dataUrl);
-  // }
-
 }
 

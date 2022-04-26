@@ -113,23 +113,21 @@ export class TeamService extends BaseService {
   }
 
   /**
-   * Path part for operation apiTeamSelectPost
+   * Path part for operation apiTeamSelectGet
    */
-  static readonly ApiTeamSelectPostPath = '/api/Team/select';
+  static readonly ApiTeamSelectGetPath = '/api/Team/select';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiTeamSelectPost$Plain()` instead.
+   * To access only the response body, use `apiTeamSelectGet$Plain()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiTeamSelectPost$Plain$Response(params?: {
-    nombre?: string;
+  apiTeamSelectGet$Plain$Response(params?: {
   }): Observable<StrictHttpResponse<Array<TeamGridDto>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, TeamService.ApiTeamSelectPostPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, TeamService.ApiTeamSelectGetPath, 'get');
     if (params) {
-      rb.query('nombre', params.nombre, {});
     }
 
     return this.http.request(rb.build({
@@ -145,32 +143,29 @@ export class TeamService extends BaseService {
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiTeamSelectPost$Plain$Response()` instead.
+   * To access the full response (for headers, for example), `apiTeamSelectGet$Plain$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiTeamSelectPost$Plain(params?: {
-    nombre?: string;
+  apiTeamSelectGet$Plain(params?: {
   }): Observable<Array<TeamGridDto>> {
 
-    return this.apiTeamSelectPost$Plain$Response(params).pipe(
+    return this.apiTeamSelectGet$Plain$Response(params).pipe(
       map((r: StrictHttpResponse<Array<TeamGridDto>>) => r.body as Array<TeamGridDto>)
     );
   }
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `apiTeamSelectPost$Json()` instead.
+   * To access only the response body, use `apiTeamSelectGet$Json()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiTeamSelectPost$Json$Response(params?: {
-    nombre?: string;
+  apiTeamSelectGet$Json$Response(params?: {
   }): Observable<StrictHttpResponse<Array<TeamGridDto>>> {
 
-    const rb = new RequestBuilder(this.rootUrl, TeamService.ApiTeamSelectPostPath, 'post');
+    const rb = new RequestBuilder(this.rootUrl, TeamService.ApiTeamSelectGetPath, 'get');
     if (params) {
-      rb.query('nombre', params.nombre, {});
     }
 
     return this.http.request(rb.build({
@@ -186,15 +181,14 @@ export class TeamService extends BaseService {
 
   /**
    * This method provides access to only to the response body.
-   * To access the full response (for headers, for example), `apiTeamSelectPost$Json$Response()` instead.
+   * To access the full response (for headers, for example), `apiTeamSelectGet$Json$Response()` instead.
    *
    * This method doesn't expect any request body.
    */
-  apiTeamSelectPost$Json(params?: {
-    nombre?: string;
+  apiTeamSelectGet$Json(params?: {
   }): Observable<Array<TeamGridDto>> {
 
-    return this.apiTeamSelectPost$Json$Response(params).pipe(
+    return this.apiTeamSelectGet$Json$Response(params).pipe(
       map((r: StrictHttpResponse<Array<TeamGridDto>>) => r.body as Array<TeamGridDto>)
     );
   }

@@ -45,12 +45,12 @@ namespace es.efor.OnBoarding.MainGateway.Controllers
         ///<sumary>
         ///Obtine el listado de equipos para poder seleccionar
         /// </sumary>
-        [HttpPost("select")]
+        [HttpGet("select")]
         [ProducesResponseType(typeof(List<TeamGridDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> selectTeam(string nombre)
+        public async Task<IActionResult> selectTeam()
         {
-            List<TeamGridDTO> teams = await _TeamService.TeamSelect(nombre);
+            CollectionList<TeamGridDTO> teams = await _TeamService.TeamSelect();
             return Ok(teams);
         }
         #endregion

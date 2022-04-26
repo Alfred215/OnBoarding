@@ -46,13 +46,15 @@ namespace es.efor.OnBoarding.Business.Services.TeamServices
         #endregion
 
         #region Select
-        public async Task<List<TeamGridDTO>> TeamSelect(string nombre)
+        public async Task<CollectionList<TeamGridDTO>> TeamSelect()
         {
+            CollectionList<TeamGridDTO> result = new CollectionList<TeamGridDTO>();
             IQueryable<Equipo> query = _dbContext.Equipo;
-            if(!string.IsNullOrWhiteSpace(nombre))
-                query = query.Where(x => x.Nombre.Contains(nombre));
+            List<Equipo> teamList = await query.AsNoTracking().ToListAsync();
 
-            return await query.ProjectTo<TeamGridDTO>(_mapper.ConfigurationProvider).ToListAsync();
+            result.Items = _mapper.Map<List<TeamGridDTO>>(teamList);
+            result.Total = await query.CountAsync();
+            return result;
         }
         #endregion
 
