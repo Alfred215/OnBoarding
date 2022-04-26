@@ -27,5 +27,8 @@
       <ion-button color="black"><ion-icon name="Trash"></ion-icon></ion-button>
     </ion-item>
   </ion-list>
+  <p>Data will be presented here ...</p>
+  <p *ngIf="!error; else errorContent">{{data ? data : '-'}}</p>
+  <ng-template #errorContent><p><span style="color: red;">{{error}}</span></p></ng-template>
 
 </ion-content>
