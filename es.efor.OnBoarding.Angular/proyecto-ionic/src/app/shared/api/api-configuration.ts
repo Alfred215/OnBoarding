@@ -9,7 +9,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ApiConfiguration {
-  rootUrl: string = 'http://localhost:5000/swagger/v1/swagger.json';
+  rootUrl: string = 'https://localhost:5001';
 }
 
 /**

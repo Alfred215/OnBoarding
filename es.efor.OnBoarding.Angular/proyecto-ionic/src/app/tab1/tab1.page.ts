@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { LoadingController } from '@ionic/angular';
 import { ContentType } from '@ionic/cli';
 import { CorsOptions } from 'cors';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-tab1',
@@ -27,6 +28,7 @@ export class Tab1Page {
     league: '',
     active: true
   };
+  teamCollection: TeamDto;
 
   constructor(private http: HttpClient,
     private teamSV: TeamService, public loadingController: LoadingController
@@ -36,32 +38,39 @@ export class Tab1Page {
   }
 
   async ionViewWillEnter() {
-    await this.presentLoading();
-    (await this.prepareDataRequest())
-      .pipe(
-        finalize(async () => {
-          await this.loading.dismiss();
-        })
-      )
-      .subscribe(data => {
-        this.data = JSON.stringify(data);
-      },
-        err => {
-          this.error = 'Error';
-        });
+    this.getName();
+    // await this.presentLoading();
+    // (await this.prepareDataRequest())
+    //   .pipe(
+    //     finalize(async () => {
+    //       await this.loading.dismiss();
+    //     })
+    //   )
+    //   .subscribe(data => {
+    //     this.data = JSON.stringify(data);
+    //   },
+    //     err => {
+    //       this.error = 'Error';
+    //     });
   }
 
-  async presentLoading() {
-    this.loading = await this.loadingController.create({
-      message: 'Loading...'
+  // async presentLoading() {
+  //   this.loading = await this.loadingController.create({
+  //     message: 'Loading...'
+  //   });
+  //   await this.loading.present();
+  // }
+
+  private getName(){
+    this.teamSV.apiTeamDatatablePost$Json$Response().subscribe(result =>{
+      console.log(result);
     });
-    await this.loading.present();
   }
 
-  private async prepareDataRequest(): Promise<Observable<object>> {
-    const dataUrl = 'https://localhost:5001';
-    return this.http.get(dataUrl);
-  }
+  // private async prepareDataRequest(): Promise<Observable<object>> {
+  //   const dataUrl = 'https://localhost:5001';
+  //   return this.http.get(dataUrl);
+  // }
 
 }
 
