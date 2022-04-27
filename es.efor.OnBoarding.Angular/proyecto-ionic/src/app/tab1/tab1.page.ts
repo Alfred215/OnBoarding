@@ -23,12 +23,12 @@ export class Tab1Page {
 
   async ionViewWillEnter() {
     if(!this.activo){
-      this.getList();
+      this.getName();
       this.activo= true;
     }
   }
 
-  private getList() {
+  private getName() {
     this.teamSV.apiTeamSelectGet$Json().subscribe(result => {
       const key = Object.values(result);
       this.teamCollection.push(key[1]);
