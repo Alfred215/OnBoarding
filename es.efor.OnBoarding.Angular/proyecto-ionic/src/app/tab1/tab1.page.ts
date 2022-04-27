@@ -11,11 +11,19 @@ import { LoadingController } from '@ionic/angular';
 
 export class Tab1Page {
 
+  item: TeamDto = {
+    id: 0,
+    name: '',
+    league: '',
+    active: null
+  };
+
   teamCollection: TeamGridDto[] = [];
   name: string[] = [];
   league: string[] = [];
   position: number[]=[];
   activo: boolean;
+  teamIdDelete: number;
 
   constructor(private http: HttpClient,
     private teamSV: TeamService, public loadingController: LoadingController
@@ -26,6 +34,12 @@ export class Tab1Page {
       this.getName();
       this.activo= true;
     }
+  }
+
+  deleteTeam(): void {
+    this.teamSV.apiTeamDelete$Json({Id: this.teamIdDelete})
+      .subscribe(()=>{
+      });
   }
 
   private getName() {
