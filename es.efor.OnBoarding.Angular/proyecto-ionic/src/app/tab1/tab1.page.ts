@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, ViewChild } from '@angular/core';
 import { TeamDto, TeamGridDto } from '../shared/api/models';
 import { TeamService } from '../shared/api/services';
 import { HttpClient } from '@angular/common/http';
 import { LoadingController } from '@ionic/angular';
+import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -38,9 +40,7 @@ export class Tab1Page {
   }
 
   deleteTeam(id: number): void {
-    this.teamSV.apiTeamDelete$Json({Id: id})
-      .subscribe(()=>{
-      });
+    this.teamSV.apiTeamDelete$Json({Id: id}).subscribe();
   }
 
   private getName() {
