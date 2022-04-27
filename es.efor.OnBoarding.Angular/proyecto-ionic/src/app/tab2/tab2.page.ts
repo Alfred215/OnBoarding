@@ -31,7 +31,7 @@ export class Tab2Page {
       for(let i = 0; i<key[0];i++){
         this.name.push(this.playerCollection[0][i].name);
         this.position.push(this.playerCollection[0][i].position);
-        this.team.push(this.playerCollection[0][i].Equipo.teamName);
+        this.team.push(this.playerCollection[0][i].teamName);
         this.num.push(i);
       }
     });
