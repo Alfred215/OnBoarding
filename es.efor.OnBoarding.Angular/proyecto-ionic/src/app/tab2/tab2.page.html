@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Jugadores
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,26 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Jugadores</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-list>
+    <ion-item>
+      <ion-label>Nombre</ion-label>
+      <ion-label>Posición</ion-label>
+      <ion-label>Equipo</ion-label>
+      <ion-button color="black">
+        <ion-icon name="add-circle"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-item  *ngFor="let i of num">
+      <ion-label>{{name[i]}}</ion-label>
+      <ion-label>{{position[i]}}</ion-label>
+      <ion-label>{{team[i]}}</ion-label>
+      <ion-button color="black"><ion-icon name="brush"></ion-icon></ion-button>
+      <ion-button color="black"><ion-icon name="Trash"></ion-icon></ion-button>
+    </ion-item>
+  </ion-list>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
 </ion-content>
+

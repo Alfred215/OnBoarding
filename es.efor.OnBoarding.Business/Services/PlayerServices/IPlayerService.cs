@@ -25,6 +25,7 @@ namespace es.efor.OnBoarding.Business.Services.PlayerServices
         Task<PlayerDTO> Get(string Player);
 
         Task<List<PlayerGridDTO>> PlayerSelect(string player);
+        Task<CollectionList<PlayerGridDTO>> Select();
 
         /// <summary>
         /// Obtiene un listado de jugadores para la datatable

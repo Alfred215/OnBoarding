@@ -57,6 +57,17 @@ namespace es.efor.OnBoarding.Business.Services.PlayerServices
 
             return await query.ProjectTo<PlayerGridDTO>(_mapper.ConfigurationProvider).ToListAsync();
         }
+
+        public async Task<CollectionList<PlayerGridDTO>> Select()
+        {
+            CollectionList<PlayerGridDTO> result = new CollectionList<PlayerGridDTO>();
+            IQueryable<Players> query = _dbContext.Players.Include(x=>x.Equipo);
+            List<Players> playerList = await query.AsNoTracking().ToListAsync();
+
+            result.Items = _mapper.Map<List<PlayerGridDTO>>(playerList);
+            result.Total = await query.CountAsync();
+            return result;
+        }
         #endregion
 
         #region DataTable

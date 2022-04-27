@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Equipo
+      Equipos
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -12,13 +12,13 @@
       <ion-title size="large">Equipo</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-button color="black">
-    <ion-icon name="add-circle"></ion-icon>
-  </ion-button>
   <ion-list>
     <ion-item>
       <ion-label>Nombre</ion-label>
       <ion-label>Liga</ion-label>
+      <ion-button color="black">
+        <ion-icon name="add-circle"></ion-icon>
+      </ion-button>
     </ion-item>
     <ion-item  *ngFor="let i of position">
       <ion-label>{{name[i]}}</ion-label>
