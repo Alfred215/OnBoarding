@@ -9,6 +9,7 @@ import { LoadingController } from '@ionic/angular';
 import { ContentType } from '@ionic/cli';
 import { CorsOptions } from 'cors';
 import { stringify } from 'querystring';
+import { LevelTransformLogger } from '@angular-devkit/core/src/logger';
 
 @Component({
   selector: 'app-tab1',
@@ -18,34 +19,34 @@ import { stringify } from 'querystring';
 
 export class Tab1Page {
 
-  data: string;
-  error: string;
-  loading: any;
-
   item: TeamDto = {
     id: 0,
     name: '',
     league: '',
     active: true
   };
-  teamCollection: TeamGridDto[];
+  teamCollection: TeamGridDto[] = [];
+  name: string[] = [];
+  league: string[] = [];
+  position: number[]=[];
 
   constructor(private http: HttpClient,
     private teamSV: TeamService, public loadingController: LoadingController
-  ) {
-    this.data = 'Test';
-    this.error = '';
-  }
+  ) {}
 
   async ionViewWillEnter() {
     this.getName();
   }
 
-  private getName(){
-    this.teamSV.apiTeamSelectGet$Json().subscribe(result =>{
-      console.log(result);
-      this.teamCollection = result;
+  private getName() {
+    this.teamSV.apiTeamSelectGet$Json().subscribe(result => {
+      const key = Object.values(result);
+      this.teamCollection.push(key[1]);
+      for(let i = 0; i<key[0];i++){
+        this.name.push(this.teamCollection[0][i].name);
+        this.league.push(this.teamCollection[0][i].league);
+        this.position.push(i);
+      }
     });
   }
 }
-
