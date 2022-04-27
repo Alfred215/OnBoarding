@@ -19,7 +19,7 @@
       <ion-label>{{name[i]}}</ion-label>
       <ion-label>{{league[i]}}</ion-label>
       <ion-button color="black"><ion-icon name="brush"></ion-icon></ion-button>
-      <ion-button color="black"><ion-icon name="Trash"></ion-icon></ion-button>
+      <ion-button color="black" (click)="deleteTeam(id[i])"><ion-icon name="Trash"></ion-icon></ion-button>
     </ion-item>
   </ion-list>
 

@@ -19,6 +19,7 @@ export class Tab1Page {
   };
 
   teamCollection: TeamGridDto[] = [];
+  id: number[] = [];
   name: string[] = [];
   league: string[] = [];
   position: number[]=[];
@@ -36,8 +37,8 @@ export class Tab1Page {
     }
   }
 
-  deleteTeam(): void {
-    this.teamSV.apiTeamDelete$Json({Id: this.teamIdDelete})
+  deleteTeam(id: number): void {
+    this.teamSV.apiTeamDelete$Json({Id: id})
       .subscribe(()=>{
       });
   }
@@ -47,6 +48,7 @@ export class Tab1Page {
       const key = Object.values(result);
       this.teamCollection.push(key[1]);
       for(let i = 0; i<key[0];i++){
+        this.id.push(this.teamCollection[0][i].id);
         this.name.push(this.teamCollection[0][i].name);
         this.league.push(this.teamCollection[0][i].league);
         this.position.push(i);
